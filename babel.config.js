@@ -11,5 +11,25 @@ module.exports = {
       },
     ],
     ["@babel/plugin-proposal-optional-catch-binding"],
+    [
+      "module-resolver",
+      {
+        root: ["./app"],
+        extensions: [".ts", ".tsx", ".js", ".jsx"],
+        alias: {
+          "@components": "./app/components",
+          "@navigators": "./app/navigators",
+          "@config": "./app/config",
+          "@services": "./app/services",
+          "@styles": "./app/styles",
+          "@theme": "./app/theme",
+          "@utils": "./app/utils",
+          "@models": "./app/models",
+          "@assets": "./assets",
+          "@screens": "./app/screens",
+          "@constants": "./app/constants",
+        },
+      },
+    ],
   ],
 }
