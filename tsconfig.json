@@ -2,6 +2,8 @@
   "compilerOptions": {
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
+    "baseUrl": "./app",
+    "esModuleInterop": true,
     "experimentalDecorators": true,
     "jsx": "react-native",
     "module": "es2015",
@@ -10,23 +12,29 @@
     "noImplicitReturns": true,
     "noImplicitThis": true,
     "noUnusedLocals": true,
+    "paths": {
+      "@components": ["components"],
+      "@navigators": ["navigators"],
+      "@config/*": ["config/*"],
+      "@services": ["services"],
+      "@services/*": ["services/*"],
+      "@styles": ["styles"],
+      "@styles/*": ["styles/*"],
+      "@theme": ["theme"],
+      "@utils": ["utils"],
+      "@utils/*": ["utils/*"],
+      "@models": ["models"],
+      "@assets": ["../assets/*"],
+      "@screens": ["screens"],
+      "@constants": ["constants"]
+    },
     "sourceMap": true,
     "target": "esnext",
-    "lib": [
-      "esnext",
-      "dom"
-    ],
+    "lib": ["esnext", "dom"],
     "skipLibCheck": true,
     "resolveJsonModule": true
   },
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
-    "App.js",
-    "app",
-    "test",
-    "storybook"
-  ],
+  "exclude": ["node_modules"],
+  "include": ["App.js", "app", "test", "storybook"],
   "extends": "expo/tsconfig.base"
 }
