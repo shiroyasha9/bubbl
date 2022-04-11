@@ -9,4 +9,6 @@ export const palette = {
   angry: "#dd3333",
   deepPurple: "#5D2555",
   lighterBlack: "#20162D",
+  bgGrey: "#f4f4ff",
+  fontDarkBlue: "#39415C",
 }
