@@ -1,6 +1,7 @@
 import { ApisauceInstance, create, ApiResponse } from "apisauce"
 import { getGeneralApiProblem } from "./api-problem"
 import { ApiConfig, DEFAULT_API_CONFIG } from "./api-config"
+import * as GoogleSignIn from "expo-google-sign-in"
 import * as Types from "./api.types"
 
 /**
@@ -96,6 +97,16 @@ export class Api {
       }
       return { kind: "ok", user: resultUser }
     } catch {
+      return { kind: "bad-data" }
+    }
+  }
+
+  async syncUser(): Promise<any> {
+    try {
+      const user = await GoogleSignIn.signInSilentlyAsync()
+      return { kind: "ok", user }
+    } catch (e) {
+      __DEV__ && console.log(e.message)
       return { kind: "bad-data" }
     }
   }
