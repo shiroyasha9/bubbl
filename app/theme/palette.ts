@@ -14,5 +14,5 @@ export const palette = {
   snowWhite: "#F4F4FF",
   peacock: "#39415C",
   frenchViolet: "#AE94FF",
-  transparent:"#ffffff00"
+  transparent: "#ffffff00",
 }
