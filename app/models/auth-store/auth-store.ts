@@ -20,6 +20,7 @@ export const AuthStoreModel = types
     authUser: types.optional(types.model("user", user), {}),
     loading: types.optional(types.boolean, false),
     authError: types.optional(types.boolean, false),
+    userGoal: types.optional(types.number, 0),
   })
   .extend(withEnvironment)
   .props({})
@@ -49,6 +50,9 @@ export const AuthStoreModel = types
       }
       self.loading = false
     }),
+    updateUserGoal: function (goal) {
+      self.userGoal = goal
+    },
   }))
 
 type AuthStoreType = Instance<typeof AuthStoreModel>
