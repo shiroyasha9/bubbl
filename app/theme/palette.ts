@@ -15,4 +15,5 @@ export const palette = {
   peacock: "#39415C",
   frenchViolet: "#AE94FF",
   transparent: "#ffffff00",
+  smallGray: "#636363",
 }
