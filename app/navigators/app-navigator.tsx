@@ -29,9 +29,7 @@ export type NavigatorParamList = {
   welcome: undefined
   demo: undefined
   demoList: undefined
-
   intro: undefined
-
   onboarding: undefined
 
   // 🔥 Your screens go here
@@ -46,7 +44,6 @@ const AppStack = () => {
       screenOptions={{
         headerShown: false,
       }}
-
       initialRouteName="onboarding"
     >
       <Stack.Screen name="onboarding" component={OnboardingScreen} />
@@ -59,7 +56,7 @@ const AppStack = () => {
   )
 }
 
-interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> { }
+interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> {}
 
 export const AppNavigator = (props: NavigationProps) => {
   const colorScheme = useColorScheme()
