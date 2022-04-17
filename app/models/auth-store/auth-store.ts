@@ -50,7 +50,7 @@ export const AuthStoreModel = types
       }
       self.loading = false
     }),
-    updateUserGoal: function (goal) {
+    updateUserGoal: function (goal: number) {
       self.userGoal = goal
     },
   }))

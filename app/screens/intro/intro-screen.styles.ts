@@ -1,21 +1,24 @@
 import { StyleSheet } from "react-native"
-import {
-  color,
-  spacing,
-  fontSize,
-  // textStyle
-} from "@theme"
-// import { hp } from "@utils"
+import { color, spacing, fontSize, textStyle } from "@theme"
+import { hp, wp } from "@utils"
 
 export default StyleSheet.create({
+  buttonContainer: {
+    alignItems: "center",
+    flex: 1,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    width: "100%",
+  },
   mainLine: {
+    ...textStyle.bold,
     alignItems: "center",
     color: color.palette.fontDarkBlue,
     flex: 1,
-    fontFamily: "Poppins-Bold",
-    fontSize: 22,
+    fontSize: fontSize.h3,
     justifyContent: "center",
-    lineHeight: 30,
+    lineHeight: hp(30),
     paddingHorizontal: spacing[2],
   },
   mainLineContainer: {
@@ -24,27 +27,26 @@ export default StyleSheet.create({
     justifyContent: "center",
     padding: spacing[1],
   },
-  mascotImageContainer: {
-    flex: 1,
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-  },
   mascotImage: {
     height: "75%",
   },
+  mascotImageContainer: {
+    alignItems: "center",
+    flex: 1,
+    justifyContent: "center",
+    width: "100%",
+  },
   reasonBox: {
     borderRadius: 12,
-    height: 135,
+    height: hp(135),
     justifyContent: "center",
     margin: spacing[1],
     padding: spacing[2],
-    width: 160,
+    width: wp(140),
   },
-
   reasonBoxText: {
     color: color.palette.fontDarkBlue,
-    fontSize: 16,
+    fontSize: fontSize.medium,
     textAlign: "center",
   },
   root: {
