@@ -15,6 +15,7 @@ export const WelcomeScreen: FC<StackScreenProps<NavigatorParamList, "welcome">> 
     const nextScreen = () => navigation.navigate("onboarding")
     const introScreen = () => navigation.navigate("intro")
     const homeScreen = () => navigation.navigate("home")
+    const musicScreen = () => navigation.navigate("music")
 
     const {
       authStore: { authUser },
@@ -33,17 +34,7 @@ export const WelcomeScreen: FC<StackScreenProps<NavigatorParamList, "welcome">> 
               <Text>Email: {authUser.email}</Text>
             </View>
           </View>
-          <SafeAreaView style={styles.footer}>
-            <View style={styles.footerContent}>
-              <Button
-                testID="next-screen-button"
-                style={styles.continue}
-                textStyle={styles.continueText}
-                text="Home Screen"
-                onPress={homeScreen}
-              />
-            </View>
-          </SafeAreaView>
+
           <SafeAreaView style={styles.footer}>
             <View style={styles.footerContent}>
               <Button
@@ -52,6 +43,18 @@ export const WelcomeScreen: FC<StackScreenProps<NavigatorParamList, "welcome">> 
                 textStyle={styles.continueText}
                 text="Intro Screen"
                 onPress={introScreen}
+              />
+            </View>
+          </SafeAreaView>
+
+          <SafeAreaView style={styles.footer}>
+            <View style={styles.footerContent}>
+              <Button
+                testID="next-screen-button"
+                style={styles.continue}
+                textStyle={styles.continueText}
+                text="Music Screen"
+                onPress={musicScreen}
               />
             </View>
           </SafeAreaView>
@@ -66,7 +69,7 @@ export const WelcomeScreen: FC<StackScreenProps<NavigatorParamList, "welcome">> 
               />
             </View>
           </SafeAreaView>
-        </HomeHoc>
+        </HomeHoc >
       </Screen>
     )
   },
