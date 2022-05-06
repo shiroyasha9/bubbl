@@ -16,4 +16,7 @@ export const palette = {
   frenchViolet: "#AE94FF",
   transparent: "#ffffff00",
   smallGray: "#636363",
+  cottonWhite: "#FCFCFC",
+  transparentBlack: "#868686",
+  lighterBlue: "#9EBFFF",
 }

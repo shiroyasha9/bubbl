@@ -1,3 +1,5 @@
 export * from "./enums"
 export * from "./alerts"
 export * from "./goals"
+export * from "./routes"
+export * from "./configs"

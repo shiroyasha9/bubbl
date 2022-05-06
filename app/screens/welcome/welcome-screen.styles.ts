@@ -33,7 +33,6 @@ export default StyleSheet.create({
     paddingHorizontal: spacing[4],
     paddingVertical: spacing[4],
   },
-  full: { flex: 1 },
   header: {
     alignItems: "center",
     flexDirection: "row",

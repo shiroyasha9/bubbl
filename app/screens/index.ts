@@ -5,3 +5,6 @@ export * from "./error/error-boundary"
 // export other screens here
 export * from "./onboarding/onboarding-screen"
 export * from "./intro/intro-screen"
+export * from "./home/home-screen"
+export * from "./media/media-screen"
+export * from "./journal/journal-screen"
