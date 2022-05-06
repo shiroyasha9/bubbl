@@ -9,7 +9,16 @@ import { useColorScheme } from "react-native"
 import { NavigationContainer, DefaultTheme, DarkTheme } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 
-import { WelcomeScreen, DemoScreen, DemoListScreen, OnboardingScreen, IntroScreen } from "@screens"
+import {
+  WelcomeScreen,
+  DemoScreen,
+  DemoListScreen,
+  OnboardingScreen,
+  IntroScreen,
+  HomeScreen,
+  MediaScreen,
+  JournalScreen,
+} from "@screens"
 
 import { navigationRef, useBackButtonHandler } from "./navigation-utilities"
 
@@ -31,7 +40,9 @@ export type NavigatorParamList = {
   demoList: undefined
   intro: undefined
   onboarding: undefined
-
+  home: undefined
+  media: undefined
+  journal: undefined
   // 🔥 Your screens go here
 }
 
@@ -49,6 +60,9 @@ const AppStack = () => {
       <Stack.Screen name="onboarding" component={OnboardingScreen} />
       <Stack.Screen name="welcome" component={WelcomeScreen} />
       <Stack.Screen name="intro" component={IntroScreen} />
+      <Stack.Screen name="home" component={HomeScreen} />
+      <Stack.Screen name="media" component={MediaScreen} />
+      <Stack.Screen name="journal" component={JournalScreen} />
       <Stack.Screen name="demo" component={DemoScreen} />
       <Stack.Screen name="demoList" component={DemoListScreen} />
       {/** 🔥 Your screens go here */}
