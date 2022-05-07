@@ -15,9 +15,9 @@ export const WelcomeScreen: FC<StackScreenProps<NavigatorParamList, "welcome">> 
     const nextScreen = () => navigation.navigate("onboarding")
     const introScreen = () => navigation.navigate("intro")
     // const musicScreen = () => navigation.navigate("music")
-    const homeScreen = () => navigation.navigate("home")
-    const musicScreen = () => navigation.navigate("music")
-
+    // const homeScreen = () => navigation.navigate("home")
+    // const musicScreen = () => navigation.navigate("music")
+    const journalScreen = () => navigation.navigate("journal")
     const {
       authStore: { authUser },
     } = useStores()
@@ -59,7 +59,19 @@ export const WelcomeScreen: FC<StackScreenProps<NavigatorParamList, "welcome">> 
               />
             </View>
           </SafeAreaView>
-        </HomeHoc >
+
+          <SafeAreaView style={styles.footer}>
+            <View style={styles.footerContent}>
+              <Button
+                testID="next-screen-button"
+                style={styles.continue}
+                textStyle={styles.continueText}
+                text="Journal Screen"
+                onPress={journalScreen}
+              />
+            </View>
+          </SafeAreaView>
+        </HomeHoc>
       </Screen>
     )
   },

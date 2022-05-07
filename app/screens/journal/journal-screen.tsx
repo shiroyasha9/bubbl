@@ -2,7 +2,7 @@ import React, { FC } from "react"
 import { observer } from "mobx-react-lite"
 import { StackScreenProps } from "@react-navigation/stack"
 import { NavigatorParamList } from "../../navigators"
-import { HomeHoc, Screen, Text } from "@components"
+import { HomeHoc, Screen, Text, JournalList } from "@components"
 // import { useNavigation } from "@react-navigation/native"
 // import { useStores } from "../../models"
 import { color } from "../../theme"
@@ -20,8 +20,14 @@ export const JournalScreen: FC<StackScreenProps<NavigatorParamList, "journal">> 
     } = useStores()
     return (
       <Screen backgroundColor={color.palette.snowWhite}>
-        <HomeHoc testID="" title={`${authUser.firstName}'s Journal`} subtitle="Scribbl away!">
+        <HomeHoc
+          testID=""
+          title={`${authUser.firstName ? authUser.firstName + "'s" : "Your"} Journal`}
+          subtitle="Scribbl away!"
+        >
           <Text>Journal screen</Text>
+          <JournalList />
+          <JournalList />
         </HomeHoc>
       </Screen>
     )
