@@ -14,6 +14,7 @@ export const WelcomeScreen: FC<StackScreenProps<NavigatorParamList, "welcome">> 
   ({ navigation }) => {
     const nextScreen = () => navigation.navigate("onboarding")
     const introScreen = () => navigation.navigate("intro")
+    // const musicScreen = () => navigation.navigate("music")
     const homeScreen = () => navigation.navigate("home")
     const musicScreen = () => navigation.navigate("music")
 
@@ -47,17 +48,6 @@ export const WelcomeScreen: FC<StackScreenProps<NavigatorParamList, "welcome">> 
             </View>
           </SafeAreaView>
 
-          <SafeAreaView style={styles.footer}>
-            <View style={styles.footerContent}>
-              <Button
-                testID="next-screen-button"
-                style={styles.continue}
-                textStyle={styles.continueText}
-                text="Music Screen"
-                onPress={musicScreen}
-              />
-            </View>
-          </SafeAreaView>
           <SafeAreaView style={styles.footer}>
             <View style={styles.footerContent}>
               <Button

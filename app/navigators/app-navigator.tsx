@@ -58,7 +58,7 @@ const AppStack = () => {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="onboarding"
+      initialRouteName="welcome"
     >
       <Stack.Screen name="onboarding" component={OnboardingScreen} />
       <Stack.Screen name="welcome" component={WelcomeScreen} />
