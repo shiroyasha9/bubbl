@@ -19,4 +19,6 @@ export const palette = {
   cottonWhite: "#FCFCFC",
   transparentBlack: "#868686",
   lighterBlue: "#9EBFFF",
+  journalListPink: "#FFD9FF",
+  journalListTextColor: "#061A40",
 }

@@ -37,12 +37,11 @@ export const IntroScreen: FC<StackScreenProps<NavigatorParamList, "intro">> = ob
           />
         </View>
         <View style={styles.mainLineContainer}>
-          <Text style={styles.mainLine}>What are you looking to improve? {userGoal}</Text>
+          <Text style={styles.mainLine}>What are you looking to improve?{userGoal}</Text>
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             onPress={() => handleUpdateUserGoal(0)}
-            // eslint-disable-next-line
             style={{
               ...styles.reasonBox,
               backgroundColor: "#EDD0FF",
@@ -52,7 +51,6 @@ export const IntroScreen: FC<StackScreenProps<NavigatorParamList, "intro">> = ob
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => handleUpdateUserGoal(1)}
-            // eslint-disable-next-line
             style={{
               ...styles.reasonBox,
               backgroundColor: "#F4E1FF",
@@ -62,7 +60,6 @@ export const IntroScreen: FC<StackScreenProps<NavigatorParamList, "intro">> = ob
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => handleUpdateUserGoal(2)}
-            // eslint-disable-next-line
             style={{
               ...styles.reasonBox,
               backgroundColor: "#FFD9FF",
@@ -72,7 +69,6 @@ export const IntroScreen: FC<StackScreenProps<NavigatorParamList, "intro">> = ob
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => handleUpdateUserGoal(3)}
-            // eslint-disable-next-line
             style={{
               ...styles.reasonBox,
               backgroundColor: "#FFCEFF",
