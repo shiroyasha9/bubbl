@@ -18,6 +18,7 @@ import {
   HomeScreen,
   MediaScreen,
   JournalScreen,
+  MeditationScreen,
 } from "@screens"
 
 import { navigationRef, useBackButtonHandler } from "./navigation-utilities"
@@ -43,6 +44,7 @@ export type NavigatorParamList = {
   home: undefined
   media: undefined
   journal: undefined
+  meditation: { videoID: string } | undefined
   // 🔥 Your screens go here
 }
 
@@ -63,6 +65,7 @@ const AppStack = () => {
       <Stack.Screen name="home" component={HomeScreen} />
       <Stack.Screen name="media" component={MediaScreen} />
       <Stack.Screen name="journal" component={JournalScreen} />
+      <Stack.Screen name="meditation" component={MeditationScreen} />
       <Stack.Screen name="demo" component={DemoScreen} />
       <Stack.Screen name="demoList" component={DemoListScreen} />
       {/** 🔥 Your screens go here */}

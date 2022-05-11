@@ -1,5 +1,6 @@
 import { flow, Instance, SnapshotOut, types } from "mobx-state-tree"
 import { withEnvironment } from "../extensions/with-environment"
+import { GOAL_TEXT } from "@constants"
 const { IS_OAUTH_ENABLED } = require("config/env")
 
 export const user = {
@@ -53,6 +54,18 @@ export const AuthStoreModel = types
     updateUserGoal: function (goal: number) {
       self.userGoal = goal
     },
+    fetchYoutubeVideoList: flow(function* () {
+      const { kind, videosList } = yield self.environment.api.fetchYoutubeVideoList(
+        `meditation videos for ${GOAL_TEXT[self.userGoal]}`,
+      )
+      return kind === "ok" ? videosList : []
+    }),
+    fetchYoutubeThumbnailList: flow(function* () {
+      const { kind, videosList } = yield self.environment.api.fetchVideoThumbnailList(
+        `meditation videos for ${GOAL_TEXT[self.userGoal]}`,
+      )
+      return kind === "ok" ? videosList : []
+    }),
   }))
 
 type AuthStoreType = Instance<typeof AuthStoreModel>

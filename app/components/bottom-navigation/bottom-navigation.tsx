@@ -26,7 +26,11 @@ export const BottomNavigation = observer(function BottomNavigation() {
     {
       icon: (
         <MusicIcon
-          fill={route.name === ROUTE_NAME.MEDIA ? color.palette.lighterBlue : color.palette.black}
+          fill={
+            route.name === ROUTE_NAME.MEDIA || route.name === ROUTE_NAME.MEDITATION
+              ? color.palette.lighterBlue
+              : color.palette.black
+          }
           style={styles.mediaIcon}
         />
       ),

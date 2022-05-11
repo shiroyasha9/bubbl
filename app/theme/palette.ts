@@ -19,4 +19,6 @@ export const palette = {
   cottonWhite: "#FCFCFC",
   transparentBlack: "#868686",
   lighterBlue: "#9EBFFF",
+  mutedGrey: "#9C9CA8",
+  nightSnow: "#ABC7FF",
 }
