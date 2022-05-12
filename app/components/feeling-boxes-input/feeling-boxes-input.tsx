@@ -1,20 +1,11 @@
 import * as React from "react"
-import { StyleProp, TextStyle, View, ViewStyle, Dimensions, SafeAreaView } from "react-native"
+import { StyleProp, View, ViewStyle, Dimensions } from "react-native"
 import { observer } from "mobx-react-lite"
-import { color, typography } from "../../theme"
+// import { color, typography } from "../../theme"
 import { Text } from "../text/text"
 import { Button } from "../button/button"
 import styles from "./feeling-boxes-input.styles"
-const DeviceWidth = Dimensions.get("window").width
-const CONTAINER: ViewStyle = {
-  justifyContent: "center",
-}
-
-const TEXT: TextStyle = {
-  fontFamily: typography.primary,
-  fontSize: 14,
-  color: color.primary,
-}
+// const DeviceWidth = Dimensions.get("window").width
 
 export interface FeelingBoxesInputProps {
   /**
@@ -32,7 +23,12 @@ export interface FeelingBoxesInputProps {
 export const FeelingBoxesInput = observer(function FeelingBoxesInput(
   props: FeelingBoxesInputProps,
 ) {
-  const { style: comp_styles, saveButtonText, onSave, rest } = props
+  const {
+    //  style: comp_styles,
+    saveButtonText,
+    onSave,
+    rest,
+  } = props
   const updateCurrentFeeling = rest.updateCurrentFeeling
   return (
     <View style={styles.gridContainer}>

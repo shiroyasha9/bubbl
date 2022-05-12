@@ -1,12 +1,12 @@
 import React, { FC } from "react"
 import { observer } from "mobx-react-lite"
-import { ViewStyle, TextInput } from "react-native"
+import { TextInput } from "react-native"
 import { StackScreenProps } from "@react-navigation/stack"
 import { NavigatorParamList } from "../../navigators"
-import { Screen, Text, TextField, Button } from "../../components"
+import { Screen, Text, Button } from "../../components"
 // import { useNavigation } from "@react-navigation/native"
 import { useStores } from "../../models"
-import { color } from "../../theme"
+// import { color } from "../../theme"
 
 import styles from "./journal-input-screen.styles"
 
