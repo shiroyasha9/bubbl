@@ -19,6 +19,8 @@ import {
   MediaScreen,
   JournalScreen,
   MusicScreen,
+  PreJournalScreen,
+  JournalInputScreen,
 } from "@screens"
 
 import { navigationRef, useBackButtonHandler } from "./navigation-utilities"
@@ -44,8 +46,9 @@ export type NavigatorParamList = {
   home: undefined
   media: undefined
   journal: undefined
+  prejournal: undefined
   music: undefined
-
+  journalInput: undefined
   // 🔥 Your screens go here
 }
 
@@ -69,12 +72,14 @@ const AppStack = () => {
       <Stack.Screen name="demo" component={DemoScreen} />
       <Stack.Screen name="demoList" component={DemoListScreen} />
       <Stack.Screen name="music" component={MusicScreen} />
+      <Stack.Screen name="prejournal" component={PreJournalScreen} />
+      <Stack.Screen name="journalInput" component={JournalInputScreen} />
       {/** 🔥 Your screens go here */}
     </Stack.Navigator>
   )
 }
 
-interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> { }
+interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> {}
 
 export const AppNavigator = (props: NavigationProps) => {
   const colorScheme = useColorScheme()

@@ -21,6 +21,8 @@ export const AuthStoreModel = types
     loading: types.optional(types.boolean, false),
     authError: types.optional(types.boolean, false),
     userGoal: types.optional(types.number, 0),
+    currentFeeling: types.optional(types.number, 0),
+    todaysJournal: types.optional(types.string, ""),
   })
   .extend(withEnvironment)
   .props({})
@@ -52,6 +54,12 @@ export const AuthStoreModel = types
     }),
     updateUserGoal: function (goal: number) {
       self.userGoal = goal
+    },
+    updateTodaysJournal: function (newText: string) {
+      self.todaysJournal = newText
+    },
+    updateCurrentFeeling: function (feeling: number) {
+      self.currentFeeling = feeling
     },
   }))
 

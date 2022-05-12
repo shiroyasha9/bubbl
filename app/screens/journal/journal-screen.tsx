@@ -2,19 +2,15 @@ import React, { FC } from "react"
 import { observer } from "mobx-react-lite"
 import { StackScreenProps } from "@react-navigation/stack"
 import { NavigatorParamList } from "../../navigators"
-import { HomeHoc, Screen, Text, JournalList } from "@components"
+import { HomeHoc, Screen, Text, JournalList, Button } from "@components"
 // import { useNavigation } from "@react-navigation/native"
 // import { useStores } from "../../models"
 import { color } from "../../theme"
 import { useStores } from "@models"
-
+import styles from "./journal-screen.styles"
 export const JournalScreen: FC<StackScreenProps<NavigatorParamList, "journal">> = observer(
-  function JournalScreen() {
-    // Pull in one of our MST stores
-    // const { someStore, anotherStore } = useStores()
-
-    // Pull in navigation via hook
-    // const navigation = useNavigation()
+  function JournalScreen({ navigation }) {
+    const goSomewhere = () => navigation.navigate("prejournal")
     const {
       authStore: { authUser },
     } = useStores()
@@ -26,6 +22,7 @@ export const JournalScreen: FC<StackScreenProps<NavigatorParamList, "journal">> 
           subtitle="Scribbl away!"
         >
           <Text>Journal screen</Text>
+          <Button text="Update Your Journal" style={styles.updateButton} onPress={goSomewhere} />
           <JournalList />
           <JournalList />
         </HomeHoc>
