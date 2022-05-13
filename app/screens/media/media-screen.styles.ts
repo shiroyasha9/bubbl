@@ -1,51 +1,26 @@
 import { StyleSheet } from "react-native"
-import { color, spacing, fontSize, textStyle } from "@theme"
-import { hp } from "@utils"
+import { color, spacing, fontSize } from "@theme"
+// import { hp, wp } from "@utils"
 
 export default StyleSheet.create({
-  body: {
-    marginTop: spacing[6],
-  },
   container: {
-    paddingHorizontal: spacing[5],
+    marginHorizontal: spacing[3],
   },
-  content: {
-    marginVertical: spacing[6],
-  },
-  continue: {
-    backgroundColor: color.palette.frenchViolet,
-    paddingHorizontal: spacing[4],
-    paddingVertical: spacing[4],
-  },
-  continueText: {
-    ...textStyle.bold,
-    color: color.palette.white,
+  mutedText: {
+    color: color.palette.mutedGrey,
     fontSize: fontSize.regular,
-    letterSpacing: 2,
   },
-  detailsText: {
-    ...textStyle.semiBold,
+  primarySection: {
+    marginTop: spacing[7],
   },
-  footer: {
-    backgroundColor: color.palette.snowWhite,
+  secondarySection: {
+    marginTop: spacing[8],
   },
-  footerContent: {
-    paddingHorizontal: spacing[4],
-    paddingVertical: spacing[4],
-  },
-  header: {
-    alignItems: "center",
+  sectionHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  profilePic: {
-    borderRadius: hp(50),
-    height: hp(40),
-    width: hp(40),
-  },
-  title: {
-    ...textStyle.bold,
-    fontSize: fontSize.h3,
-    lineHeight: 38,
+  text: {
+    fontSize: fontSize.regular,
   },
 })

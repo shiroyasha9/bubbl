@@ -18,6 +18,7 @@ import {
   HomeScreen,
   MediaScreen,
   JournalScreen,
+  MeditationScreen,
   MusicScreen,
 } from "@screens"
 
@@ -44,6 +45,7 @@ export type NavigatorParamList = {
   home: undefined
   media: undefined
   journal: undefined
+  meditation: { videoID: string } | undefined
   music: undefined
 
   // 🔥 Your screens go here
@@ -66,6 +68,7 @@ const AppStack = () => {
       <Stack.Screen name="home" component={HomeScreen} />
       <Stack.Screen name="media" component={MediaScreen} />
       <Stack.Screen name="journal" component={JournalScreen} />
+      <Stack.Screen name="meditation" component={MeditationScreen} />
       <Stack.Screen name="demo" component={DemoScreen} />
       <Stack.Screen name="demoList" component={DemoListScreen} />
       <Stack.Screen name="music" component={MusicScreen} />
@@ -74,7 +77,7 @@ const AppStack = () => {
   )
 }
 
-interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> { }
+interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> {}
 
 export const AppNavigator = (props: NavigationProps) => {
   const colorScheme = useColorScheme()
