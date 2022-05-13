@@ -14,8 +14,10 @@ export const WelcomeScreen: FC<StackScreenProps<NavigatorParamList, "welcome">> 
   ({ navigation }) => {
     const nextScreen = () => navigation.navigate("onboarding")
     const introScreen = () => navigation.navigate("intro")
-    const homeScreen = () => navigation.navigate("home")
-
+    // const musicScreen = () => navigation.navigate("music")
+    // const homeScreen = () => navigation.navigate("home")
+    // const musicScreen = () => navigation.navigate("music")
+    const journalScreen = () => navigation.navigate("journal")
     const {
       authStore: { authUser },
     } = useStores()
@@ -33,17 +35,7 @@ export const WelcomeScreen: FC<StackScreenProps<NavigatorParamList, "welcome">> 
               <Text>Email: {authUser.email}</Text>
             </View>
           </View>
-          <SafeAreaView style={styles.footer}>
-            <View style={styles.footerContent}>
-              <Button
-                testID="next-screen-button"
-                style={styles.continue}
-                textStyle={styles.continueText}
-                text="Home Screen"
-                onPress={homeScreen}
-              />
-            </View>
-          </SafeAreaView>
+
           <SafeAreaView style={styles.footer}>
             <View style={styles.footerContent}>
               <Button
@@ -55,6 +47,7 @@ export const WelcomeScreen: FC<StackScreenProps<NavigatorParamList, "welcome">> 
               />
             </View>
           </SafeAreaView>
+
           <SafeAreaView style={styles.footer}>
             <View style={styles.footerContent}>
               <Button
@@ -63,6 +56,18 @@ export const WelcomeScreen: FC<StackScreenProps<NavigatorParamList, "welcome">> 
                 textStyle={styles.continueText}
                 text="Back to Onboarding"
                 onPress={nextScreen}
+              />
+            </View>
+          </SafeAreaView>
+
+          <SafeAreaView style={styles.footer}>
+            <View style={styles.footerContent}>
+              <Button
+                testID="next-screen-button"
+                style={styles.continue}
+                textStyle={styles.continueText}
+                text="Journal Screen"
+                onPress={journalScreen}
               />
             </View>
           </SafeAreaView>

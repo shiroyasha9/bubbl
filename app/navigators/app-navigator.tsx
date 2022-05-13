@@ -19,6 +19,7 @@ import {
   MediaScreen,
   JournalScreen,
   MeditationScreen,
+  MusicScreen,
 } from "@screens"
 
 import { navigationRef, useBackButtonHandler } from "./navigation-utilities"
@@ -45,6 +46,8 @@ export type NavigatorParamList = {
   media: undefined
   journal: undefined
   meditation: { videoID: string } | undefined
+  music: undefined
+
   // 🔥 Your screens go here
 }
 
@@ -57,7 +60,7 @@ const AppStack = () => {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="onboarding"
+      initialRouteName="welcome"
     >
       <Stack.Screen name="onboarding" component={OnboardingScreen} />
       <Stack.Screen name="welcome" component={WelcomeScreen} />
@@ -68,6 +71,7 @@ const AppStack = () => {
       <Stack.Screen name="meditation" component={MeditationScreen} />
       <Stack.Screen name="demo" component={DemoScreen} />
       <Stack.Screen name="demoList" component={DemoListScreen} />
+      <Stack.Screen name="music" component={MusicScreen} />
       {/** 🔥 Your screens go here */}
     </Stack.Navigator>
   )

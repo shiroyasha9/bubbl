@@ -21,4 +21,6 @@ export const palette = {
   lighterBlue: "#9EBFFF",
   mutedGrey: "#9C9CA8",
   nightSnow: "#ABC7FF",
+  journalListPink: "#FFD9FF",
+  journalListTextColor: "#061A40",
 }

@@ -16,10 +16,10 @@ export default StyleSheet.create({
     alignItems: "center",
     color: color.palette.fontDarkBlue,
     flex: 1,
-    fontSize: fontSize.h3,
+    fontSize: fontSize.h2,
     justifyContent: "center",
     lineHeight: hp(30),
-    paddingHorizontal: spacing[2],
+    marginVertical: spacing[2],
   },
   mainLineContainer: {
     alignItems: "center",
@@ -28,7 +28,7 @@ export default StyleSheet.create({
     padding: spacing[1],
   },
   mascotImage: {
-    height: "75%",
+    height: wp(180),
   },
   mascotImageContainer: {
     alignItems: "center",
@@ -37,16 +37,16 @@ export default StyleSheet.create({
     width: "100%",
   },
   reasonBox: {
+    aspectRatio: 1 / 1,
     borderRadius: 12,
-    height: hp(135),
     justifyContent: "center",
     margin: spacing[1],
     padding: spacing[2],
-    width: wp(140),
+    width: wp(110),
   },
   reasonBoxText: {
     color: color.palette.fontDarkBlue,
-    fontSize: fontSize.medium,
+    fontSize: fontSize.title,
     textAlign: "center",
   },
   root: {
