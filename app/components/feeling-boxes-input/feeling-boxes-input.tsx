@@ -1,12 +1,14 @@
 import * as React from "react"
-import { StyleProp, View, ViewStyle, Dimensions } from "react-native"
+import { StyleProp, View, ViewStyle } from "react-native"
 import { observer } from "mobx-react-lite"
 // import { color, typography } from "../../theme"
 import { Text } from "../text/text"
 import { Button } from "../button/button"
 import styles from "./feeling-boxes-input.styles"
+import { useStores } from "../../models"
 // const DeviceWidth = Dimensions.get("window").width
-
+import { MOOD_COLOR, moods } from "@constants"
+import { color } from "@theme"
 export interface FeelingBoxesInputProps {
   /**
    * An optional style override useful for padding & margin.
@@ -14,7 +16,7 @@ export interface FeelingBoxesInputProps {
   style?: StyleProp<ViewStyle>
   onSave: (value: any) => void
   saveButtonText: string
-  rest: any
+  rest?: any
 }
 
 /**
@@ -27,9 +29,10 @@ export const FeelingBoxesInput = observer(function FeelingBoxesInput(
     //  style: comp_styles,
     saveButtonText,
     onSave,
-    rest,
   } = props
-  const updateCurrentFeeling = rest.updateCurrentFeeling
+  const {
+    authStore: { updateCurrentFeeling, currentFeeling },
+  } = useStores()
   return (
     <View style={styles.gridContainer}>
       <View
@@ -37,84 +40,58 @@ export const FeelingBoxesInput = observer(function FeelingBoxesInput(
           flexDirection: "row",
         }}
       >
-        <View>
-          <Button
-            style={styles.feelingBox}
-            onPress={() => {
-              updateCurrentFeeling(0)
-            }}
-          >
-            <Text style={styles.feelingBoxText}>happy</Text>
-          </Button>
-          <Button
-            style={styles.feelingBox}
-            onPress={() => {
-              updateCurrentFeeling(3)
-            }}
-          >
-            <Text style={styles.feelingBoxText}>happy</Text>
-          </Button>
-          <Button
-            style={styles.feelingBox}
-            onPress={() => {
-              updateCurrentFeeling(6)
-            }}
-          >
-            <Text style={styles.feelingBoxText}>happy</Text>
-          </Button>
-        </View>
-        <View>
-          <Button
-            style={styles.feelingBox}
-            onPress={() => {
-              updateCurrentFeeling(1)
-            }}
-          >
-            <Text style={styles.feelingBoxText}>happy</Text>
-          </Button>
-          <Button
-            style={styles.feelingBox}
-            onPress={() => {
-              updateCurrentFeeling(4)
-            }}
-          >
-            <Text style={styles.feelingBoxText}>happy</Text>
-          </Button>
-          <Button
-            style={styles.feelingBox}
-            onPress={() => {
-              updateCurrentFeeling(7)
-            }}
-          >
-            <Text style={styles.feelingBoxText}>happy</Text>
-          </Button>
-        </View>
-        <View>
-          <Button
-            style={styles.feelingBox}
-            onPress={() => {
-              updateCurrentFeeling(2)
-            }}
-          >
-            <Text style={styles.feelingBoxText}>happy</Text>
-          </Button>
-          <Button
-            style={styles.feelingBox}
-            onPress={() => {
-              updateCurrentFeeling(5)
-            }}
-          >
-            <Text style={styles.feelingBoxText}>happy</Text>
-          </Button>
-          <Button
-            style={styles.feelingBox}
-            onPress={() => {
-              updateCurrentFeeling(8)
-            }}
-          >
-            <Text style={styles.feelingBoxText}>happy</Text>
-          </Button>
-        </View>
+        {[0, 1, 2].map((i: number) => {
+          return (
+            <View key={i}>
+              <Button
+                style={{
+                  ...styles.feelingBox,
+                  backgroundColor: MOOD_COLOR[moods[i].text],
+                  borderColor:
+                    i == currentFeeling ? color.palette.fontDarkBlue : color.palette.transparent,
+                }}
+                onPress={() => {
+                  updateCurrentFeeling(i)
+                }}
+              >
+                <Text style={styles.feelingBoxEmoji}>{moods[i].emoji}</Text>
+                <Text style={styles.feelingBoxText}>{moods[i].text}</Text>
+              </Button>
+              <Button
+                style={{
+                  ...styles.feelingBox,
+                  backgroundColor: MOOD_COLOR[moods[i + 3].text],
+                  borderColor:
+                    i + 3 == currentFeeling
+                      ? color.palette.fontDarkBlue
+                      : color.palette.transparent,
+                }}
+                onPress={() => {
+                  updateCurrentFeeling(i + 3)
+                }}
+              >
+                <Text style={styles.feelingBoxEmoji}>{moods[i + 3].emoji}</Text>
+                <Text style={styles.feelingBoxText}>{moods[i + 3].text}</Text>
+              </Button>
+              <Button
+                style={{
+                  ...styles.feelingBox,
+                  backgroundColor: MOOD_COLOR[moods[i + 6].text],
+                  borderColor:
+                    i + 6 == currentFeeling
+                      ? color.palette.fontDarkBlue
+                      : color.palette.transparent,
+                }}
+                onPress={() => {
+                  updateCurrentFeeling(i + 6)
+                }}
+              >
+                <Text style={styles.feelingBoxEmoji}>{moods[i + 6].emoji}</Text>
+                <Text style={styles.feelingBoxText}>{moods[i + 6].text}</Text>
+              </Button>
+            </View>
+          )
+        })}
       </View>
       <View style={styles.footerContent}>
         <Button

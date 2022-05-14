@@ -22,7 +22,7 @@ export default StyleSheet.create({
   continueText: {
     ...textStyle.bold,
     color: color.palette.white,
-    fontSize: fontSize.regular,
+    fontSize: fontSize.title,
     letterSpacing: 2,
   },
   detailsText: {
@@ -38,12 +38,20 @@ export default StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     alignContent: "center",
+    borderWidth: 2,
+    borderColor: color.palette.transparent,
+  },
+  feelingBoxEmoji: {
+    fontSize: fontSize.h1 * 1.2,
   },
   feelingBoxText: {
+    ...textStyle.semiBold,
+    fontSize: fontSize.h4,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     alignContent: "center",
+    color: color.palette.fontDarkBlue,
   },
   footer: {
     backgroundColor: color.palette.snowWhite,
