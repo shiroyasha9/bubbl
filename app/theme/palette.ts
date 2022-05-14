@@ -24,4 +24,6 @@ export const palette = {
   journalListPink: "#FFD9FF",
   journalListTextColor: "#061A40",
   paleBlue: "#C3D4FF",
+  purpleAction: "#c8b6ff",
+  lightBlue: "#abc7ff",
 }
