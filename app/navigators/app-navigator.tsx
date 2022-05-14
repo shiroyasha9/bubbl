@@ -50,7 +50,7 @@ export type NavigatorParamList = {
   home: undefined
   media: undefined
   journal: undefined
-  prejournal: undefined
+  prejournal: { purpose: string; moodId?: number } | undefined
   meditation: { videoID: string } | undefined
   music: undefined
   journalInput: undefined

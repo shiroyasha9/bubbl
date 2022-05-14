@@ -9,10 +9,10 @@ import { color } from "@theme"
 import { useStores } from "@models"
 import styles from "./home-screen.styles"
 import { FlatList, TouchableOpacity, View } from "react-native"
-import { MOOD_COLOR } from "@constants"
+import { MOOD_COLOR, moods } from "@constants"
 
 export const HomeScreen: FC<StackScreenProps<NavigatorParamList, "home">> = observer(
-  function HomeScreen() {
+  function HomeScreen({ navigation }) {
     // Pull in one of our MST stores
     // const { someStore, anotherStore } = useStores()
 
@@ -20,20 +20,17 @@ export const HomeScreen: FC<StackScreenProps<NavigatorParamList, "home">> = obse
     // const navigation = useNavigation()
 
     const {
-      authStore: { authUser },
+      authStore: { authUser, updateCurrentFeeling },
     } = useStores()
 
-    const moods = [
-      { emoji: "😁", text: "happy" },
-      { emoji: "😍", text: "excited" },
-      { emoji: "☹️", text: "sad" },
-      { emoji: "😁", text: "happy" },
-      { emoji: "😁", text: "happy" },
-    ]
-
-    const _renderItem = ({ item }: { item: { emoji: string; text: string } }) => {
+    const _renderItem = ({ item }: { item: { id: number; emoji: string; text: string } }) => {
       return (
-        <TouchableOpacity onPress={() => console.log("got clicked")}>
+        <TouchableOpacity
+          onPress={() => {
+            updateCurrentFeeling(item.id)
+            navigation.navigate("prejournal", { purpose: "mood", moodId: item.id })
+          }}
+        >
           <View style={{ ...styles.moodCard, backgroundColor: MOOD_COLOR[item.text] }}>
             <Text style={styles.emoji}>{item.emoji}</Text>
             <Text>{item.text}</Text>
@@ -53,7 +50,9 @@ export const HomeScreen: FC<StackScreenProps<NavigatorParamList, "home">> = obse
             <View style={styles.primarySection}>
               <View style={styles.sectionHeader}>
                 <Text style={styles.text}>How are you feeling?</Text>
-                <TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("prejournal", { purpose: "mood" })}
+                >
                   <Text style={styles.mutedText}>See More</Text>
                 </TouchableOpacity>
               </View>
