@@ -1,6 +1,6 @@
-import { VideoDetails } from "screens/meditation/meditation-screen.types"
+import { IVideoDetails } from "@types"
 
 export interface MediaInfoCardProps {
   onPress: (videoID: string) => void
-  video?: VideoDetails
+  video?: IVideoDetails
 }

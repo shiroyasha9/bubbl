@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native"
-import { spacing, fontSize, textStyle } from "@theme"
+import { spacing, fontSize, textStyle, color } from "@theme"
 import { hp } from "@utils"
 
 export default StyleSheet.create({
@@ -29,6 +29,7 @@ export default StyleSheet.create({
     lineHeight: 2,
   },
   homeWrapper: {
+    backgroundColor: color.palette.snowWhite,
     flex: 1,
     paddingHorizontal: spacing[4],
     paddingTop: hp(20),

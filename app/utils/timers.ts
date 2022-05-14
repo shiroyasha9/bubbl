@@ -1,4 +1,6 @@
-export const getDisplayDurationFromSeconds = (seconds: number) => {
+import { HHMMSS, HH_MM_SS } from "@constants"
+
+export const getDisplayDurationFromSeconds = (seconds: number, format = HH_MM_SS) => {
   const hours = Math.floor(seconds / (60 * 60))
   seconds = seconds - hours * 60 * 60
   const minutes = Math.floor(seconds / 60)
@@ -6,6 +8,12 @@ export const getDisplayDurationFromSeconds = (seconds: number) => {
   const computedHours = hours.toString().length > 1 ? hours : `0${hours}`
   const computedMinutes = minutes.toString().length > 1 ? minutes : `0${minutes}`
   const computedSeconds = secondsLeft.toString().length > 1 ? secondsLeft : `0${secondsLeft}`
+  if (format === HHMMSS) {
+    if (hours === 0) {
+      return `${computedMinutes}.${computedSeconds}`
+    }
+    return `${computedHours}.${computedMinutes}.${computedSeconds}`
+  }
   if (hours === 0) {
     return `${computedMinutes}m ${computedSeconds}s`
   }

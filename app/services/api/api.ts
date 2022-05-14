@@ -1,10 +1,10 @@
 import { ApisauceInstance, create, ApiResponse } from "apisauce"
+import * as GoogleSignIn from "expo-google-sign-in"
+import { YOUTUBE_API_BASE_URL } from "@constants"
+import { IYoutubeSearchResultsResponse } from "@types"
 import { getGeneralApiProblem } from "./api-problem"
 import { ApiConfig, DEFAULT_API_CONFIG } from "./api-config"
-import * as GoogleSignIn from "expo-google-sign-in"
 import * as Types from "./api.types"
-import { YOUTUBE_API_BASE_URL } from "@constants"
-import { IYoutubeSearchResultsResponse } from "screens/media/media-screen.types"
 const { YOUTUBE_API_KEY } = require("config/env")
 
 /**

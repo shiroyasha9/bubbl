@@ -9,12 +9,15 @@ import { HorizontalMediaScrollViewProps } from "./horizontal-media-scroll-view.t
 export const HorizontalMediaScrollView = observer(function HorizontalMediaScrollView(
   props: HorizontalMediaScrollViewProps,
 ) {
-  const { videoList, onPress } = props
+  const { videoList, onPress, type } = props
   return (
     <ScrollView horizontal={true} style={styles.horizontalScrollContainer}>
       {videoList &&
         videoList.map((video, index) => (
-          <TouchableOpacity key={index} onPress={() => onPress(video.id)}>
+          <TouchableOpacity
+            key={index}
+            onPress={() => (type === "music" ? onPress(video) : onPress(video.id))}
+          >
             <View style={styles.card}>
               <ImageBackground
                 source={{ uri: video.thumbnailURI }}
