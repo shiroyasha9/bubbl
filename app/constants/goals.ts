@@ -4,3 +4,5 @@ export const GOAL = {
   2: "RELAX",
   3: "SELFLOVE",
 }
+
+export const GOAL_TEXT = ["Sleep", "Stress", "Relax", "Self Love"]

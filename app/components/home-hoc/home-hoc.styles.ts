@@ -3,6 +3,15 @@ import { spacing, fontSize, textStyle } from "@theme"
 import { hp } from "@utils"
 
 export default StyleSheet.create({
+  alternateHeader: {
+    alignItems: "center",
+    flexDirection: "row",
+  },
+  alternateHeaderText: {
+    ...textStyle.bold,
+    flex: 1,
+    textAlign: "center",
+  },
   bottomNavigation: {
     alignSelf: "center",
     bottom: hp(20),

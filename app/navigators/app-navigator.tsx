@@ -18,6 +18,7 @@ import {
   HomeScreen,
   MediaScreen,
   JournalScreen,
+  MeditationScreen,
   MusicScreen,
   PreJournalScreen,
   JournalInputScreen,
@@ -47,6 +48,7 @@ export type NavigatorParamList = {
   media: undefined
   journal: undefined
   prejournal: undefined
+  meditation: { videoID: string } | undefined
   music: undefined
   journalInput: undefined
   // 🔥 Your screens go here
@@ -69,6 +71,7 @@ const AppStack = () => {
       <Stack.Screen name="home" component={HomeScreen} />
       <Stack.Screen name="media" component={MediaScreen} />
       <Stack.Screen name="journal" component={JournalScreen} />
+      <Stack.Screen name="meditation" component={MeditationScreen} />
       <Stack.Screen name="demo" component={DemoScreen} />
       <Stack.Screen name="demoList" component={DemoListScreen} />
       <Stack.Screen name="music" component={MusicScreen} />
