@@ -1,6 +1,7 @@
-import { VideoDetails } from "screens/media/media-screen.types"
+import { IVideoDetails } from "@types"
 
 export interface HorizontalMediaScrollViewProps {
-  videoList: VideoDetails[]
-  onPress?: (videoID: string) => void
+  videoList: IVideoDetails[]
+  onPress?: (videoID: string | IVideoDetails) => void
+  type?: "music" | "video"
 }

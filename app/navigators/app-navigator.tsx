@@ -22,9 +22,12 @@ import {
   MusicScreen,
   PreJournalScreen,
   JournalInputScreen,
+  MusicPlayerScreen,
 } from "@screens"
 
 import { navigationRef, useBackButtonHandler } from "./navigation-utilities"
+import { useStores } from "@models"
+import { IVideoDetails } from "@types"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -51,6 +54,7 @@ export type NavigatorParamList = {
   meditation: { videoID: string } | undefined
   music: undefined
   journalInput: undefined
+  musicPlayer: { video: IVideoDetails }
   // 🔥 Your screens go here
 }
 
@@ -58,12 +62,18 @@ export type NavigatorParamList = {
 const Stack = createNativeStackNavigator<NavigatorParamList>()
 
 const AppStack = () => {
+  const {
+    authStore: { authUser },
+  } = useStores()
+
+  const isLoggedIn = () => !!authUser?.uid
+
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName="welcome"
+      initialRouteName={isLoggedIn() ? "home" : "onboarding"}
     >
       <Stack.Screen name="onboarding" component={OnboardingScreen} />
       <Stack.Screen name="welcome" component={WelcomeScreen} />
@@ -77,6 +87,13 @@ const AppStack = () => {
       <Stack.Screen name="music" component={MusicScreen} />
       <Stack.Screen name="prejournal" component={PreJournalScreen} />
       <Stack.Screen name="journalInput" component={JournalInputScreen} />
+      <Stack.Screen
+        name="musicPlayer"
+        component={MusicPlayerScreen}
+        options={{
+          animation: "none",
+        }}
+      />
       {/** 🔥 Your screens go here */}
     </Stack.Navigator>
   )

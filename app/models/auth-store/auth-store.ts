@@ -102,6 +102,18 @@ export const AuthStoreModel = types
       )
       return kind === "ok" ? videosList : []
     }),
+    fetchYoutubeMusicList: flow(function* () {
+      const { kind, videosList } = yield self.environment.api.fetchYoutubeVideoList(
+        `music for ${GOAL_TEXT[self.userGoal]}`,
+      )
+      return kind === "ok" ? videosList : []
+    }),
+    fetchYoutubeMusicThumbnailList: flow(function* () {
+      const { kind, videosList } = yield self.environment.api.fetchVideoThumbnailList(
+        `music for ${GOAL_TEXT[self.userGoal]}`,
+      )
+      return kind === "ok" ? videosList : []
+    }),
   }))
 
 type AuthStoreType = Instance<typeof AuthStoreModel>

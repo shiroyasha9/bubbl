@@ -28,6 +28,7 @@ module.exports = {
           "@assets": "./assets",
           "@screens": "./app/screens",
           "@constants": "./app/constants",
+          "@types": "./app/types",
         },
       },
     ],

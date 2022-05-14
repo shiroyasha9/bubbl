@@ -51,7 +51,7 @@ export default StyleSheet.create({
   },
   root: {
     alignItems: "center",
-    backgroundColor: color.palette.bgGrey,
+    backgroundColor: color.palette.snowWhite,
     color: color.palette.white,
     flex: 1,
     justifyContent: "center",

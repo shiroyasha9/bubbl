@@ -7,9 +7,9 @@ import { useFocusEffect } from "@react-navigation/native"
 import { color } from "@theme"
 import { HomeHoc, HorizontalMediaScrollView, Screen, Text } from "@components"
 import { useStores } from "@models"
-import { getThumbnailFromVideoId } from "@utils"
+import { IVideoDetails, IYoutubeSearchResultsResponse } from "@types"
+import { mapYoutubeSearchResultToList } from "@utils"
 import styles from "./media-screen.styles"
-import { IYoutubeSearchResultsResponse, VideoDetails } from "./media-screen.types"
 
 export const MediaScreen: FC<StackScreenProps<NavigatorParamList, "media">> = observer(
   function MediaScreen({ navigation }) {
@@ -18,38 +18,38 @@ export const MediaScreen: FC<StackScreenProps<NavigatorParamList, "media">> = ob
 
     // Pull in navigation via hook
     const {
-      authStore: { authUser, fetchYoutubeThumbnailList },
+      authStore: { authUser, fetchYoutubeThumbnailList, fetchYoutubeMusicThumbnailList },
     } = useStores()
-    const [videosList, setVideosList] = useState<VideoDetails[]>([])
+    const [videosList, setVideosList] = useState<IVideoDetails[]>([])
+    const [musicList, setMusicList] = useState<IVideoDetails[]>([])
     const [videosLoading, setVideosLoading] = useState<boolean>(true)
 
     const goToMeditationScreen = () => navigation.navigate("meditation")
     const playMeditationVideo = (videoID: string) => navigation.navigate("meditation", { videoID })
 
+    const goToMusicScreen = () => navigation.navigate("music")
+    const playMusicVideo = (video: IVideoDetails) => navigation.navigate("musicPlayer", { video })
+
     useFocusEffect(
       useCallback(() => {
         const init = async () => {
           const videoSearchResult = await fetchYoutubeThumbnailList()
-          const videoList = videoSearchResult.map((vid: IYoutubeSearchResultsResponse) => {
-            return {
-              thumbnailURI: getThumbnailFromVideoId(vid.id.videoId),
-              id: vid.id.videoId,
-            }
-          })
+          const musicSearchResult = await fetchYoutubeMusicThumbnailList()
+
+          const videoList = videoSearchResult.map((vid: IYoutubeSearchResultsResponse) =>
+            mapYoutubeSearchResultToList(vid),
+          )
+          const musicList = musicSearchResult.map((vid: IYoutubeSearchResultsResponse) =>
+            mapYoutubeSearchResultToList(vid),
+          )
           setVideosList(videoList)
+          setMusicList(musicList)
           setVideosLoading(false)
         }
         init()
       }, []),
     )
 
-    const thumbnailList = [
-      { thumbnailURI: "https://i.ytimg.com/vi/6u5GK11Yt7Q/maxresdefault.jpg", id: "123" },
-      { thumbnailURI: "https://i.ytimg.com/vi/6u5GK11Yt7Q/maxresdefault.jpg", id: "123" },
-      { thumbnailURI: "https://i.ytimg.com/vi/6u5GK11Yt7Q/maxresdefault.jpg", id: "123" },
-      { thumbnailURI: "https://i.ytimg.com/vi/6u5GK11Yt7Q/maxresdefault.jpg", id: "123" },
-      { thumbnailURI: "https://i.ytimg.com/vi/6u5GK11Yt7Q/maxresdefault.jpg", id: "123" },
-    ]
     return (
       <Screen backgroundColor={color.palette.snowWhite}>
         <HomeHoc testID="" title={`Hello, ${authUser.firstName} 🎶`} subtitle="Media">
@@ -57,12 +57,21 @@ export const MediaScreen: FC<StackScreenProps<NavigatorParamList, "media">> = ob
             <View style={styles.primarySection}>
               <View style={styles.sectionHeader}>
                 <Text style={styles.text}>Music</Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={goToMusicScreen}>
                   <Text style={styles.mutedText}>See More</Text>
                 </TouchableOpacity>
               </View>
             </View>
-            <HorizontalMediaScrollView videoList={thumbnailList} />
+            {videosLoading ? (
+              <ActivityIndicator color={color.palette.black} size={"large"} />
+            ) : (
+              <HorizontalMediaScrollView
+                videoList={musicList}
+                onPress={playMusicVideo}
+                type="music"
+              />
+            )}
+
             <View style={styles.secondarySection}>
               <View style={styles.sectionHeader}>
                 <Text style={styles.text}>Video</Text>

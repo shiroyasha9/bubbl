@@ -10,7 +10,9 @@ import { HomeHoc, MediaInfoCard, Screen } from "@components"
 import { getThumbnailFromVideoId } from "@utils"
 import { useStores } from "@models"
 import { color } from "@theme"
-import { IYoutubeSearchResultsResponse, VideoDetails, VideoList } from "./meditation-screen.types"
+import { IYoutubeSearchResultsResponse, IVideoDetails } from "@types"
+
+import { VideoList } from "./meditation-screen.types"
 import styles from "./meditation-screen.styles"
 
 export const MeditationScreen: FC<StackScreenProps<NavigatorParamList, "meditation">> = observer(
@@ -21,7 +23,7 @@ export const MeditationScreen: FC<StackScreenProps<NavigatorParamList, "meditati
     const route: RouteProp<{ params: { videoID: string | null } }, "params"> = useRoute()
 
     const [videoID, setVideoID] = useState<string | null>(null)
-    const [videosList, setVideosList] = useState<VideoDetails[]>([])
+    const [videosList, setVideosList] = useState<IVideoDetails[]>([])
     const [videosLoading, setVideosLoading] = useState<boolean>(true)
 
     useFocusEffect(
