@@ -15263,10 +15263,10 @@ react-native-screens@3.8.0:
   dependencies:
     warn-once "^0.1.0"
 
-react-native-select-dropdown@^1.13.0:
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/react-native-select-dropdown/-/react-native-select-dropdown-1.13.0.tgz#599566f8b44d979a13528319f340beb6117bbff6"
-  integrity sha512-UGXWbuEqsG6B6O+tle77yJH3+DXfmh4cpit0v8az824y0rZLUWuRzlfeLYlaeZ80mqIF6Xtvx/pBtIsG1OdaLg==
+react-native-select-dropdown@1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/react-native-select-dropdown/-/react-native-select-dropdown-1.7.0.tgz#bb57bf9cf263053e71917c5e7c88ff6cbb702d1c"
+  integrity sha512-zdHOHzrmWdNYLXuC+F1abbJhzUpBMgptWWOKN4gi3ge1gV3uPep/hpBznAUo7jHzObXQh6JHZP/AMmbg/1rWFA==
 
 react-native-svg-transformer@^1.0.0:
   version "1.0.0"
