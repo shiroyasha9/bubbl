@@ -16,13 +16,16 @@ export const JournalInputScreen: FC<
   // Pull in one of our MST stores
   // const { someStore, anotherStore } = useStores()
   const {
-    authStore: { updateTodaysJournal, todaysJournal },
+    authStore: { updateTodaysJournal, todaysJournal, updateJournal },
   } = useStores()
 
   const handleUpdateTodaysJournal = (e: any) => {
     updateTodaysJournal(e.nativeEvent.text)
   }
-  const saveAndGoHome = () => navigation.navigate("welcome")
+  const saveAndGo = () => {
+    updateJournal()
+    navigation.navigate("journal")
+  }
   return (
     <Screen>
       <Text text="Today's Journal" style={styles.headerText} />
@@ -40,7 +43,7 @@ export const JournalInputScreen: FC<
         style={styles.continue}
         textStyle={styles.continueText}
         text={"Done"}
-        onPress={saveAndGoHome}
+        onPress={saveAndGo}
         disabled={todaysJournal.trim() == ""}
       />
     </Screen>

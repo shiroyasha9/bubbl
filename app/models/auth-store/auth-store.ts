@@ -11,6 +11,17 @@ export const user = {
   firstName: types.optional(types.string, ""),
   lastName: types.optional(types.string, ""),
 }
+export const journalItem = {
+  text: types.optional(types.string, ""),
+  jid: types.optional(types.number, 0),
+  date: types.optional(types.Date, new Date()),
+  emotionNumber: types.optional(types.number, 0),
+}
+export const moodItem = {
+  mid: types.optional(types.number, 0),
+  date: types.optional(types.Date, new Date()),
+  emotionNumber: types.optional(types.number, 0),
+}
 
 /**
  * Model description here for TypeScript hints.
@@ -24,6 +35,8 @@ export const AuthStoreModel = types
     userGoal: types.optional(types.number, 0),
     currentFeeling: types.optional(types.number, 0),
     todaysJournal: types.optional(types.string, ""),
+    journals: types.optional(types.array(types.model("journalItem", journalItem)), []),
+    moodHistory: types.optional(types.array(types.model("moodItem", moodItem)), []),
   })
   .extend(withEnvironment)
   .props({})
@@ -53,11 +66,26 @@ export const AuthStoreModel = types
       }
       self.loading = false
     }),
-    updateUserGoal: function (goal: number) {
-      self.userGoal = goal
+    updateJournal: function () {
+      self.journals.unshift({
+        jid: self.journals.length,
+        text: self.todaysJournal,
+        emotionNumber: self.currentFeeling,
+        date: new Date(),
+      })
+    },
+    updateMoodHistory: function () {
+      self.moodHistory.unshift({
+        mid: self.moodHistory.length,
+        emotionNumber: self.currentFeeling,
+        date: new Date(),
+      })
     },
     updateTodaysJournal: function (newText: string) {
       self.todaysJournal = newText
+    },
+    updateUserGoal: function (goal: number) {
+      self.userGoal = goal
     },
     updateCurrentFeeling: function (feeling: number) {
       self.currentFeeling = feeling

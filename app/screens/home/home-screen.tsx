@@ -20,12 +20,17 @@ export const HomeScreen: FC<StackScreenProps<NavigatorParamList, "home">> = obse
     // const navigation = useNavigation()
 
     const {
-      authStore: { authUser },
+      authStore: { authUser, updateCurrentFeeling },
     } = useStores()
 
-    const _renderItem = ({ item }: { item: { emoji: string; text: string } }) => {
+    const _renderItem = ({ item }: { item: { id: number; emoji: string; text: string } }) => {
       return (
-        <TouchableOpacity onPress={() => console.log("got clicked")}>
+        <TouchableOpacity
+          onPress={() => {
+            updateCurrentFeeling(item.id)
+            navigation.navigate("prejournal", { purpose: "mood", moodId: item.id })
+          }}
+        >
           <View style={{ ...styles.moodCard, backgroundColor: MOOD_COLOR[item.text] }}>
             <Text style={styles.emoji}>{item.emoji}</Text>
             <Text>{item.text}</Text>
