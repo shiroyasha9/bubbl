@@ -19,31 +19,35 @@ export default StyleSheet.create({
     height: hp(25),
     width: hp(24),
   },
-  journalIcon: {
+  mediaIcon: {
+    height: hp(25),
+    width: hp(19),
+  },
+  moodIcon: {
     height: hp(25),
     width: hp(22),
   },
-  journalListContainer: {
+
+  moodListContainer: {
     backgroundColor: color.palette.journalListPink,
     borderRadius: 20,
     flexDirection: "row",
-    height: 128,
+    height: hp(110),
     marginVertical: spacing[2],
   },
-
-  journalListDate: {
+  moodListDate: {
     alignItems: "center",
     display: "flex",
     flex: 1,
     justifyContent: "center",
   },
-  journalListEmotion: {
+  moodListEmotion: {
     alignItems: "center",
     display: "flex",
     flex: 3,
     justifyContent: "center",
   },
-  journalListEmotionContainer: {
+  moodListEmotionContainer: {
     alignContent: "center",
     alignItems: "center",
     aspectRatio: 1,
@@ -53,23 +57,19 @@ export default StyleSheet.create({
     justifyContent: "center",
     padding: spacing[0],
   },
-  journalListText: {
+  moodListText: {
     color: color.palette.journalListTextColor,
-    fontSize: fontSize.h3,
+    fontSize: fontSize.h4,
   },
-  journalListTextContainer: {
+  moodListTextContainer: {
     flex: 2,
     justifyContent: "center",
     padding: spacing[4],
   },
-  journalListTime: {
+  moodListTime: {
     alignItems: "center",
     display: "flex",
     flex: 1,
     justifyContent: "center",
-  },
-  mediaIcon: {
-    height: hp(25),
-    width: hp(19),
   },
 })

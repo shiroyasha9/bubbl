@@ -25,4 +25,11 @@ export const palette = {
   paleBlue: "#C3D4FF",
   purpleAction: "#c8b6ff",
   lightBlue: "#abc7ff",
+  skyBlue: "#B7CEFF",
+  lightViolet: "#E7BFFF",
+  faintViolet: "#F4E1FF",
+  bottlePink: "#FFA4FF",
+  lighterPink: "#FFC6FF",
+  chewingGum: "#EDD0FF",
+  faintPink: "#FFCEFF",
 }

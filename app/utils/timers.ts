@@ -1,4 +1,4 @@
-import { HHMMSS, HH_MM_SS } from "@constants"
+import { HHMMSS, HH_MM_SS, MONTHS } from "@constants"
 
 export const getDisplayDurationFromSeconds = (seconds: number, format = HH_MM_SS) => {
   const hours = Math.floor(seconds / (60 * 60))
@@ -37,4 +37,26 @@ export const transformYTDurationToSeconds = (time: string) => {
   } catch {
     return "Live Video"
   }
+}
+
+export const formatAMPM = (date: Date) => {
+  let hours = date.getHours()
+  let minutes: number | string = date.getMinutes()
+  const ampm = hours >= 12 ? "pm" : "am"
+  hours = hours % 12
+  hours = hours || 12
+  minutes = minutes.toString().padStart(2, "0")
+  const strTime = hours + ":" + minutes + " " + ampm
+  return strTime
+}
+
+export const formatDate: (date: Date) => { date: string; time: string } = (date) => {
+  let hour = date.getHours()
+  const day = date.getDate()
+  const month = MONTHS[date.getMonth()] // get month in MMM format
+  const period = hour < 12 ? "AM" : "PM" // Set AM/PM
+  hour = hour % 12 || 12 // Adjust hours
+  const minute =
+    date.getMinutes().toString().length === 1 ? `0${date.getMinutes()}` : date.getMinutes()
+  return { date: `${day} ${month}`, time: `${hour}:${minute} ${period}` }
 }
