@@ -6,30 +6,22 @@ import { StackScreenProps } from "@react-navigation/stack"
 import { NavigatorParamList } from "@navigators"
 import { Screen, Text } from "@components"
 import { useStores } from "@models"
-import { GOAL } from "@constants"
 import styles from "./intro-screen.styles"
 
 export const IntroScreen: FC<StackScreenProps<NavigatorParamList, "intro">> = observer(
   function IntroScreen({ navigation }) {
-    const skipToOnboarding = () => navigation.navigate("onboarding")
-
     const {
-      authStore: { updateUserGoal, userGoal },
+      authStore: { updateUserGoal },
     } = useStores()
 
     const handleUpdateUserGoal = (goalFromButton: number) => {
       updateUserGoal(goalFromButton)
+      navigation.navigate("home")
     }
 
     return (
       <Screen style={styles.root} preset="scroll">
-        <View style={styles.skip}>
-          <TouchableOpacity onPress={skipToOnboarding}>
-            <Text style={styles.skipText}>skip</Text>
-          </TouchableOpacity>
-        </View>
         <View style={styles.mascotImageContainer}>
-          <Text style={styles.mainLine}>User Goal is {GOAL[userGoal]}</Text>
           <Image
             source={require("@assets/images/normal.png")}
             style={styles.mascotImage}
@@ -37,14 +29,14 @@ export const IntroScreen: FC<StackScreenProps<NavigatorParamList, "intro">> = ob
           />
         </View>
         <View style={styles.mainLineContainer}>
-          <Text style={styles.mainLine}>What are you looking to improve?{userGoal}</Text>
+          <Text style={styles.mainLine}>What are you looking to improve?</Text>
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             onPress={() => handleUpdateUserGoal(0)}
             style={{
               ...styles.reasonBox,
-              backgroundColor: "#EDD0FF",
+              ...styles.goal1,
             }}
           >
             <Text style={styles.reasonBoxText}>Sleep better</Text>
@@ -53,7 +45,7 @@ export const IntroScreen: FC<StackScreenProps<NavigatorParamList, "intro">> = ob
             onPress={() => handleUpdateUserGoal(1)}
             style={{
               ...styles.reasonBox,
-              backgroundColor: "#F4E1FF",
+              ...styles.goal2,
             }}
           >
             <Text style={styles.reasonBoxText}>Manage stress and anxiety</Text>
@@ -62,7 +54,7 @@ export const IntroScreen: FC<StackScreenProps<NavigatorParamList, "intro">> = ob
             onPress={() => handleUpdateUserGoal(2)}
             style={{
               ...styles.reasonBox,
-              backgroundColor: "#FFD9FF",
+              ...styles.goal3,
             }}
           >
             <Text style={styles.reasonBoxText}>Relax and feel rested</Text>
@@ -71,7 +63,7 @@ export const IntroScreen: FC<StackScreenProps<NavigatorParamList, "intro">> = ob
             onPress={() => handleUpdateUserGoal(3)}
             style={{
               ...styles.reasonBox,
-              backgroundColor: "#FFCEFF",
+              ...styles.goal4,
             }}
           >
             <Text style={styles.reasonBoxText}>Self love</Text>

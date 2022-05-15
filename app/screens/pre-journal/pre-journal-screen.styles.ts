@@ -8,10 +8,12 @@ export default StyleSheet.create({
   },
 
   container: {
-    paddingHorizontal: spacing[5],
+    height: hp(600),
+    maxHeight: hp(600),
   },
   content: {
-    marginVertical: spacing[6],
+    flex: 1,
+    justifyContent: "center",
   },
   continue: {
     backgroundColor: color.palette.frenchViolet,
@@ -24,30 +26,9 @@ export default StyleSheet.create({
     fontSize: fontSize.regular,
     letterSpacing: 2,
   },
-  detailsText: {
-    ...textStyle.semiBold,
-  },
-  footer: {
-    backgroundColor: color.palette.snowWhite,
-  },
-  footerContent: {
-    paddingHorizontal: spacing[4],
-    paddingVertical: spacing[4],
-  },
-  header: {
-    alignItems: "center",
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  profilePic: {
-    borderRadius: hp(50),
-    height: hp(40),
-    width: hp(40),
-  },
-  title: {
-    ...textStyle.bold,
-    fontSize: fontSize.h3,
-    lineHeight: 38,
+  moodHistory: {
+    height: hp(350),
+    marginTop: spacing[2],
   },
   updateButton: {
     backgroundColor: color.palette.purpleAction,

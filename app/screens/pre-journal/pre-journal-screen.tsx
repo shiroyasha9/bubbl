@@ -1,38 +1,104 @@
-import React, { FC } from "react"
+import React, { FC, useState } from "react"
+import { View, Dimensions, FlatList } from "react-native"
 import { observer } from "mobx-react-lite"
-// import { ViewStyle, View, SafeAreaView } from "react-native"
+import { PieChart } from "react-native-chart-kit"
 import { StackScreenProps } from "@react-navigation/stack"
-import { NavigatorParamList } from "../../navigators"
-// import { useNavigation } from "@react-navigation/native"
-import { useStores } from "../../models"
-import { color } from "../../theme"
-import { HomeHoc, Screen, FeelingBoxesInput } from "@components"
-import { useRoute } from "@react-navigation/native"
-// import { useNavigation } from "@react-navigation/native"
-// import { useStores } from "../../models"
-// import styles from "./pre-journal-screen.styles"
+import { RouteProp, useRoute } from "@react-navigation/native"
+
+import { NavigatorParamList } from "@navigators"
+import { useStores } from "@models"
+import { HomeHoc, Screen, FeelingBoxesInput, Text, MoodList } from "@components"
+import { moods, MOOD_COLOR } from "@constants"
+import { hp } from "@utils"
+
+import styles from "./pre-journal-screen.styles"
 
 export const PreJournalScreen: FC<StackScreenProps<NavigatorParamList, "prejournal">> = observer(
   function PreJournalScreen({ navigation }) {
-    const { params }: any = useRoute()
+    const route: RouteProp<{ params: { purpose: "mood" | "journal" } }, "params"> = useRoute()
+
     const {
-      authStore: { updateMoodHistory },
+      authStore: { updateMoodHistory, moodHistory },
     } = useStores()
 
-    // const showMusicScreen = () => navigation.navigate("journal")
-    // const gotoJournalInput = () => navigation.navigate("music")
+    const [isMoodSaved, setIsMoodSaved] = useState<boolean>(false)
+
+    const title = route.params?.purpose === "mood" ? "Track Your Mood" : "Add Mood to Journal"
+    const buttonText = route.params?.purpose === "mood" ? "Save" : "Continue"
+
     const gotoJournalInput = () => {
       updateMoodHistory()
-      if (params?.purpose === "mood") navigation.navigate("home")
-      else navigation.navigate("journalInput")
+      if (route.params?.purpose === "mood") {
+        setIsMoodSaved(true)
+      } else navigation.navigate("journalInput")
     }
-    const {
-      authStore: { authUser },
-    } = useStores()
+
+    const getMoodData = () => {
+      const moodObject: { [key: number]: number } = {}
+      for (const mood of moodHistory) {
+        moodObject[mood.emotionNumber] = (moodObject[mood.emotionNumber] || 0) + 1
+      }
+      const moodData = Object.entries(moodObject).map((mood) => {
+        return {
+          name: `${moods[mood[0]].emoji}`,
+          frequency: mood[1],
+          color: MOOD_COLOR[moods[mood[0]].text],
+          legendFontColor: "#7F7F7F",
+          legendFontSize: 15,
+        }
+      })
+      return moodData
+    }
+
+    const screenWidth = Dimensions.get("window").width
+
+    const chartConfig = {
+      color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
+    }
+
+    const _renderMoodList = ({ item }) => {
+      return <MoodList key={item.mid} mood={item} />
+    }
+
     return (
-      <Screen backgroundColor={color.palette.snowWhite}>
-        <HomeHoc testID="" title={`Hello, ${authUser.firstName}`} subtitle="Journal">
-          <FeelingBoxesInput onSave={gotoJournalInput} saveButtonText="save" />
+      <Screen>
+        <HomeHoc testID="mood-screen" title={title} subtitle="Journal" showAlternateHeader>
+          <View style={styles.container}>
+            {!isMoodSaved && (
+              <View style={route.params?.purpose !== "mood" ? styles.content : null}>
+                <FeelingBoxesInput onSave={gotoJournalInput} saveButtonText={buttonText} />
+              </View>
+            )}
+
+            {route.params?.purpose === "mood" && (
+              <View>
+                <View>
+                  <Text>Your Mood Data:</Text>
+                  <PieChart
+                    data={getMoodData()}
+                    width={screenWidth}
+                    height={hp(190)}
+                    chartConfig={chartConfig}
+                    accessor={"frequency"}
+                    backgroundColor={"transparent"}
+                    paddingLeft={"15"}
+                  />
+                </View>
+                {isMoodSaved && (
+                  <>
+                    <Text>Past Moods:</Text>
+                    <View style={styles.moodHistory}>
+                      <FlatList
+                        data={moodHistory}
+                        renderItem={_renderMoodList}
+                        keyExtractor={(item) => item.mid}
+                      />
+                    </View>
+                  </>
+                )}
+              </View>
+            )}
+          </View>
         </HomeHoc>
       </Screen>
     )

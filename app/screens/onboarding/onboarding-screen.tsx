@@ -110,7 +110,7 @@ export const OnboardingScreen: FC<StackScreenProps<NavigatorParamList, "onboardi
       )
     }
 
-    const nextScreen = () => navigation.navigate("welcome")
+    const nextScreen = () => navigation.navigate("intro")
 
     const handleSignIn = async () => {
       try {

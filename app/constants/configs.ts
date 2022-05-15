@@ -10,13 +10,13 @@ export const ZINDEX = {
 }
 
 export const MOOD_COLOR = {
-  happy: color.palette.nightSnow,
+  happy: color.palette.lighterBlue,
   excited: color.palette.nightSnow,
-  sad: color.palette.journalListPink,
+  neutral: color.palette.skyBlue,
+  tired: color.palette.faintViolet,
+  worried: color.palette.lightViolet,
+  guilty: color.palette.frenchViolet,
+  scared: color.palette.bottlePink,
+  sad: color.palette.lighterPink,
   angry: color.palette.journalListPink,
-  neutral: color.palette.nightSnow,
-  tired: color.palette.paleBlue,
-  worried: color.palette.paleBlue,
-  scared: color.palette.journalListPink,
-  guilty: color.palette.paleBlue,
 }

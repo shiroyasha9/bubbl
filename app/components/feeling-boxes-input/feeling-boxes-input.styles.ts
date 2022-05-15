@@ -1,13 +1,12 @@
 import { StyleSheet, Dimensions } from "react-native"
 import { color, spacing, fontSize, textStyle } from "@theme"
-import { hp } from "@utils"
+import { hp, wp } from "@utils"
 const DeviceWidth = Dimensions.get("window").width
 const OneFourthDeviceWidth = DeviceWidth / 4
 export default StyleSheet.create({
   body: {
     marginTop: spacing[6],
   },
-
   container: {
     paddingHorizontal: spacing[5],
   },
@@ -16,42 +15,44 @@ export default StyleSheet.create({
   },
   continue: {
     backgroundColor: color.palette.frenchViolet,
+    borderRadius: hp(12),
     paddingHorizontal: spacing[4],
-    paddingVertical: spacing[4],
+    paddingVertical: spacing[3],
+    width: wp(290),
   },
   continueText: {
     ...textStyle.bold,
     color: color.palette.white,
-    fontSize: fontSize.title,
+    fontSize: fontSize.medium,
     letterSpacing: 2,
   },
   detailsText: {
     ...textStyle.semiBold,
   },
   feelingBox: {
-    width: OneFourthDeviceWidth,
-    height: OneFourthDeviceWidth,
-    backgroundColor: color.palette.lightBlue,
-    margin: spacing[2],
-    borderRadius: 20,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
     alignContent: "center",
-    borderWidth: 2,
+    alignItems: "center",
+    backgroundColor: color.palette.lightBlue,
     borderColor: color.palette.transparent,
+    borderRadius: 20,
+    borderWidth: 2,
+    display: "flex",
+    height: OneFourthDeviceWidth,
+    justifyContent: "center",
+    margin: spacing[2],
+    width: OneFourthDeviceWidth,
   },
   feelingBoxEmoji: {
     fontSize: fontSize.h1 * 1.2,
   },
   feelingBoxText: {
     ...textStyle.semiBold,
-    fontSize: fontSize.h4,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
     alignContent: "center",
+    alignItems: "center",
     color: color.palette.fontDarkBlue,
+    display: "flex",
+    fontSize: fontSize.regular,
+    justifyContent: "center",
   },
   footer: {
     backgroundColor: color.palette.snowWhite,
@@ -61,14 +62,16 @@ export default StyleSheet.create({
     paddingVertical: spacing[4],
   },
   gridContainer: {
-    flex: 1,
-    justifyContent: "center",
     alignItems: "center",
+    marginTop: spacing[6],
   },
   header: {
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  moodRow: {
+    flexDirection: "row",
   },
   profilePic: {
     borderRadius: hp(50),

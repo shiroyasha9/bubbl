@@ -11,6 +11,18 @@ export default StyleSheet.create({
     justifyContent: "center",
     width: "100%",
   },
+  goal1: {
+    backgroundColor: color.palette.chewingGum,
+  },
+  goal2: {
+    backgroundColor: color.palette.faintViolet,
+  },
+  goal3: {
+    backgroundColor: color.palette.journalListPink,
+  },
+  goal4: {
+    backgroundColor: color.palette.faintPink,
+  },
   mainLine: {
     ...textStyle.bold,
     alignItems: "center",
@@ -20,6 +32,7 @@ export default StyleSheet.create({
     justifyContent: "center",
     lineHeight: hp(30),
     marginVertical: spacing[2],
+    textAlign: "center",
   },
   mainLineContainer: {
     alignItems: "center",
@@ -42,7 +55,7 @@ export default StyleSheet.create({
     justifyContent: "center",
     margin: spacing[1],
     padding: spacing[2],
-    width: wp(110),
+    width: wp(130),
   },
   reasonBoxText: {
     color: color.palette.fontDarkBlue,
@@ -56,18 +69,5 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     padding: spacing[5],
-  },
-  skip: {
-    backgroundColor: color.palette.transparent,
-    color: color.palette.smallGray,
-    paddingHorizontal: spacing[2],
-    paddingVertical: spacing[2],
-    position: "absolute",
-    right: spacing[2],
-    top: spacing[2],
-  },
-  skipText: {
-    color: color.palette.lighterBlack,
-    fontSize: fontSize.cta,
   },
 })

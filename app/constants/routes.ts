@@ -9,4 +9,6 @@ export const ROUTE_NAME = {
   JOURNAL: "journal",
   PREJOURNAL: "prejournal",
   MEDITATION: "meditation",
+  MUSIC: "music",
+  MUSIC_PLAYER: "musicPlayer",
 }

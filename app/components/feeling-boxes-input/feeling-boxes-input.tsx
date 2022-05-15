@@ -14,7 +14,7 @@ export interface FeelingBoxesInputProps {
    * An optional style override useful for padding & margin.
    */
   style?: StyleProp<ViewStyle>
-  onSave: (value: any) => void
+  onSave: () => void
   saveButtonText: string
   rest?: any
 }
@@ -35,11 +35,7 @@ export const FeelingBoxesInput = observer(function FeelingBoxesInput(
   } = useStores()
   return (
     <View style={styles.gridContainer}>
-      <View
-        style={{
-          flexDirection: "row",
-        }}
-      >
+      <View style={styles.moodRow}>
         {[0, 1, 2].map((i: number) => {
           return (
             <View key={i}>
@@ -48,7 +44,7 @@ export const FeelingBoxesInput = observer(function FeelingBoxesInput(
                   ...styles.feelingBox,
                   backgroundColor: MOOD_COLOR[moods[i].text],
                   borderColor:
-                    i == currentFeeling ? color.palette.fontDarkBlue : color.palette.transparent,
+                    i === currentFeeling ? color.palette.fontDarkBlue : color.palette.transparent,
                 }}
                 onPress={() => {
                   updateCurrentFeeling(i)
@@ -62,7 +58,7 @@ export const FeelingBoxesInput = observer(function FeelingBoxesInput(
                   ...styles.feelingBox,
                   backgroundColor: MOOD_COLOR[moods[i + 3].text],
                   borderColor:
-                    i + 3 == currentFeeling
+                    i + 3 === currentFeeling
                       ? color.palette.fontDarkBlue
                       : color.palette.transparent,
                 }}
@@ -78,7 +74,7 @@ export const FeelingBoxesInput = observer(function FeelingBoxesInput(
                   ...styles.feelingBox,
                   backgroundColor: MOOD_COLOR[moods[i + 6].text],
                   borderColor:
-                    i + 6 == currentFeeling
+                    i + 6 === currentFeeling
                       ? color.palette.fontDarkBlue
                       : color.palette.transparent,
                 }}
@@ -95,7 +91,6 @@ export const FeelingBoxesInput = observer(function FeelingBoxesInput(
       </View>
       <View style={styles.footerContent}>
         <Button
-          testID="next-screen-button"
           style={styles.continue}
           textStyle={styles.continueText}
           text={saveButtonText}
