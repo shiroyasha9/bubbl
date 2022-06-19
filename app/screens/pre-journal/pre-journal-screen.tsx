@@ -18,7 +18,7 @@ export const PreJournalScreen: FC<StackScreenProps<NavigatorParamList, "prejourn
     const route: RouteProp<{ params: { purpose: "mood" | "journal" } }, "params"> = useRoute()
 
     const {
-      authStore: { updateMoodHistory, moodHistory },
+      userStore: { updateMoodHistory, moodHistory },
     } = useStores()
 
     const [isMoodSaved, setIsMoodSaved] = useState<boolean>(false)
@@ -62,7 +62,7 @@ export const PreJournalScreen: FC<StackScreenProps<NavigatorParamList, "prejourn
 
     return (
       <Screen>
-        <HomeHoc testID="mood-screen" title={title} subtitle="Journal" showAlternateHeader>
+        <HomeHoc title={title} subtitle="Journal" showAlternateHeader>
           <View style={styles.container}>
             {!isMoodSaved && (
               <View style={route.params?.purpose !== "mood" ? styles.content : null}>

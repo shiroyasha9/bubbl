@@ -20,7 +20,7 @@ export const HomeScreen: FC<StackScreenProps<NavigatorParamList, "home">> = obse
     // const navigation = useNavigation()
 
     const {
-      authStore: { authUser, updateCurrentFeeling },
+      userStore: { user, updateCurrentFeeling },
     } = useStores()
 
     const _renderItem = ({ item }: { item: { id: number; emoji: string; text: string } }) => {
@@ -41,7 +41,7 @@ export const HomeScreen: FC<StackScreenProps<NavigatorParamList, "home">> = obse
 
     return (
       <Screen backgroundColor={color.palette.snowWhite}>
-        <HomeHoc testID="" title={`Hello, ${authUser.firstName} 👋`} subtitle="Welcome Back">
+        <HomeHoc title={`Hello, ${user.firstName} 👋`} subtitle="Welcome Back">
           <View style={styles.container}>
             <View style={styles.goalHeader}>
               <Text style={styles.text}>Goal For Today: </Text>

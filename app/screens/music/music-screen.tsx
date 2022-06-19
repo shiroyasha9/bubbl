@@ -16,7 +16,7 @@ import styles from "./music-screen.styles"
 export const MusicScreen: FC<StackScreenProps<NavigatorParamList, "music">> = observer(
   function MusicScreen({ navigation }) {
     const {
-      authStore: { fetchYoutubeMusicList },
+      userStore: { fetchYoutubeMusicList },
     } = useStores()
 
     // const video = {
@@ -53,7 +53,7 @@ export const MusicScreen: FC<StackScreenProps<NavigatorParamList, "music">> = ob
 
     return (
       <Screen>
-        <HomeHoc title="Music" testID="1" subtitle="" showAlternateHeader>
+        <HomeHoc title="Music" subtitle="" showAlternateHeader>
           <View style={styles.container}>
             {videosLoading ? (
               <ActivityIndicator color={color.palette.black} size={"large"} />

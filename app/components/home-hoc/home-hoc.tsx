@@ -12,15 +12,15 @@ import styles from "./home-hoc.styles"
  * Higher Order Component for Home, Media and Journal
  */
 export const HomeHoc = observer(function HomeHoc(props: HomeHocProps) {
-  const { children, title, subtitle, testID, showAlternateHeader } = props
+  const { children, title, subtitle, showAlternateHeader } = props
   const {
-    authStore: { authUser },
+    userStore: { user },
   } = useStores()
   const navigation = useNavigation()
   const goBack = () => navigation.goBack()
 
   return (
-    <View testID={testID} style={styles.homeWrapper}>
+    <View style={styles.homeWrapper}>
       {showAlternateHeader ? (
         <View style={styles.alternateHeader}>
           <TouchableOpacity onPress={goBack}>
@@ -34,7 +34,7 @@ export const HomeHoc = observer(function HomeHoc(props: HomeHocProps) {
             <Text style={styles.title}>{title}</Text>
             <Text style={styles.subtitle}>{subtitle}</Text>
           </View>
-          <Image source={{ uri: authUser.photoURL }} style={styles.profilePic} />
+          <Image source={{ uri: user.photoURL }} style={styles.profilePic} />
         </View>
       )}
       {children}

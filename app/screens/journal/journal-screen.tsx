@@ -14,13 +14,12 @@ export const JournalScreen: FC<StackScreenProps<NavigatorParamList, "journal">> 
   function JournalScreen({ navigation }) {
     const goSomewhere = () => navigation.navigate("prejournal", { purpose: "journal" })
     const {
-      authStore: { authUser, journals },
+      userStore: { user, journals },
     } = useStores()
     return (
       <Screen>
         <HomeHoc
-          testID=""
-          title={`${authUser.firstName ? authUser.firstName + "'s" : "Your"} Journal 📝`}
+          title={`${user.firstName ? user.firstName + "'s" : "Your"} Journal 📝`}
           subtitle="Scribbl away!"
         >
           <View style={styles.container}>

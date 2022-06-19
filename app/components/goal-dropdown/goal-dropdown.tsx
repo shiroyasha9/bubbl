@@ -11,7 +11,7 @@ import styles from "./goal-dropdown.styles"
 
 export const GoalDropdown = observer(function GoalDropdown() {
   const {
-    authStore: { userGoal, updateUserGoal },
+    userStore: { userGoal, updateUserGoal },
   } = useStores()
 
   const durationDisplayText = (userGoal: number) => GOAL_TEXT[userGoal]

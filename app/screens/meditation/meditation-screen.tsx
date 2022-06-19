@@ -18,7 +18,7 @@ import styles from "./meditation-screen.styles"
 export const MeditationScreen: FC<StackScreenProps<NavigatorParamList, "meditation">> = observer(
   function MeditationScreen() {
     const {
-      authStore: { fetchYoutubeVideoList },
+      userStore: { fetchYoutubeVideoList },
     } = useStores()
     const route: RouteProp<{ params: { videoID: string | null } }, "params"> = useRoute()
 
@@ -60,7 +60,7 @@ export const MeditationScreen: FC<StackScreenProps<NavigatorParamList, "meditati
 
     return (
       <Screen>
-        <HomeHoc title="Meditation Videos" testID="1" subtitle="" showAlternateHeader>
+        <HomeHoc title="Meditation Videos" subtitle="" showAlternateHeader>
           <View style={styles.container}>
             {videosLoading ? (
               <ActivityIndicator color={color.palette.black} size={"large"} />

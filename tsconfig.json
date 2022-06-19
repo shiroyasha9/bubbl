@@ -36,6 +36,6 @@
     "resolveJsonModule": true
   },
   "exclude": ["node_modules"],
-  "include": ["App.js", "app", "test", "storybook"],
+  "include": ["App.js", "app", "storybook"],
   "extends": "expo/tsconfig.base"
 }
