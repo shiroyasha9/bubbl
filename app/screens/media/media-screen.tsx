@@ -52,7 +52,7 @@ export const MediaScreen: FC<StackScreenProps<NavigatorParamList, "media">> = ob
 
     return (
       <Screen backgroundColor={color.palette.snowWhite}>
-        <HomeHoc testID="" title={`Hello, ${authUser.firstName} 🎶`} subtitle="Media">
+        <HomeHoc title={`Hello, ${authUser.firstName} 🎶`} subtitle="Media">
           <View>
             <View style={styles.primarySection}>
               <View style={styles.sectionHeader}>

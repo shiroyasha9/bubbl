@@ -19,7 +19,6 @@ export const JournalScreen: FC<StackScreenProps<NavigatorParamList, "journal">> 
     return (
       <Screen>
         <HomeHoc
-          testID=""
           title={`${authUser.firstName ? authUser.firstName + "'s" : "Your"} Journal 📝`}
           subtitle="Scribbl away!"
         >

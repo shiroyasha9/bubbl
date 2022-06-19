@@ -58,7 +58,7 @@ export const DemoListScreen: FC<StackScreenProps<NavigatorParamList, "demoList">
     }, [])
 
     return (
-      <View testID="DemoListScreen" style={FULL}>
+      <View style={FULL}>
         <GradientBackground colors={["#422443", "#281b34"]} />
         <Screen style={CONTAINER} preset="fixed" backgroundColor={color.transparent}>
           <Header

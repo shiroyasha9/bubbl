@@ -1,4 +1,6 @@
-import { HHMMSS, HH_MM_SS, MONTHS } from "@constants"
+const HH_MM_SS = "hh mm ss"
+const HHMMSS = "hh.mm.ss"
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 
 export const getDisplayDurationFromSeconds = (seconds: number, format = HH_MM_SS) => {
   const hours = Math.floor(seconds / (60 * 60))

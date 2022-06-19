@@ -12,7 +12,7 @@ import styles from "./home-hoc.styles"
  * Higher Order Component for Home, Media and Journal
  */
 export const HomeHoc = observer(function HomeHoc(props: HomeHocProps) {
-  const { children, title, subtitle, testID, showAlternateHeader } = props
+  const { children, title, subtitle, showAlternateHeader } = props
   const {
     authStore: { authUser },
   } = useStores()
@@ -20,7 +20,7 @@ export const HomeHoc = observer(function HomeHoc(props: HomeHocProps) {
   const goBack = () => navigation.goBack()
 
   return (
-    <View testID={testID} style={styles.homeWrapper}>
+    <View style={styles.homeWrapper}>
       {showAlternateHeader ? (
         <View style={styles.alternateHeader}>
           <TouchableOpacity onPress={goBack}>

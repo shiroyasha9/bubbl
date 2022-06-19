@@ -69,7 +69,7 @@ export const MusicPlayerScreen: FC<StackScreenProps<NavigatorParamList, "musicPl
 
     return (
       <Screen>
-        <HomeHoc title="Music" testID="1" subtitle="" showAlternateHeader>
+        <HomeHoc title="Music" subtitle="" showAlternateHeader>
           <View style={styles.container}>
             {!video ? (
               <ActivityIndicator color={color.palette.black} size={"large"} />

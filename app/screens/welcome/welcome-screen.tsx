@@ -24,7 +24,7 @@ export const WelcomeScreen: FC<StackScreenProps<NavigatorParamList, "welcome">> 
 
     return (
       <Screen backgroundColor={color.palette.snowWhite}>
-        <HomeHoc testID="" title={`Hello, ${authUser.firstName}`} subtitle="Welcome Back">
+        <HomeHoc title={`Hello, ${authUser.firstName}`} subtitle="Welcome Back">
           <View style={styles.content}>
             <View style={styles.body}>
               <Text style={styles.detailsText}>Details from OAuth:</Text>
@@ -39,7 +39,6 @@ export const WelcomeScreen: FC<StackScreenProps<NavigatorParamList, "welcome">> 
           <SafeAreaView style={styles.footer}>
             <View style={styles.footerContent}>
               <Button
-                testID="next-screen-button"
                 style={styles.continue}
                 textStyle={styles.continueText}
                 text="Intro Screen"
@@ -51,7 +50,6 @@ export const WelcomeScreen: FC<StackScreenProps<NavigatorParamList, "welcome">> 
           <SafeAreaView style={styles.footer}>
             <View style={styles.footerContent}>
               <Button
-                testID="next-screen-button"
                 style={styles.continue}
                 textStyle={styles.continueText}
                 text="Back to Onboarding"
@@ -63,7 +61,6 @@ export const WelcomeScreen: FC<StackScreenProps<NavigatorParamList, "welcome">> 
           <SafeAreaView style={styles.footer}>
             <View style={styles.footerContent}>
               <Button
-                testID="next-screen-button"
                 style={styles.continue}
                 textStyle={styles.continueText}
                 text="Journal Screen"

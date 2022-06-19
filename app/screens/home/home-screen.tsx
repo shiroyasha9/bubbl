@@ -41,7 +41,7 @@ export const HomeScreen: FC<StackScreenProps<NavigatorParamList, "home">> = obse
 
     return (
       <Screen backgroundColor={color.palette.snowWhite}>
-        <HomeHoc testID="" title={`Hello, ${authUser.firstName} 👋`} subtitle="Welcome Back">
+        <HomeHoc title={`Hello, ${authUser.firstName} 👋`} subtitle="Welcome Back">
           <View style={styles.container}>
             <View style={styles.goalHeader}>
               <Text style={styles.text}>Goal For Today: </Text>

@@ -60,7 +60,7 @@ export const MeditationScreen: FC<StackScreenProps<NavigatorParamList, "meditati
 
     return (
       <Screen>
-        <HomeHoc title="Meditation Videos" testID="1" subtitle="" showAlternateHeader>
+        <HomeHoc title="Meditation Videos" subtitle="" showAlternateHeader>
           <View style={styles.container}>
             {videosLoading ? (
               <ActivityIndicator color={color.palette.black} size={"large"} />
