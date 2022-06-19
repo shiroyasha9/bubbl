@@ -18,7 +18,7 @@ export const PreJournalScreen: FC<StackScreenProps<NavigatorParamList, "prejourn
     const route: RouteProp<{ params: { purpose: "mood" | "journal" } }, "params"> = useRoute()
 
     const {
-      authStore: { updateMoodHistory, moodHistory },
+      userStore: { updateMoodHistory, moodHistory },
     } = useStores()
 
     const [isMoodSaved, setIsMoodSaved] = useState<boolean>(false)

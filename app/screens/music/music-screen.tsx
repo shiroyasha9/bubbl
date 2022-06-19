@@ -16,7 +16,7 @@ import styles from "./music-screen.styles"
 export const MusicScreen: FC<StackScreenProps<NavigatorParamList, "music">> = observer(
   function MusicScreen({ navigation }) {
     const {
-      authStore: { fetchYoutubeMusicList },
+      userStore: { fetchYoutubeMusicList },
     } = useStores()
 
     // const video = {

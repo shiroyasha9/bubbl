@@ -11,8 +11,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack"
 
 import {
   WelcomeScreen,
-  DemoScreen,
-  DemoListScreen,
   OnboardingScreen,
   IntroScreen,
   HomeScreen,
@@ -43,8 +41,6 @@ import { IVideoDetails } from "@types"
  */
 export type NavigatorParamList = {
   welcome: undefined
-  demo: undefined
-  demoList: undefined
   intro: undefined
   onboarding: undefined
   home: undefined
@@ -63,10 +59,10 @@ const Stack = createNativeStackNavigator<NavigatorParamList>()
 
 const AppStack = () => {
   const {
-    authStore: { authUser },
+    userStore: { user },
   } = useStores()
 
-  const isLoggedIn = () => !!authUser?.uid
+  const isLoggedIn = () => !!user?.uid
 
   return (
     <Stack.Navigator
@@ -82,8 +78,6 @@ const AppStack = () => {
       <Stack.Screen name="media" component={MediaScreen} />
       <Stack.Screen name="journal" component={JournalScreen} />
       <Stack.Screen name="meditation" component={MeditationScreen} />
-      <Stack.Screen name="demo" component={DemoScreen} />
-      <Stack.Screen name="demoList" component={DemoListScreen} />
       <Stack.Screen name="music" component={MusicScreen} />
       <Stack.Screen name="prejournal" component={PreJournalScreen} />
       <Stack.Screen name="journalInput" component={JournalInputScreen} />

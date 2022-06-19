@@ -31,7 +31,7 @@ export const FeelingBoxesInput = observer(function FeelingBoxesInput(
     onSave,
   } = props
   const {
-    authStore: { updateCurrentFeeling, currentFeeling },
+    userStore: { updateCurrentFeeling, currentFeeling },
   } = useStores()
   return (
     <View style={styles.gridContainer}>

@@ -6879,14 +6879,6 @@ expo-font@~10.1.0:
   dependencies:
     fontfaceobserver "^2.1.0"
 
-expo-google-sign-in@~10.2.0:
-  version "10.2.0"
-  resolved "https://registry.yarnpkg.com/expo-google-sign-in/-/expo-google-sign-in-10.2.0.tgz#4ae074cadf6b876cf22379eeb72bf7223b164449"
-  integrity sha512-o7ifg5e9/jX3gWxos6J2kvcg/lmfrQRHdfH5NHeMoj3Ovb186dmasc7szYQ5EqstmKCZL40kh0vVjVVcwCzggQ==
-  dependencies:
-    "@expo/config-plugins" "^4.0.14"
-    invariant "^2.2.4"
-
 expo-json-utils@~0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/expo-json-utils/-/expo-json-utils-0.3.0.tgz#0c4a0195ee2bbde02cbb5f4d384d1cb63bea7493"

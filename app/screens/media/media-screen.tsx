@@ -18,7 +18,7 @@ export const MediaScreen: FC<StackScreenProps<NavigatorParamList, "media">> = ob
 
     // Pull in navigation via hook
     const {
-      authStore: { authUser, fetchYoutubeThumbnailList, fetchYoutubeMusicThumbnailList },
+      userStore: { user, fetchYoutubeThumbnailList, fetchYoutubeMusicThumbnailList },
     } = useStores()
     const [videosList, setVideosList] = useState<IVideoDetails[]>([])
     const [musicList, setMusicList] = useState<IVideoDetails[]>([])
@@ -52,7 +52,7 @@ export const MediaScreen: FC<StackScreenProps<NavigatorParamList, "media">> = ob
 
     return (
       <Screen backgroundColor={color.palette.snowWhite}>
-        <HomeHoc title={`Hello, ${authUser.firstName} 🎶`} subtitle="Media">
+        <HomeHoc title={`Hello, ${user.firstName} 🎶`} subtitle="Media">
           <View>
             <View style={styles.primarySection}>
               <View style={styles.sectionHeader}>

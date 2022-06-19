@@ -18,7 +18,7 @@ import styles from "./meditation-screen.styles"
 export const MeditationScreen: FC<StackScreenProps<NavigatorParamList, "meditation">> = observer(
   function MeditationScreen() {
     const {
-      authStore: { fetchYoutubeVideoList },
+      userStore: { fetchYoutubeVideoList },
     } = useStores()
     const route: RouteProp<{ params: { videoID: string | null } }, "params"> = useRoute()
 

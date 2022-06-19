@@ -12,7 +12,7 @@ import styles from "./journal-input-screen.styles"
 export const JournalInputScreen: FC<StackScreenProps<NavigatorParamList, "journalInput">> =
   observer(function JournalInputScreen({ navigation }) {
     const {
-      authStore: { updateTodaysJournal, todaysJournal, updateJournal },
+      userStore: { updateTodaysJournal, todaysJournal, updateJournal },
     } = useStores()
 
     const handleUpdateTodaysJournal = (e: any) => {

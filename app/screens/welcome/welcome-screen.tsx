@@ -19,20 +19,20 @@ export const WelcomeScreen: FC<StackScreenProps<NavigatorParamList, "welcome">> 
     // const musicScreen = () => navigation.navigate("music")
     const journalScreen = () => navigation.navigate("journal")
     const {
-      authStore: { authUser },
+      userStore: { user },
     } = useStores()
 
     return (
       <Screen backgroundColor={color.palette.snowWhite}>
-        <HomeHoc title={`Hello, ${authUser.firstName}`} subtitle="Welcome Back">
+        <HomeHoc title={`Hello, ${user.firstName}`} subtitle="Welcome Back">
           <View style={styles.content}>
             <View style={styles.body}>
               <Text style={styles.detailsText}>Details from OAuth:</Text>
-              <Text>Display Name: {authUser.displayName}</Text>
-              <Text>First Name: {authUser.firstName}</Text>
+              <Text>Display Name: {user.displayName}</Text>
+              <Text>First Name: {user.firstName}</Text>
 
-              <Text>Last Name: {authUser.lastName}</Text>
-              <Text>Email: {authUser.email}</Text>
+              <Text>Last Name: {user.lastName}</Text>
+              <Text>Email: {user.email}</Text>
             </View>
           </View>
 
