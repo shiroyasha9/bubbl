@@ -11,8 +11,10 @@ import styles from "./intro-screen.styles"
 export const IntroScreen: FC<StackScreenProps<NavigatorParamList, "intro">> = observer(
   function IntroScreen({ navigation }) {
     const {
-      userStore: { updateUserGoal },
+      userStore: { updateUserGoal, createUser },
     } = useStores()
+
+    // TODO: use createUser here by asking user his name
 
     const handleUpdateUserGoal = (goalFromButton: number) => {
       updateUserGoal(goalFromButton)

@@ -9,6 +9,13 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: "row",
   },
+  flatListContainer: {
+    height: "100%",
+  },
+  icon: {
+    height: hp(200),
+    width: wp(226),
+  },
   iconContainer: {
     alignItems: "center",
     flex: 1,
@@ -24,7 +31,7 @@ export default StyleSheet.create({
   },
   slideContainer: {
     flex: 1,
-    marginTop: spacing[8],
+    // marginTop: spacing[8],
     width,
   },
   subtitle: {

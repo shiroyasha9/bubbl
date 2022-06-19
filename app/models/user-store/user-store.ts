@@ -3,12 +3,8 @@ import { withEnvironment } from "../extensions/with-environment"
 import { GOAL_TEXT } from "@constants"
 
 export const user = {
-  displayName: types.optional(types.string, ""),
-  uid: types.optional(types.string, ""),
-  email: types.optional(types.string, ""),
   photoURL: types.optional(types.string, ""),
-  firstName: types.optional(types.string, ""),
-  lastName: types.optional(types.string, ""),
+  name: types.optional(types.string, ""),
 }
 export const journalItem = {
   text: types.optional(types.string, ""),
@@ -29,7 +25,6 @@ export const UserStoreModel = types
   .model({
     user: types.optional(types.model("user", user), {}),
     loading: types.optional(types.boolean, false),
-    authError: types.optional(types.boolean, false),
     userGoal: types.optional(types.number, 0),
     currentFeeling: types.optional(types.number, 0),
     todaysJournal: types.optional(types.string, ""),
@@ -40,14 +35,9 @@ export const UserStoreModel = types
   .props({})
   .views((self) => ({})) // eslint-disable-line @typescript-eslint/no-unused-vars
   .actions((self) => ({
-    updateUser: flow(function* () {
+    createUser: flow(function* () {
       self.loading = true
-      self.authError = false
-      self.user.uid = "123"
-      self.user.displayName = "Naruto Uzumaki"
-      self.user.firstName = "Naruto"
-      self.user.lastName = "Uzumaki"
-      self.user.email = "narutouzumaki@gmail.com"
+      self.user.name = "Naruto Uzumaki"
       self.user.photoURL =
         "https://lh3.googleusercontent.com/a-/AOh14GiN-k8pMeGCFB13aHOrJrANy_RYl5GUPnTrgFEFZDM"
       self.loading = false
