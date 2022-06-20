@@ -5,7 +5,7 @@ import { hp, wp } from "@utils"
 export default StyleSheet.create({
   activeFooterIndicator: {
     backgroundColor: color.palette.frenchViolet,
-    width: wp(26),
+    width: wp(20),
     height: hp(4),
   },
   footerButton: {
@@ -21,10 +21,10 @@ export default StyleSheet.create({
   },
   footerIndicator: {
     backgroundColor: "grey",
-    borderRadius: 2,
-    height: hp(3),
+    borderRadius: 6,
+    height: hp(4),
     marginHorizontal: spacing[1],
-    width: wp(12),
+    width: hp(4),
   },
   paginationContainer: {
     height: hp(50),
@@ -35,6 +35,7 @@ export default StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     marginTop: spacing[5],
+    alignItems: "center",
   },
   skipButton: {
     backgroundColor: color.palette.transparent,

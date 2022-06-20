@@ -62,14 +62,15 @@ const AppStack = () => {
     userStore: { user },
   } = useStores()
 
-  const isLoggedIn = () => !!user?.uid
+  const isFirstTime = () => !!user?.name
 
   return (
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
+        animation: "slide_from_right",
       }}
-      initialRouteName={isLoggedIn() ? "home" : "onboarding"}
+      initialRouteName={isFirstTime() ? "home" : "onboarding"}
     >
       <Stack.Screen name="onboarding" component={OnboardingScreen} />
       <Stack.Screen name="welcome" component={WelcomeScreen} />
