@@ -1,8 +1,9 @@
-import * as React from "react"
 import { SafeAreaView, View } from "react-native"
+import Animated, { useSharedValue, useAnimatedStyle, withSpring } from "react-native-reanimated"
 import { observer } from "mobx-react-lite"
 import { PrimaryButton } from "../primary-button/primary-button"
 import styles from "./onboarding-footer.styles"
+import { useEffect } from "react"
 
 export interface OnboardingFooterProps {
   activeSlideIndex: number
@@ -17,6 +18,23 @@ export const OnboardingFooter = observer(function OnboardingFooter({
   onGoToSlide,
   onStart,
 }: OnboardingFooterProps) {
+  const offset = useSharedValue(1)
+  // const paginationOffset = useSharedValue(0)
+
+  const animatedStyles = useAnimatedStyle(() => {
+    return {
+      transform: [{ translateY: offset.value * 255 }],
+    }
+  })
+
+  useEffect(() => {
+    if (activeSlideIndex === numberOfSlides - 1) {
+      offset.value = withSpring(0)
+    } else {
+      offset.value = 1
+    }
+  }, [activeSlideIndex])
+
   return (
     <SafeAreaView>
       <View>
@@ -46,9 +64,9 @@ export const OnboardingFooter = observer(function OnboardingFooter({
             <PrimaryButton text="Next" style={styles.footerButton} onPress={onGoToSlide} />
           </View>
         ) : (
-          <View style={styles.startButtonContainer}>
+          <Animated.View style={[styles.startButtonContainer, animatedStyles]}>
             <PrimaryButton onPress={onStart} text="Start Your Journey" />
-          </View>
+          </Animated.View>
         )}
       </View>
     </SafeAreaView>
