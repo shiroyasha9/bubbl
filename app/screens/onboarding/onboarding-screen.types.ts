@@ -1,6 +1,7 @@
-export interface AppIntroSliderItem {
+import { SvgProps } from "react-native-svg"
+
+export interface ISlideData {
   readonly title: string
   readonly subtitle: string
-  // TODO: replace the type below to SVG once it is replaced
-  readonly icon: any
+  readonly Icon: React.FC<SvgProps>
 }

@@ -1,21 +1,19 @@
 import * as React from "react"
-import { Dimensions, FlatList, NativeScrollEvent, View } from "react-native"
+import { Dimensions, FlatList, NativeScrollEvent, SafeAreaView, View } from "react-native"
 import { observer } from "mobx-react-lite"
 import { Text } from "../text/text"
 import styles from "./onboarding-flatlist.styles"
-import { AppIntroSliderItem } from "screens/onboarding/onboarding-screen.types"
+import { ISlideData } from "screens/onboarding/onboarding-screen.types"
 
-export interface OnboardingFlatlistProps {
+interface IProps {
   data: readonly any[]
-  activeIndex: number
-  setActiveIndex: (index: number) => void
-  flatListRef: React.RefObject<FlatList<AppIntroSliderItem>>
+  activeSlideIndex: number
+  setActiveSlideIndex: (index: number) => void
+  flatListRef: React.RefObject<FlatList<ISlideData>>
 }
 
-export const OnboardingFlatlist = observer(function HorizontalFlatlist(
-  props: OnboardingFlatlistProps,
-) {
-  const { data, activeIndex, setActiveIndex, flatListRef } = props
+export const OnboardingFlatlist = observer(function HorizontalFlatlist(props: IProps) {
+  const { data, activeSlideIndex, setActiveSlideIndex, flatListRef } = props
 
   const width = Dimensions.get("window").width
 
@@ -23,47 +21,48 @@ export const OnboardingFlatlist = observer(function HorizontalFlatlist(
     const offset = e.nativeEvent.contentOffset.x
     const newIndex = Math.round(offset / width)
 
-    if (newIndex === activeIndex) {
+    if (newIndex === activeSlideIndex) {
       // No page change, don't do anything
       return
     }
-    setActiveIndex(newIndex)
+    setActiveSlideIndex(newIndex)
   }
 
-  const renderSlide = ({ item }: { item: AppIntroSliderItem }) => {
+  const renderSlide = ({ item }: { item: ISlideData }) => {
     return (
-      <View style={styles.slideContainer}>
-        <View style={styles.slide}>
-          <View style={styles.iconContainer}>{item.icon}</View>
-          <View style={styles.titleContainer}>
-            <Text allowFontScaling={false} style={styles.title}>
-              {item.title}
-            </Text>
-          </View>
-          <View style={styles.subtitleContainer}>
-            <Text allowFontScaling={false} style={styles.subtitle}>
-              {item.subtitle}
-            </Text>
+      <SafeAreaView>
+        <View style={styles.slideContainer}>
+          <View style={styles.slide}>
+            <View style={styles.iconContainer}>{<item.Icon style={styles.icon} />}</View>
+            <View style={styles.titleContainer}>
+              <Text allowFontScaling={false} style={styles.title}>
+                {item.title}
+              </Text>
+            </View>
+            <View style={styles.subtitleContainer}>
+              <Text allowFontScaling={false} style={styles.subtitle}>
+                {item.subtitle}
+              </Text>
+            </View>
           </View>
         </View>
-      </View>
+      </SafeAreaView>
     )
   }
 
   return (
     <FlatList
-      ref={flatListRef}
-      data={data}
-      horizontal
       pagingEnabled
+      data={data}
+      contentContainerStyle={styles.flatListContainer}
+      horizontal
       showsHorizontalScrollIndicator={false}
+      renderItem={renderSlide}
+      onMomentumScrollEnd={handleMomentumScrollEnd}
+      ref={flatListRef}
       bounces={false}
       style={styles.flatList}
-      renderItem={renderSlide}
       keyExtractor={(_, index: number) => index.toString()}
-      onMomentumScrollEnd={handleMomentumScrollEnd}
-      extraData={width}
-      initialNumToRender={data.length}
     />
   )
 })
