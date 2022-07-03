@@ -1,5 +1,5 @@
 import { Dimensions, StyleSheet } from "react-native"
-import { color, spacing, fontSize, textStyle } from "@theme"
+import { spacing } from "@theme"
 import { hp, wp } from "@utils"
 
 const width = Dimensions.get("window").width
@@ -31,14 +31,9 @@ export default StyleSheet.create({
   },
   slideContainer: {
     flex: 1,
-    // marginTop: spacing[8],
     width,
   },
   subtitle: {
-    color: color.palette.peacock,
-    flex: 1,
-    flexWrap: "wrap",
-    fontSize: fontSize.regular,
     textAlign: "center",
   },
   subtitleContainer: {
@@ -48,10 +43,6 @@ export default StyleSheet.create({
     paddingHorizontal: spacing[8],
   },
   title: {
-    ...textStyle.semiBold,
-    color: color.palette.peacock,
-    flexWrap: "wrap",
-    fontSize: fontSize.h2,
     textAlign: "center",
   },
   titleContainer: {

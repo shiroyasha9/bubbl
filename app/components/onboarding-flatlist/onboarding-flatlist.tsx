@@ -1,7 +1,8 @@
-import * as React from "react"
+import { RefObject } from "react"
 import { Dimensions, FlatList, NativeScrollEvent, SafeAreaView, View } from "react-native"
 import { observer } from "mobx-react-lite"
 import { Text } from "../text/text"
+import { typographyStyles } from "@styles"
 import styles from "./onboarding-flatlist.styles"
 import { ISlideData } from "screens/onboarding/onboarding-screen.types"
 
@@ -9,7 +10,7 @@ interface IProps {
   data: readonly any[]
   activeSlideIndex: number
   setActiveSlideIndex: (index: number) => void
-  flatListRef: React.RefObject<FlatList<ISlideData>>
+  flatListRef: RefObject<FlatList<ISlideData>>
 }
 
 export const OnboardingFlatlist = observer(function HorizontalFlatlist(props: IProps) {
@@ -35,12 +36,12 @@ export const OnboardingFlatlist = observer(function HorizontalFlatlist(props: IP
           <View style={styles.slide}>
             <View style={styles.iconContainer}>{<item.Icon style={styles.icon} />}</View>
             <View style={styles.titleContainer}>
-              <Text allowFontScaling={false} style={styles.title}>
+              <Text allowFontScaling={false} style={[typographyStyles.title, styles.title]}>
                 {item.title}
               </Text>
             </View>
             <View style={styles.subtitleContainer}>
-              <Text allowFontScaling={false} style={styles.subtitle}>
+              <Text allowFontScaling={false} style={[typographyStyles.subtitle, styles.subtitle]}>
                 {item.subtitle}
               </Text>
             </View>

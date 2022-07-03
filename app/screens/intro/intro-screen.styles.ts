@@ -3,13 +3,54 @@ import { color, spacing, fontSize, textStyle } from "@theme"
 import { hp, wp } from "@utils"
 
 export default StyleSheet.create({
-  buttonContainer: {
-    alignItems: "center",
+  inputContainer: {
+    marginTop: spacing[6],
+    marginBottom: spacing[5],
+  },
+  root: {
     flex: 1,
+    padding: spacing[6],
+  },
+  label: {
+    ...textStyle.semiBold,
+    fontSize: fontSize.small,
+  },
+  textInput: {
+    ...textStyle.semiBold,
+    fontSize: fontSize.small,
+    textAlignVertical: "bottom",
+    borderWidth: 1.5,
+    borderColor: color.palette.lighterGrey,
+    borderRadius: 12,
+    padding: spacing[2],
+    marginVertical: spacing[2],
+  },
+  iconContainer: {
     flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    width: "100%",
+    alignItems: "center",
+  },
+  icon: {
+    height: fontSize.h2,
+    width: fontSize.h2,
+    marginLeft: spacing[1],
+  },
+  smallIcons: {},
+  focusedTextInput: {
+    borderColor: color.palette.frenchViolet,
+  },
+  goalContainer: {},
+  goalSubtitleText: {
+    ...textStyle.semiBold,
+    fontSize: fontSize.regular,
+    textAlign: "center",
+    marginBottom: spacing[3],
+  },
+  goal: {
+    borderWidth: 1,
+    padding: spacing[5],
+    marginVertical: spacing[3],
+    borderRadius: 12,
+    borderColor: color.palette.frenchViolet,
   },
   goal1: {
     backgroundColor: color.palette.chewingGum,
@@ -23,51 +64,8 @@ export default StyleSheet.create({
   goal4: {
     backgroundColor: color.palette.faintPink,
   },
-  mainLine: {
-    ...textStyle.bold,
-    alignItems: "center",
-    color: color.palette.fontDarkBlue,
-    flex: 1,
-    fontSize: fontSize.h2,
-    justifyContent: "center",
-    lineHeight: hp(30),
-    marginVertical: spacing[2],
-    textAlign: "center",
-  },
-  mainLineContainer: {
-    alignItems: "center",
-    flex: 0.25,
-    justifyContent: "center",
-    padding: spacing[1],
-  },
-  mascotImage: {
-    height: wp(180),
-  },
-  mascotImageContainer: {
-    alignItems: "center",
-    flex: 1,
-    justifyContent: "center",
+  primaryButton: {
+    marginTop: spacing[4],
     width: "100%",
-  },
-  reasonBox: {
-    aspectRatio: 1 / 1,
-    borderRadius: 12,
-    justifyContent: "center",
-    margin: spacing[1],
-    padding: spacing[2],
-    width: wp(130),
-  },
-  reasonBoxText: {
-    color: color.palette.fontDarkBlue,
-    fontSize: fontSize.title,
-    textAlign: "center",
-  },
-  root: {
-    alignItems: "center",
-    backgroundColor: color.palette.snowWhite,
-    color: color.palette.white,
-    flex: 1,
-    justifyContent: "center",
-    padding: spacing[5],
   },
 })

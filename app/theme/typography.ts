@@ -33,7 +33,7 @@ const fontSize = {
   input: fp(15),
   medium: fp(16),
   regular: fp(14),
-  small: fp(14),
+  small: fp(13),
   tiny: fp(12),
   title: fp(18),
   cta: fp(18),
