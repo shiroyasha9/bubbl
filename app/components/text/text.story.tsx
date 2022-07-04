@@ -28,7 +28,9 @@ storiesOf("Text", module)
             my{"\n"}
             line height
           </Text>
-          <Text style={{ paddingTop: 10 }}>The quick brown fox jumped over the slow lazy dog.</Text>
+          <Text style={{ paddingTop: 10 }}>
+            The quick brown fox jumped over the slow lazy dog.
+          </Text>
           <Text>$123,456,789.00</Text>
         </View>
       </UseCase>
@@ -68,7 +70,10 @@ storiesOf("Text", module)
           <Text>Passing strings as children.</Text>
         </View>
       </UseCase>
-      <UseCase text="nested children" usage="You can embed them and change styles too.">
+      <UseCase
+        text="nested children"
+        usage="You can embed them and change styles too."
+      >
         <View style={VIEWSTYLE}>
           <Text>
             {" "}

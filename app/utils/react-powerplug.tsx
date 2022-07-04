@@ -8,7 +8,10 @@ export const State = ({
   children,
 }: {
   initial: { value: any }
-  children: (props: { state: { value: any }; setState: Dispatch<SetStateAction<any>> }) => ReactNode
+  children: (props: {
+    state: { value: any }
+    setState: Dispatch<SetStateAction<any>>
+  }) => ReactNode
 }) => {
   const [state, setState] = useState(initial)
   return <>{children({ state, setState })}</>
@@ -19,7 +22,10 @@ export const Toggle = ({
   children,
 }: {
   initial: boolean
-  children: (props: { on: boolean; toggle: Dispatch<SetStateAction<boolean>> }) => ReactNode
+  children: (props: {
+    on: boolean
+    toggle: Dispatch<SetStateAction<boolean>>
+  }) => ReactNode
 }) => {
   const [on, toggle] = useState(initial)
   return <>{children({ on, toggle })}</>

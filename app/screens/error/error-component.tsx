@@ -1,5 +1,11 @@
 import React, { ErrorInfo } from "react"
-import { TextStyle, View, ViewStyle, ScrollView, ImageStyle } from "react-native"
+import {
+  TextStyle,
+  View,
+  ViewStyle,
+  ScrollView,
+  ImageStyle,
+} from "react-native"
 import { color } from "../../theme"
 import { Button, Icon, Text } from "../../components"
 
@@ -78,7 +84,11 @@ export const ErrorComponent = (props: ErrorComponentProps) => {
           {/* <Text selectable style={CONTENT_BACKTRACE} text={`${props.errorInfo.componentStack}`} /> */}
         </ScrollView>
       </View>
-      <Button style={BTN_RESET} onPress={props.onReset} tx="errorScreen.reset" />
+      <Button
+        style={BTN_RESET}
+        onPress={props.onReset}
+        tx="errorScreen.reset"
+      />
     </View>
   )
 }

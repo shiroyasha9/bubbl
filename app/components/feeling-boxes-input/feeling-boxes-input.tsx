@@ -44,7 +44,9 @@ export const FeelingBoxesInput = observer(function FeelingBoxesInput(
                   ...styles.feelingBox,
                   backgroundColor: MOOD_COLOR[moods[i].text],
                   borderColor:
-                    i === currentFeeling ? color.palette.fontDarkBlue : color.palette.transparent,
+                    i === currentFeeling
+                      ? color.palette.fontDarkBlue
+                      : color.palette.transparent,
                 }}
                 onPress={() => {
                   updateCurrentFeeling(i)

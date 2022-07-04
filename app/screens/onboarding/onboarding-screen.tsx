@@ -1,4 +1,4 @@
-import { FC, useRef, useState } from "react"
+import React, { FC, useRef, useState } from "react"
 import { Dimensions, FlatList } from "react-native"
 import { StackScreenProps } from "@react-navigation/stack"
 import { observer } from "mobx-react-lite"
@@ -38,40 +38,40 @@ const onboardingData: ReadonlyArray<ISlideData> = [
   },
 ]
 
-export const OnboardingScreen: FC<StackScreenProps<NavigatorParamList, "onboarding">> = observer(
-  function OnboardingScreen({ navigation }) {
-    const flatListRef: React.RefObject<FlatList<ISlideData>> = useRef()
-    const width = Dimensions.get("window").width
-    const [activeSlideIndex, setActiveSlideIndex] = useState(0)
+export const OnboardingScreen: FC<
+  StackScreenProps<NavigatorParamList, "onboarding">
+> = observer(function OnboardingScreen({ navigation }) {
+  const flatListRef: React.RefObject<FlatList<ISlideData>> = useRef()
+  const width = Dimensions.get("window").width
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0)
 
-    const goToSlideHandler = (newSlideNumber = activeSlideIndex + 1) => {
-      if (newSlideNumber < onboardingData.length) {
-        flatListRef.current?.scrollToOffset({
-          offset: newSlideNumber * width,
-        })
-        setActiveSlideIndex(newSlideNumber)
-      }
+  const goToSlideHandler = (newSlideNumber = activeSlideIndex + 1) => {
+    if (newSlideNumber < onboardingData.length) {
+      flatListRef.current?.scrollToOffset({
+        offset: newSlideNumber * width,
+      })
+      setActiveSlideIndex(newSlideNumber)
     }
+  }
 
-    const startButtonHandler = () => {
-      navigation.navigate("intro")
-    }
+  const startButtonHandler = () => {
+    navigation.navigate("intro")
+  }
 
-    return (
-      <Screen style={styles.root} preset="scroll">
-        <OnboardingFlatlist
-          data={onboardingData}
-          activeSlideIndex={activeSlideIndex}
-          setActiveSlideIndex={(index: number) => setActiveSlideIndex(index)}
-          flatListRef={flatListRef}
-        />
-        <OnboardingFooter
-          onGoToSlide={goToSlideHandler}
-          activeSlideIndex={activeSlideIndex}
-          numberOfSlides={onboardingData.length}
-          onStart={startButtonHandler}
-        />
-      </Screen>
-    )
-  },
-)
+  return (
+    <Screen style={styles.root} preset="scroll">
+      <OnboardingFlatlist
+        data={onboardingData}
+        activeSlideIndex={activeSlideIndex}
+        setActiveSlideIndex={(index: number) => setActiveSlideIndex(index)}
+        flatListRef={flatListRef}
+      />
+      <OnboardingFooter
+        onGoToSlide={goToSlideHandler}
+        activeSlideIndex={activeSlideIndex}
+        numberOfSlides={onboardingData.length}
+        onStart={startButtonHandler}
+      />
+    </Screen>
+  )
+})

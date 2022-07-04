@@ -3,7 +3,6 @@
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./app",
-    "esModuleInterop": true,
     "experimentalDecorators": true,
     "jsx": "react-native",
     "module": "es2015",
@@ -36,6 +35,6 @@
     "resolveJsonModule": true
   },
   "exclude": ["node_modules"],
-  "include": ["App.js", "app", "storybook"],
+  "include": ["App.js", "app", "test", "storybook"],
   "extends": "expo/tsconfig.base"
 }

@@ -99,8 +99,16 @@ const textStyle = {
   /**
    * A smaller piece of secondard information.
    */
-  secondary: { ...BASE, fontSize: fontSize.small, color: color.dim } as RNTextStyle,
-  secondaryBold: { ...BOLD, fontSize: fontSize.small, color: color.dim } as RNTextStyle,
+  secondary: {
+    ...BASE,
+    fontSize: fontSize.small,
+    color: color.dim,
+  } as RNTextStyle,
+  secondaryBold: {
+    ...BOLD,
+    fontSize: fontSize.small,
+    color: color.dim,
+  } as RNTextStyle,
 }
 
 /**

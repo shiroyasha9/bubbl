@@ -17,7 +17,11 @@ export const BottomNavigation = observer(function BottomNavigation() {
     {
       icon: (
         <HomeIcon
-          fill={route.name === ROUTE_NAME.HOME ? color.palette.lighterBlue : color.palette.black}
+          fill={
+            route.name === ROUTE_NAME.HOME
+              ? color.palette.lighterBlue
+              : color.palette.black
+          }
           style={styles.homeIcon}
         />
       ),
@@ -43,7 +47,8 @@ export const BottomNavigation = observer(function BottomNavigation() {
       icon: (
         <JournalIcon
           fill={
-            route.name === ROUTE_NAME.JOURNAL || route.name === ROUTE_NAME.PREJOURNAL
+            route.name === ROUTE_NAME.JOURNAL ||
+            route.name === ROUTE_NAME.PREJOURNAL
               ? color.palette.lighterBlue
               : color.palette.black
           }

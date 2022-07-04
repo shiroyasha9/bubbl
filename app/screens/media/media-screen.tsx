@@ -11,24 +11,30 @@ import { IVideoDetails, IYoutubeSearchResultsResponse } from "@types"
 import { mapYoutubeSearchResultToList } from "@utils"
 import styles from "./media-screen.styles"
 
-export const MediaScreen: FC<StackScreenProps<NavigatorParamList, "media">> = observer(
-  function MediaScreen({ navigation }) {
+export const MediaScreen: FC<StackScreenProps<NavigatorParamList, "media">> =
+  observer(function MediaScreen({ navigation }) {
     // Pull in one of our MST stores
     // const { someStore, anotherStore } = useStores()
 
     // Pull in navigation via hook
     const {
-      userStore: { user, fetchYoutubeThumbnailList, fetchYoutubeMusicThumbnailList },
+      userStore: {
+        user,
+        fetchYoutubeThumbnailList,
+        fetchYoutubeMusicThumbnailList,
+      },
     } = useStores()
     const [videosList, setVideosList] = useState<IVideoDetails[]>([])
     const [musicList, setMusicList] = useState<IVideoDetails[]>([])
     const [videosLoading, setVideosLoading] = useState<boolean>(true)
 
     const goToMeditationScreen = () => navigation.navigate("meditation")
-    const playMeditationVideo = (videoID: string) => navigation.navigate("meditation", { videoID })
+    const playMeditationVideo = (videoID: string) =>
+      navigation.navigate("meditation", { videoID })
 
     const goToMusicScreen = () => navigation.navigate("music")
-    const playMusicVideo = (video: IVideoDetails) => navigation.navigate("musicPlayer", { video })
+    const playMusicVideo = (video: IVideoDetails) =>
+      navigation.navigate("musicPlayer", { video })
 
     useFocusEffect(
       useCallback(() => {
@@ -36,11 +42,13 @@ export const MediaScreen: FC<StackScreenProps<NavigatorParamList, "media">> = ob
           const videoSearchResult = await fetchYoutubeThumbnailList()
           const musicSearchResult = await fetchYoutubeMusicThumbnailList()
 
-          const videoList = videoSearchResult.map((vid: IYoutubeSearchResultsResponse) =>
-            mapYoutubeSearchResultToList(vid),
+          const videoList = videoSearchResult.map(
+            (vid: IYoutubeSearchResultsResponse) =>
+              mapYoutubeSearchResultToList(vid),
           )
-          const musicList = musicSearchResult.map((vid: IYoutubeSearchResultsResponse) =>
-            mapYoutubeSearchResultToList(vid),
+          const musicList = musicSearchResult.map(
+            (vid: IYoutubeSearchResultsResponse) =>
+              mapYoutubeSearchResultToList(vid),
           )
           setVideosList(videoList)
           setMusicList(musicList)
@@ -83,11 +91,13 @@ export const MediaScreen: FC<StackScreenProps<NavigatorParamList, "media">> = ob
             {videosLoading ? (
               <ActivityIndicator color={color.palette.black} size={"large"} />
             ) : (
-              <HorizontalMediaScrollView videoList={videosList} onPress={playMeditationVideo} />
+              <HorizontalMediaScrollView
+                videoList={videosList}
+                onPress={playMeditationVideo}
+              />
             )}
           </View>
         </HomeHoc>
       </Screen>
     )
-  },
-)
+  })

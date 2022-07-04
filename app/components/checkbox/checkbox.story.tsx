@@ -10,17 +10,28 @@ import { Toggle } from "../../utils/react-powerplug"
 
 declare let module
 
-const arrayStyle: ViewStyle[] = [{ paddingVertical: 40 }, { alignSelf: "flex-end" }]
-const arrayOutlineStyle: ViewStyle[] = [{ borderColor: "#b443c9" }, { borderWidth: 25 }]
+const arrayStyle: ViewStyle[] = [
+  { paddingVertical: 40 },
+  { alignSelf: "flex-end" },
+]
+const arrayOutlineStyle: ViewStyle[] = [
+  { borderColor: "#b443c9" },
+  { borderWidth: 25 },
+]
 const arrayFillStyle: ViewStyle[] = [{ backgroundColor: "#55e0ff" }]
 
 storiesOf("Checkbox", module)
   .addDecorator((fn) => <StoryScreen>{fn()}</StoryScreen>)
   .add("Behaviour", () => (
     <Story>
-      <UseCase text="The Checkbox" usage="Use the checkbox to represent on/off states.">
+      <UseCase
+        text="The Checkbox"
+        usage="Use the checkbox to represent on/off states."
+      >
         <Toggle initial={false}>
-          {({ on, toggle }) => <Checkbox value={on} onToggle={toggle} text="Toggle me" />}
+          {({ on, toggle }) => (
+            <Checkbox value={on} onToggle={toggle} text="Toggle me" />
+          )}
         </Toggle>
       </UseCase>
       <UseCase text="value = true" usage="This is permanently on.">

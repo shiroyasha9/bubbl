@@ -37,7 +37,9 @@ export function Checkbox(props: CheckboxProps) {
   const outlineStyle = [OUTLINE, props.outlineStyle]
   const fillStyle = [FILL, props.fillStyle]
 
-  const onPress = props.onToggle ? () => props.onToggle && props.onToggle(!props.value) : null
+  const onPress = props.onToggle
+    ? () => props.onToggle && props.onToggle(!props.value)
+    : null
 
   return (
     <TouchableOpacity
@@ -46,8 +48,15 @@ export function Checkbox(props: CheckboxProps) {
       onPress={onPress}
       style={rootStyle}
     >
-      <View style={outlineStyle}>{props.value && <View style={fillStyle} />}</View>
-      <Text text={props.text} tx={props.tx} numberOfLines={numberOfLines} style={LABEL} />
+      <View style={outlineStyle}>
+        {props.value && <View style={fillStyle} />}
+      </View>
+      <Text
+        text={props.text}
+        tx={props.tx}
+        numberOfLines={numberOfLines}
+        style={LABEL}
+      />
     </TouchableOpacity>
   )
 }

@@ -32,7 +32,9 @@ export const MoodList = observer(function MoodList(props: MoodListProps) {
       <View style={styles.dividerLine}></View>
       <View style={styles.moodListEmotionContainer}>
         <View style={styles.moodListEmotion}>
-          <Text style={{ fontSize: 16 * 2 }}>{moods[mood.emotionNumber].emoji}</Text>
+          <Text style={{ fontSize: 16 * 2 }}>
+            {moods[mood.emotionNumber].emoji}
+          </Text>
         </View>
         <View style={styles.moodListDate}>
           <Text>{mood.date?.toLocaleDateString("en-gb")}</Text>

@@ -15,68 +15,76 @@ import { IYoutubeSearchResultsResponse, IVideoDetails } from "@types"
 import { VideoList } from "./meditation-screen.types"
 import styles from "./meditation-screen.styles"
 
-export const MeditationScreen: FC<StackScreenProps<NavigatorParamList, "meditation">> = observer(
-  function MeditationScreen() {
-    const {
-      userStore: { fetchYoutubeVideoList },
-    } = useStores()
-    const route: RouteProp<{ params: { videoID: string | null } }, "params"> = useRoute()
+export const MeditationScreen: FC<
+  StackScreenProps<NavigatorParamList, "meditation">
+> = observer(function MeditationScreen() {
+  const {
+    userStore: { fetchYoutubeVideoList },
+  } = useStores()
+  const route: RouteProp<{ params: { videoID: string | null } }, "params"> =
+    useRoute()
 
-    const [videoID, setVideoID] = useState<string | null>(null)
-    const [videosList, setVideosList] = useState<IVideoDetails[]>([])
-    const [videosLoading, setVideosLoading] = useState<boolean>(true)
+  const [videoID, setVideoID] = useState<string | null>(null)
+  const [videosList, setVideosList] = useState<IVideoDetails[]>([])
+  const [videosLoading, setVideosLoading] = useState<boolean>(true)
 
-    useFocusEffect(
-      useCallback(() => {
-        const init = async () => {
-          const videoSearchResult = await fetchYoutubeVideoList()
-          const videoList = videoSearchResult.map((vid: IYoutubeSearchResultsResponse) => {
+  useFocusEffect(
+    useCallback(() => {
+      const init = async () => {
+        const videoSearchResult = await fetchYoutubeVideoList()
+        const videoList = videoSearchResult.map(
+          (vid: IYoutubeSearchResultsResponse) => {
             return {
               thumbnailURI: getThumbnailFromVideoId(vid.id.videoId),
               id: vid.id.videoId,
               duration: vid.duration,
               title: vid.snippet.title,
             }
-          })
-          setVideosList(videoList)
-          setVideosLoading(false)
-        }
-        init()
-      }, []),
-    )
+          },
+        )
+        setVideosList(videoList)
+        setVideosLoading(false)
+      }
+      init()
+    }, []),
+  )
 
-    useFocusEffect(
-      useCallback(() => {
-        const routerVideoID = route?.params?.videoID
-        if (routerVideoID) {
-          setVideoID(routerVideoID)
-        }
-      }, []),
-    )
+  useFocusEffect(
+    useCallback(() => {
+      const routerVideoID = route?.params?.videoID
+      if (routerVideoID) {
+        setVideoID(routerVideoID)
+      }
+    }, []),
+  )
 
-    const _renderVideoList = ({ item }: VideoList) => (
-      <MediaInfoCard onPress={(videoID: string) => setVideoID(videoID)} video={item} />
-    )
+  const _renderVideoList = ({ item }: VideoList) => (
+    <MediaInfoCard
+      onPress={(videoID: string) => setVideoID(videoID)}
+      video={item}
+    />
+  )
 
-    return (
-      <Screen>
-        <HomeHoc title="Meditation Videos" subtitle="" showAlternateHeader>
-          <View style={styles.container}>
-            {videosLoading ? (
-              <ActivityIndicator color={color.palette.black} size={"large"} />
-            ) : (
-              <>
-                {videoID && <YoutubePlayer height={240} play={true} videoId={videoID} />}
-                <FlatList
-                  data={videosList}
-                  renderItem={_renderVideoList}
-                  showsHorizontalScrollIndicator={false}
-                />
-              </>
-            )}
-          </View>
-        </HomeHoc>
-      </Screen>
-    )
-  },
-)
+  return (
+    <Screen>
+      <HomeHoc title="Meditation Videos" subtitle="" showAlternateHeader>
+        <View style={styles.container}>
+          {videosLoading ? (
+            <ActivityIndicator color={color.palette.black} size={"large"} />
+          ) : (
+            <>
+              {videoID && (
+                <YoutubePlayer height={240} play={true} videoId={videoID} />
+              )}
+              <FlatList
+                data={videosList}
+                renderItem={_renderVideoList}
+                showsHorizontalScrollIndicator={false}
+              />
+            </>
+          )}
+        </View>
+      </HomeHoc>
+    </Screen>
+  )
+})

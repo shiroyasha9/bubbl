@@ -52,7 +52,10 @@ storiesOf("Switch", module)
   .addDecorator((fn) => <StoryScreen>{fn()}</StoryScreen>)
   .add("Behaviour", () => (
     <Story>
-      <UseCase text="The Toggle Switch" usage="Use the switch to represent on/off states.">
+      <UseCase
+        text="The Toggle Switch"
+        usage="Use the switch to represent on/off states."
+      >
         <Toggle initial={false}>
           {({ on, toggle }) => <Switch value={on} onToggle={toggle} />}
         </Toggle>
@@ -72,8 +75,14 @@ storiesOf("Switch", module)
           {({ on, toggle }) => (
             <View>
               <Switch
-                trackOnStyle={{ backgroundColor: "green", borderColor: "black" }}
-                trackOffStyle={{ backgroundColor: "red", borderColor: "maroon" }}
+                trackOnStyle={{
+                  backgroundColor: "green",
+                  borderColor: "black",
+                }}
+                trackOffStyle={{
+                  backgroundColor: "red",
+                  borderColor: "maroon",
+                }}
                 thumbOnStyle={{ backgroundColor: "cyan" }}
                 thumbOffStyle={{ backgroundColor: "pink" }}
                 value={on}

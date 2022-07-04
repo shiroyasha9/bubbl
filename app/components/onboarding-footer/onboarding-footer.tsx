@@ -43,7 +43,11 @@ export const OnboardingFooter = observer(function OnboardingFooter({
                 onGoToSlide(numberOfSlides - 1)
               }}
             />
-            <PrimaryButton text="Next" style={styles.footerButton} onPress={onGoToSlide} />
+            <PrimaryButton
+              text="Next"
+              style={styles.footerButton}
+              onPress={onGoToSlide}
+            />
           </View>
         ) : (
           <View style={styles.startButtonContainer}>

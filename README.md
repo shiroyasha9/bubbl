@@ -36,6 +36,13 @@ ignite-project
 │   ├── storybook-registry.ts
 │   ├── storybook.ts
 │   ├── toggle-storybook.tsx
+├── test
+│   ├── __snapshots__
+│   ├── storyshots.test.ts.snap
+│   ├── mock-i18n.ts
+│   ├── mock-reactotron.ts
+│   ├── setup.ts
+│   ├── storyshots.test.ts
 ├── README.md
 ├── android
 │   ├── app
@@ -114,6 +121,10 @@ The `ignite` directory stores all things Ignite, including CLI and boilerplate i
 
 This is where your stories will be registered and where the Storybook configs will live.
 
+### ./test directory
+
+This directory will hold your Jest configs and mocks, as well as your [storyshots](https://github.com/storybooks/storybook/tree/master/addons/storyshots) test file. This is a file that contains the snapshots of all your component storybooks.
+
 ## Running Storybook
 
 From the command line in your generated app's root directory, enter `yarn run storybook`
@@ -122,3 +133,13 @@ running, choose Toggle Storybook from the developer menu to switch to Storybook;
 use the story navigator in your browser to change stories.
 
 For Visual Studio Code users, there is a handy extension that makes it easy to load Storybook use cases into a running emulator via tapping on items in the editor sidebar. Install the `React Native Storybook` extension by `Orta`, hit `cmd + shift + P` and select "Reconnect Storybook to VSCode". Expand the STORYBOOK section in the sidebar to see all use cases for components that have `.story.tsx` files in their directories.
+
+## Running e2e tests
+
+Read [e2e setup instructions](./e2e/README.md).
+
+## Previous Boilerplates
+
+- [2018 aka Bowser](https://github.com/infinitered/ignite-bowser)
+- [2017 aka Andross](https://github.com/infinitered/ignite-andross)
+- [2016 aka Ignite 1.0](https://github.com/infinitered/ignite-ir-boilerplate-2016)

@@ -8,8 +8,8 @@ import { Screen, Text } from "@components"
 import { useStores } from "@models"
 import styles from "./intro-screen.styles"
 
-export const IntroScreen: FC<StackScreenProps<NavigatorParamList, "intro">> = observer(
-  function IntroScreen({ navigation }) {
+export const IntroScreen: FC<StackScreenProps<NavigatorParamList, "intro">> =
+  observer(function IntroScreen({ navigation }) {
     const {
       userStore: { updateUserGoal, createUser },
     } = useStores()
@@ -73,5 +73,4 @@ export const IntroScreen: FC<StackScreenProps<NavigatorParamList, "intro">> = ob
         </View>
       </Screen>
     )
-  },
-)
+  })

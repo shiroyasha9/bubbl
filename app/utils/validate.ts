@@ -6,7 +6,12 @@ const Validate: any = ValidateJS.default ? ValidateJS.default : ValidateJS
 /**
  * Validates that 1 attribute doesn't appear in another's attributes content.
  */
-Validate.validators.excludes = function custom(value, options, key, attributes) {
+Validate.validators.excludes = function custom(
+  value,
+  options,
+  key,
+  attributes,
+) {
   const list = attributes[options.attribute] || []
   if (value && list.includes(value)) {
     return options.message || `${value} is in the list`
@@ -69,7 +74,10 @@ export interface ValidationErrors {
  * @param rules The rules to apply.
  * @param data The object to validate.
  */
-export function validate(rules: ValidationRules, data: Record<string, unknown>): ValidationErrors {
+export function validate(
+  rules: ValidationRules,
+  data: Record<string, unknown>,
+): ValidationErrors {
   if (typeof data !== "object") {
     return {} as ValidationErrors
   }

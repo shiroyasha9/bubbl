@@ -1,5 +1,10 @@
 import React from "react"
-import { ViewStyle, Animated, Easing, TouchableWithoutFeedback } from "react-native"
+import {
+  ViewStyle,
+  Animated,
+  Easing,
+  TouchableWithoutFeedback,
+} from "react-native"
 import { color } from "../../theme"
 import { SwitchProps } from "./switch.props"
 
@@ -71,10 +76,10 @@ export function Switch(props: SwitchProps) {
     }
   }, [props.value])
 
-  const handlePress = React.useMemo(() => () => props.onToggle && props.onToggle(!props.value), [
-    props.onToggle,
-    props.value,
-  ])
+  const handlePress = React.useMemo(
+    () => () => props.onToggle && props.onToggle(!props.value),
+    [props.onToggle, props.value],
+  )
 
   if (!timer) {
     return null

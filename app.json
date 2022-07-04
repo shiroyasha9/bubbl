@@ -1,4 +1,6 @@
 {
+  "name": "Bubbl",
+  "displayName": "Bubbl",
   "expo": {
     "name": "Bubbl",
     "slug": "Bubbl",
@@ -6,7 +8,7 @@
     "orientation": "portrait",
     "icon": "./assets/images/app-icon.png",
     "splash": {
-      "image": "./assets/images/splash-screen.png",
+      "image": "./assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -14,15 +16,19 @@
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": ["**/*"],
+    "android": {
+      "icon": "./assets/images/app-icon.png",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/app-icon-android-adaptive-foreground.png",
+        "backgroundImage": "./assets/images/app-icon-android-adaptive-background.png"
+      }
+    },
     "ios": {
+      "icon": "./assets/images/app-icon.png",
       "supportsTablet": true
     },
-    "android": {
-      "package": "com.bubbl.app",
-      "versionCode": 1
-    },
     "web": {
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/app-icon-web-favicon.png"
     }
   }
 }
