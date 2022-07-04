@@ -3,7 +3,6 @@ import { YOUTUBE_API_BASE_URL } from "@constants"
 import { IYoutubeSearchResultsResponse } from "@types"
 import { getGeneralApiProblem } from "./api-problem"
 import { ApiConfig, DEFAULT_API_CONFIG } from "./api-config"
-import * as Types from "./api.types"
 const { YOUTUBE_API_KEY } = require("config/env")
 
 /**
@@ -47,7 +46,6 @@ export class Api {
     })
   }
 
-  // TODO: add types
   async fetchVideoThumbnailList(searchQuery: string): Promise<any> {
     try {
       const response: ApiResponse<any> = await this.apisauce.get(
@@ -79,16 +77,21 @@ export class Api {
         if (problem) return problem
       }
       let videosList: IYoutubeSearchResultsResponse[] = response.data.items
-      const videoIdList: string[] = videosList.map((videoInfo) => videoInfo.id.videoId)
+      const videoIdList: string[] = videosList.map(
+        (videoInfo) => videoInfo.id.videoId,
+      )
       const responseWithDuration: ApiResponse<any> = await this.apisauce.get(
-        `/videos?id=${videoIdList.join(",")}&part=contentDetails&key=${YOUTUBE_API_KEY}`,
+        `/videos?id=${videoIdList.join(
+          ",",
+        )}&part=contentDetails&key=${YOUTUBE_API_KEY}`,
         {},
         { baseURL: YOUTUBE_API_BASE_URL },
       )
       if (responseWithDuration.ok) {
         videosList = videosList.map((videoInfo, index: number) => ({
           ...videoInfo,
-          duration: responseWithDuration.data.items[index].contentDetails.duration,
+          duration:
+            responseWithDuration.data.items[index].contentDetails.duration,
         }))
       }
 

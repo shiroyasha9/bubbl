@@ -20,7 +20,9 @@ export interface JournalListProps {
   }
 }
 
-export const JournalList = observer(function JournalList(props: JournalListProps) {
+export const JournalList = observer(function JournalList(
+  props: JournalListProps,
+) {
   const { journal } = props
   return (
     <View style={styles.journalListContainer}>

@@ -1,4 +1,4 @@
-import { flow, Instance, SnapshotOut, types } from "mobx-state-tree"
+import { flow, Instance, SnapshotIn, SnapshotOut, types } from "mobx-state-tree"
 import { withEnvironment } from "../extensions/with-environment"
 import { GOAL_TEXT } from "@constants"
 
@@ -28,8 +28,14 @@ export const UserStoreModel = types
     userGoal: types.optional(types.number, 0),
     currentFeeling: types.optional(types.number, 0),
     todaysJournal: types.optional(types.string, ""),
-    journals: types.optional(types.array(types.model("journalItem", journalItem)), []),
-    moodHistory: types.optional(types.array(types.model("moodItem", moodItem)), []),
+    journals: types.optional(
+      types.array(types.model("journalItem", journalItem)),
+      [],
+    ),
+    moodHistory: types.optional(
+      types.array(types.model("moodItem", moodItem)),
+      [],
+    ),
   })
   .extend(withEnvironment)
   .props({})
@@ -67,33 +73,39 @@ export const UserStoreModel = types
       self.currentFeeling = feeling
     },
     fetchYoutubeVideoList: flow(function* () {
-      const { kind, videosList } = yield self.environment.api.fetchYoutubeVideoList(
-        `meditation videos for ${GOAL_TEXT[self.userGoal]}`,
-      )
+      const { kind, videosList } =
+        yield self.environment.api.fetchYoutubeVideoList(
+          `meditation videos for ${GOAL_TEXT[self.userGoal]}`,
+        )
       return kind === "ok" ? videosList : []
     }),
     fetchYoutubeThumbnailList: flow(function* () {
-      const { kind, videosList } = yield self.environment.api.fetchVideoThumbnailList(
-        `meditation videos for ${GOAL_TEXT[self.userGoal]}`,
-      )
+      const { kind, videosList } =
+        yield self.environment.api.fetchVideoThumbnailList(
+          `meditation videos for ${GOAL_TEXT[self.userGoal]}`,
+        )
       return kind === "ok" ? videosList : []
     }),
     fetchYoutubeMusicList: flow(function* () {
-      const { kind, videosList } = yield self.environment.api.fetchYoutubeVideoList(
-        `music for ${GOAL_TEXT[self.userGoal]}`,
-      )
+      const { kind, videosList } =
+        yield self.environment.api.fetchYoutubeVideoList(
+          `music for ${GOAL_TEXT[self.userGoal]}`,
+        )
       return kind === "ok" ? videosList : []
     }),
     fetchYoutubeMusicThumbnailList: flow(function* () {
-      const { kind, videosList } = yield self.environment.api.fetchVideoThumbnailList(
-        `music for ${GOAL_TEXT[self.userGoal]}`,
-      )
+      const { kind, videosList } =
+        yield self.environment.api.fetchVideoThumbnailList(
+          `music for ${GOAL_TEXT[self.userGoal]}`,
+        )
       return kind === "ok" ? videosList : []
     }),
   }))
 
-type UserStoreType = Instance<typeof UserStoreModel>
-export interface UserStore extends UserStoreType {}
-type UserStoreSnapshotType = SnapshotOut<typeof UserStoreModel>
-export interface UserStoreSnapshot extends UserStoreSnapshotType {}
-export const createUserStoreDefaultModel = () => types.optional(UserStoreModel, {})
+export interface UserStore extends Instance<typeof UserStoreModel> {}
+export interface UserStoreSnapshotOut
+  extends SnapshotOut<typeof UserStoreModel> {}
+export interface UserStoreSnapshotIn
+  extends SnapshotIn<typeof UserStoreModel> {}
+export const createUserStoreDefaultModel = () =>
+  types.optional(UserStoreModel, {})

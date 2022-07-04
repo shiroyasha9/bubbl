@@ -1,5 +1,11 @@
 import * as React from "react"
-import { Dimensions, FlatList, NativeScrollEvent, SafeAreaView, View } from "react-native"
+import {
+  Dimensions,
+  FlatList,
+  NativeScrollEvent,
+  SafeAreaView,
+  View,
+} from "react-native"
 import { observer } from "mobx-react-lite"
 import { Text } from "../text/text"
 import styles from "./onboarding-flatlist.styles"
@@ -12,7 +18,9 @@ interface IProps {
   flatListRef: React.RefObject<FlatList<ISlideData>>
 }
 
-export const OnboardingFlatlist = observer(function HorizontalFlatlist(props: IProps) {
+export const OnboardingFlatlist = observer(function HorizontalFlatlist(
+  props: IProps,
+) {
   const { data, activeSlideIndex, setActiveSlideIndex, flatListRef } = props
 
   const width = Dimensions.get("window").width
@@ -33,7 +41,9 @@ export const OnboardingFlatlist = observer(function HorizontalFlatlist(props: IP
       <SafeAreaView>
         <View style={styles.slideContainer}>
           <View style={styles.slide}>
-            <View style={styles.iconContainer}>{<item.Icon style={styles.icon} />}</View>
+            <View style={styles.iconContainer}>
+              {<item.Icon style={styles.icon} />}
+            </View>
             <View style={styles.titleContainer}>
               <Text allowFontScaling={false} style={styles.title}>
                 {item.title}

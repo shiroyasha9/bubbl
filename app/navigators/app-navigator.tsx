@@ -6,23 +6,24 @@
  */
 import React from "react"
 import { useColorScheme } from "react-native"
-import { NavigationContainer, DefaultTheme, DarkTheme } from "@react-navigation/native"
-import { createNativeStackNavigator } from "@react-navigation/native-stack"
-
 import {
-  WelcomeScreen,
-  OnboardingScreen,
-  IntroScreen,
+  NavigationContainer,
+  DefaultTheme,
+  DarkTheme,
+} from "@react-navigation/native"
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import {
   HomeScreen,
+  IntroScreen,
+  OnboardingScreen,
   MediaScreen,
   JournalScreen,
   MeditationScreen,
   MusicScreen,
-  PreJournalScreen,
   JournalInputScreen,
   MusicPlayerScreen,
+  PreJournalScreen,
 } from "@screens"
-
 import { navigationRef, useBackButtonHandler } from "./navigation-utilities"
 import { useStores } from "@models"
 import { IVideoDetails } from "@types"
@@ -40,10 +41,11 @@ import { IVideoDetails } from "@types"
  *   https://reactnavigation.org/docs/typescript#type-checking-the-navigator
  */
 export type NavigatorParamList = {
-  welcome: undefined
-  intro: undefined
-  onboarding: undefined
+  demo: undefined
+  demoList: undefined
   home: undefined
+  onboarding: undefined
+  intro: undefined
   media: undefined
   journal: undefined
   prejournal: { purpose: string; moodId?: number } | undefined
@@ -51,6 +53,7 @@ export type NavigatorParamList = {
   music: undefined
   journalInput: undefined
   musicPlayer: { video: IVideoDetails }
+
   // 🔥 Your screens go here
 }
 
@@ -63,7 +66,6 @@ const AppStack = () => {
   } = useStores()
 
   const isFirstTime = () => !!user?.name
-
   return (
     <Stack.Navigator
       screenOptions={{
@@ -73,7 +75,6 @@ const AppStack = () => {
       initialRouteName={isFirstTime() ? "home" : "onboarding"}
     >
       <Stack.Screen name="onboarding" component={OnboardingScreen} />
-      <Stack.Screen name="welcome" component={WelcomeScreen} />
       <Stack.Screen name="intro" component={IntroScreen} />
       <Stack.Screen name="home" component={HomeScreen} />
       <Stack.Screen name="media" component={MediaScreen} />
@@ -94,7 +95,8 @@ const AppStack = () => {
   )
 }
 
-interface NavigationProps extends Partial<React.ComponentProps<typeof NavigationContainer>> {}
+interface NavigationProps
+  extends Partial<React.ComponentProps<typeof NavigationContainer>> {}
 
 export const AppNavigator = (props: NavigationProps) => {
   const colorScheme = useColorScheme()

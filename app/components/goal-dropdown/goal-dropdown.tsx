@@ -24,7 +24,9 @@ export const GoalDropdown = observer(function GoalDropdown() {
       dropdownStyle={styles.selectDropdown}
       defaultValueByIndex={userGoal}
       onSelect={(userGoal1) => updateUserGoal(userGoal1 - 1)}
-      buttonTextAfterSelection={(userGoal1) => durationDisplayText(userGoal1 - 1)}
+      buttonTextAfterSelection={(userGoal1) =>
+        durationDisplayText(userGoal1 - 1)
+      }
       rowTextForSelection={(duration) => durationDisplayText(duration - 1)}
       renderDropdownIcon={() => <DownArrow />}
       renderCustomizedRowChild={(item) => (

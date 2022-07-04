@@ -24,7 +24,9 @@ export const navigationRef = createNavigationContainerRef()
 /**
  * Gets the current screen from any navigation state.
  */
-export function getActiveRouteName(state: NavigationState | PartialState<NavigationState>) {
+export function getActiveRouteName(
+  state: NavigationState | PartialState<NavigationState>,
+) {
   const route = state.routes[state.index]
 
   // Found the active route -- return the name
@@ -75,7 +77,8 @@ export function useBackButtonHandler(canExit: (routeName: string) => boolean) {
     BackHandler.addEventListener("hardwareBackPress", onBackPress)
 
     // Unsubscribe when we're done
-    return () => BackHandler.removeEventListener("hardwareBackPress", onBackPress)
+    return () =>
+      BackHandler.removeEventListener("hardwareBackPress", onBackPress)
   }, [])
 }
 
@@ -88,7 +91,7 @@ export function useNavigationPersistence(storage: any, persistenceKey: string) {
   // This feature is particularly useful in development mode.
   // It is selectively enabled in development mode with
   // the following approach. If you'd like to use navigation persistence
-  // in production, remove the __DEV__ and set the state to true
+  // in production, remove the __DEV__ and set the state to false
   const [isRestored, setIsRestored] = useState(!__DEV__)
 
   const routeNameRef = useRef<string | undefined>()
@@ -122,11 +125,16 @@ export function useNavigationPersistence(storage: any, persistenceKey: string) {
     if (!isRestored) restoreState()
   }, [isRestored])
 
-  return { onNavigationStateChange, restoreState, isRestored, initialNavigationState }
+  return {
+    onNavigationStateChange,
+    restoreState,
+    isRestored,
+    initialNavigationState,
+  }
 }
 
 /**
- * use this to navigate to navigate without the navigation
+ * use this to navigate without the navigation
  * prop. If you have access to the navigation prop, do not use this.
  * More info: https://reactnavigation.org/docs/navigating-without-navigation-prop/
  */

@@ -9,12 +9,17 @@ import { transformYTDurationToSeconds } from "@utils"
 /**
  * Describe your component here
  */
-export const MusicInfoCard = observer(function MusicInfoCard(props: MusicInfoCardProps) {
+export const MusicInfoCard = observer(function MusicInfoCard(
+  props: MusicInfoCardProps,
+) {
   const { onPress, video } = props
   return (
     <TouchableOpacity onPress={() => onPress(video)}>
       <View style={styles.card}>
-        <Image source={{ uri: video && video.thumbnailURI }} style={styles.image} />
+        <Image
+          source={{ uri: video && video.thumbnailURI }}
+          style={styles.image}
+        />
         <View style={styles.cardText}>
           <Text style={styles.cardTitle} numberOfLines={2}>
             {video && video.title}

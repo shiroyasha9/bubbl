@@ -24,7 +24,9 @@ export interface PreJournalScreenProps {
 /**
  * Describe your component here
  */
-export const PreJournalScreen = observer(function PreJournalScreen(props: PreJournalScreenProps) {
+export const PreJournalScreen = observer(function PreJournalScreen(
+  props: PreJournalScreenProps,
+) {
   const { style } = props
   const styles = Object.assign({}, CONTAINER, style)
 

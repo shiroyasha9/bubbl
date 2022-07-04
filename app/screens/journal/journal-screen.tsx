@@ -10,35 +10,40 @@ import { useStores } from "@models"
 
 import styles from "./journal-screen.styles"
 
-export const JournalScreen: FC<StackScreenProps<NavigatorParamList, "journal">> = observer(
-  function JournalScreen({ navigation }) {
-    const goSomewhere = () => navigation.navigate("prejournal", { purpose: "journal" })
-    const {
-      userStore: { user, journals },
-    } = useStores()
-    return (
-      <Screen>
-        <HomeHoc
-          title={`${user.firstName ? user.firstName + "'s" : "Your"} Journal 📝`}
-          subtitle="Scribbl away!"
-        >
-          <View style={styles.container}>
-            <Button
-              text="Update Your Journal"
-              style={styles.updateButton}
-              textStyle={styles.updateButtonText}
-              onPress={goSomewhere}
-            />
-            <ScrollView style={styles.scrollContainer}>
-              {journals.length > 0 &&
-                journals.map((journal) => <JournalList key={journal.jid} journal={journal} />)}
-              {!journals.length && (
-                <Text style={styles.noJournals}>Update your journal to get started! 😁</Text>
-              )}
-            </ScrollView>
-          </View>
-        </HomeHoc>
-      </Screen>
-    )
-  },
-)
+export const JournalScreen: FC<
+  StackScreenProps<NavigatorParamList, "journal">
+> = observer(function JournalScreen({ navigation }) {
+  const goSomewhere = () =>
+    navigation.navigate("prejournal", { purpose: "journal" })
+  const {
+    userStore: { user, journals },
+  } = useStores()
+  return (
+    <Screen>
+      <HomeHoc
+        title={`${user.name ? user.name + "'s" : "Your"} Journal 📝`}
+        subtitle="Scribbl away!"
+      >
+        <View style={styles.container}>
+          <Button
+            text="Update Your Journal"
+            style={styles.updateButton}
+            textStyle={styles.updateButtonText}
+            onPress={goSomewhere}
+          />
+          <ScrollView style={styles.scrollContainer}>
+            {journals.length > 0 &&
+              journals.map((journal) => (
+                <JournalList key={journal.jid} journal={journal} />
+              ))}
+            {!journals.length && (
+              <Text style={styles.noJournals}>
+                Update your journal to get started! 😁
+              </Text>
+            )}
+          </ScrollView>
+        </View>
+      </HomeHoc>
+    </Screen>
+  )
+})

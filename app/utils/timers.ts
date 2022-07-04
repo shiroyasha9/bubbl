@@ -1,15 +1,33 @@
 const HH_MM_SS = "hh mm ss"
 const HHMMSS = "hh.mm.ss"
-const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+const MONTHS = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+]
 
-export const getDisplayDurationFromSeconds = (seconds: number, format = HH_MM_SS) => {
+export const getDisplayDurationFromSeconds = (
+  seconds: number,
+  format = HH_MM_SS,
+) => {
   const hours = Math.floor(seconds / (60 * 60))
   seconds = seconds - hours * 60 * 60
   const minutes = Math.floor(seconds / 60)
   const secondsLeft = seconds - minutes * 60
   const computedHours = hours.toString().length > 1 ? hours : `0${hours}`
-  const computedMinutes = minutes.toString().length > 1 ? minutes : `0${minutes}`
-  const computedSeconds = secondsLeft.toString().length > 1 ? secondsLeft : `0${secondsLeft}`
+  const computedMinutes =
+    minutes.toString().length > 1 ? minutes : `0${minutes}`
+  const computedSeconds =
+    secondsLeft.toString().length > 1 ? secondsLeft : `0${secondsLeft}`
   if (format === HHMMSS) {
     if (hours === 0) {
       return `${computedMinutes}.${computedSeconds}`
@@ -52,13 +70,17 @@ export const formatAMPM = (date: Date) => {
   return strTime
 }
 
-export const formatDate: (date: Date) => { date: string; time: string } = (date) => {
+export const formatDate: (date: Date) => { date: string; time: string } = (
+  date,
+) => {
   let hour = date.getHours()
   const day = date.getDate()
   const month = MONTHS[date.getMonth()] // get month in MMM format
   const period = hour < 12 ? "AM" : "PM" // Set AM/PM
   hour = hour % 12 || 12 // Adjust hours
   const minute =
-    date.getMinutes().toString().length === 1 ? `0${date.getMinutes()}` : date.getMinutes()
+    date.getMinutes().toString().length === 1
+      ? `0${date.getMinutes()}`
+      : date.getMinutes()
   return { date: `${day} ${month}`, time: `${hour}:${minute} ${period}` }
 }

@@ -13,8 +13,8 @@ import { color } from "@theme"
 import { Video } from "./music-screen.types"
 import styles from "./music-screen.styles"
 
-export const MusicScreen: FC<StackScreenProps<NavigatorParamList, "music">> = observer(
-  function MusicScreen({ navigation }) {
+export const MusicScreen: FC<StackScreenProps<NavigatorParamList, "music">> =
+  observer(function MusicScreen({ navigation }) {
     const {
       userStore: { fetchYoutubeMusicList },
     } = useStores()
@@ -32,8 +32,9 @@ export const MusicScreen: FC<StackScreenProps<NavigatorParamList, "music">> = ob
       useCallback(() => {
         const init = async () => {
           const musicSearchResult = await fetchYoutubeMusicList()
-          const musicList = musicSearchResult.map((vid: IYoutubeSearchResultsResponse) =>
-            mapYoutubeSearchResultToList(vid),
+          const musicList = musicSearchResult.map(
+            (vid: IYoutubeSearchResultsResponse) =>
+              mapYoutubeSearchResultToList(vid),
           )
           setMusicList(musicList)
           setVideosLoading(false)
@@ -69,5 +70,4 @@ export const MusicScreen: FC<StackScreenProps<NavigatorParamList, "music">> = ob
         </HomeHoc>
       </Screen>
     )
-  },
-)
+  })

@@ -1,5 +1,11 @@
 import * as React from "react"
-import { StyleProp, TextStyle, TouchableOpacity, View, ViewStyle } from "react-native"
+import {
+  StyleProp,
+  TextStyle,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from "react-native"
 import { observer } from "mobx-react-lite"
 import { Text } from "../text/text"
 import styles from "./primary-button.styles"
@@ -15,7 +21,9 @@ export interface PrimaryButtonProps {
   onPress?: () => void
 }
 
-export const PrimaryButton = observer(function PrimaryButton(props: PrimaryButtonProps) {
+export const PrimaryButton = observer(function PrimaryButton(
+  props: PrimaryButtonProps,
+) {
   const { style, textStyle, text, children, onPress } = props
   const overrideStyles = Object.assign({}, styles.container, style)
   const overrideTextStyles = Object.assign({}, styles.text, textStyle)
