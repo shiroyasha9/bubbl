@@ -10,7 +10,7 @@
       "@hooks": ["hooks/index.ts"],
       "@navigation/*": ["navigation/*"],
       "@screens": ["screens/index.ts"],
-      "@utils/*": ["utils/*"],
+      "@utils": ["utils/index.ts"],
       "@themes": ["themes/index.ts"],
       "@types": ["types/index.tsx"],
       "@stores": ["stores/index.ts"]
