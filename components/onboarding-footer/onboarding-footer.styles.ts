@@ -38,13 +38,7 @@ export default StyleSheet.create({
     marginTop: spacing[5],
   },
   skipButton: {
-    backgroundColor: color.transparent,
-    borderColor: color.frenchViolet,
-    borderWidth: 2,
     width: wp(150),
-  },
-  skipButtonText: {
-    color: color.fontDarkBlue,
   },
   startButtonContainer: {
     alignItems: "center",

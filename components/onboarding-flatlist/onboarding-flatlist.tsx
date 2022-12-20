@@ -1,20 +1,18 @@
 import { IOnboardingSlideData } from "@types";
-import { observer } from "mobx-react-lite";
-import * as React from "react";
 import { Dimensions, FlatList, NativeScrollEvent, View } from "react-native";
 import { Text } from "../text/text";
 import styles from "./onboarding-flatlist.styles";
 
-interface IProps {
+type OnboardingFlatlistProps = {
   data: readonly any[];
   activeSlideIndex: number;
   setActiveSlideIndex: (index: number) => void;
   flatListRef: React.RefObject<FlatList<IOnboardingSlideData>>;
-}
+};
 
-export const OnboardingFlatlist = observer(function HorizontalFlatlist(
-  props: IProps,
-) {
+export const OnboardingFlatlist: React.FC<OnboardingFlatlistProps> = (
+  props,
+) => {
   const { data, activeSlideIndex, setActiveSlideIndex, flatListRef } = props;
 
   const width = Dimensions.get("window").width;
@@ -32,22 +30,20 @@ export const OnboardingFlatlist = observer(function HorizontalFlatlist(
 
   const renderSlide = ({ item }: { item: IOnboardingSlideData }) => {
     return (
-      <View>
-        <View style={styles.slideContainer}>
-          <View style={styles.slide}>
-            <View style={styles.iconContainer}>
-              {<item.Icon style={styles.icon} />}
-            </View>
-            <View style={styles.titleContainer}>
-              <Text allowFontScaling={false} style={styles.title}>
-                {item.title}
-              </Text>
-            </View>
-            <View style={styles.subtitleContainer}>
-              <Text allowFontScaling={false} style={styles.subtitle}>
-                {item.subtitle}
-              </Text>
-            </View>
+      <View style={styles.slideContainer}>
+        <View style={styles.slide}>
+          <View style={styles.iconContainer}>
+            {<item.Icon style={styles.icon} />}
+          </View>
+          <View style={styles.titleContainer}>
+            <Text allowFontScaling={false} style={styles.title}>
+              {item.title}
+            </Text>
+          </View>
+          <View style={styles.subtitleContainer}>
+            <Text allowFontScaling={false} style={styles.subtitle}>
+              {item.subtitle}
+            </Text>
           </View>
         </View>
       </View>
@@ -69,4 +65,4 @@ export const OnboardingFlatlist = observer(function HorizontalFlatlist(
       keyExtractor={(_, index: number) => index.toString()}
     />
   );
-});
+};
