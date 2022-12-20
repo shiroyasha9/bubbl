@@ -1,36 +1,25 @@
-module.exports = {
-  presets: ["babel-preset-expo"],
-  env: {
-    production: {},
-  },
-  plugins: [
-    [
-      "@babel/plugin-proposal-decorators",
-      {
-        legacy: true,
-      },
-    ],
-    ["@babel/plugin-proposal-optional-catch-binding"],
-    [
-      "module-resolver",
-      {
-        root: ["./app"],
-        extensions: [".ts", ".tsx", ".js", ".jsx"],
-        alias: {
-          "@components": "./app/components",
-          "@navigators": "./app/navigators",
-          "@config": "./app/config",
-          "@services": "./app/services",
-          "@styles": "./app/styles",
-          "@theme": "./app/theme",
-          "@utils": "./app/utils",
-          "@models": "./app/models",
-          "@assets": "./assets",
-          "@screens": "./app/screens",
-          "@constants": "./app/constants",
-          "@types": "./app/types",
+module.exports = function (api) {
+  api.cache(true);
+  return {
+    presets: ["babel-preset-expo"],
+    plugins: [
+      [
+        "module-resolver",
+        {
+          alias: {
+            "@assets": "./assets",
+            "@components": "./components",
+            "@constants": "./constants",
+            "@hooks": "./hooks",
+            "@navigation": "./navigation",
+            "@screens": "./screens",
+            "@types": "./types",
+            "@stores": "./stores",
+            "@utils": "./utils",
+            "@themes": "./themes",
+          },
         },
-      },
+      ],
     ],
-  ],
-}
+  };
+};

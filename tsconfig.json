@@ -1,40 +1,19 @@
 {
+  "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "allowJs": false,
-    "allowSyntheticDefaultImports": true,
-    "baseUrl": "./app",
-    "experimentalDecorators": true,
-    "jsx": "react-native",
-    "module": "es2015",
-    "moduleResolution": "node",
-    "noImplicitAny": false,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noUnusedLocals": true,
+    "strict": true,
+    "baseUrl": ".",
     "paths": {
-      "@components": ["components"],
-      "@navigators": ["navigators"],
-      "@config/*": ["config/*"],
-      "@services": ["services"],
-      "@services/*": ["services/*"],
-      "@styles": ["styles"],
-      "@styles/*": ["styles/*"],
-      "@theme": ["theme"],
-      "@utils": ["utils"],
+      "@assets/*": ["assets/*"],
+      "@components": ["components/index.ts"],
+      "@constants/*": ["constants/*"],
+      "@hooks": ["hooks/index.ts"],
+      "@navigation/*": ["navigation/*"],
+      "@screens": ["screens/index.ts"],
       "@utils/*": ["utils/*"],
-      "@models": ["models"],
-      "@assets": ["../assets/*"],
-      "@screens": ["screens"],
-      "@constants": ["constants"],
-      "@types": ["types"]
-    },
-    "sourceMap": true,
-    "target": "esnext",
-    "lib": ["esnext", "dom"],
-    "skipLibCheck": true,
-    "resolveJsonModule": true
-  },
-  "exclude": ["node_modules"],
-  "include": ["App.js", "app", "test", "storybook"],
-  "extends": "expo/tsconfig.base"
+      "@themes": ["themes/index.ts"],
+      "@types": ["types/index.tsx"],
+      "@stores": ["stores/index.ts"]
+    }
+  }
 }
