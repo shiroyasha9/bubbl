@@ -40,14 +40,11 @@ export const Screen: React.FC<ScreenProps & ViewProps> = ({
   }
 
   return (
-    <SafeAreaView
-      style={[styles.root, style]}
-      {...props}
-      onLayout={onLayoutRootView}
-    >
+    <SafeAreaView style={styles.root} onLayout={onLayoutRootView}>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={styles.container}
+        style={[styles.container, style]}
+        {...props}
       >
         {children}
       </KeyboardAvoidingView>
@@ -62,6 +59,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    padding: 10,
+    // padding: 10,
   },
 });

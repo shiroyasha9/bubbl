@@ -1,13 +1,7 @@
 import { IOnboardingSlideData } from "@types";
 import { observer } from "mobx-react-lite";
 import * as React from "react";
-import {
-  Dimensions,
-  FlatList,
-  NativeScrollEvent,
-  SafeAreaView,
-  View,
-} from "react-native";
+import { Dimensions, FlatList, NativeScrollEvent, View } from "react-native";
 import { Text } from "../text/text";
 import styles from "./onboarding-flatlist.styles";
 
@@ -38,7 +32,7 @@ export const OnboardingFlatlist = observer(function HorizontalFlatlist(
 
   const renderSlide = ({ item }: { item: IOnboardingSlideData }) => {
     return (
-      <SafeAreaView>
+      <View>
         <View style={styles.slideContainer}>
           <View style={styles.slide}>
             <View style={styles.iconContainer}>
@@ -56,7 +50,7 @@ export const OnboardingFlatlist = observer(function HorizontalFlatlist(
             </View>
           </View>
         </View>
-      </SafeAreaView>
+      </View>
     );
   };
 
