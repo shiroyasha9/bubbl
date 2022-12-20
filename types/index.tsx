@@ -1,7 +1,16 @@
-export type RootStackParamList = {
+import { SvgProps } from "react-native-svg";
+
+export type NavigatorParamList = {
   Onboarding: undefined;
   Home: undefined;
+  Intro: undefined;
 };
+
+export interface IOnboardingSlideData {
+  readonly title: string;
+  readonly subtitle: string;
+  readonly Icon: React.FC<SvgProps>;
+}
 
 export interface IVideoDetails {
   thumbnailURI: string;

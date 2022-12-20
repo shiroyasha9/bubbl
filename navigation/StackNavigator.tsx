@@ -1,9 +1,9 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Home, Onboarding } from "@screens";
-import { RootStackParamList } from "@types";
+import { NavigatorParamList } from "@types";
 import { StyleSheet } from "react-native";
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator<NavigatorParamList>();
 
 const StackNavigator = () => {
   return (

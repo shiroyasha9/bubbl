@@ -6,7 +6,7 @@ import {
   ViewProps,
 } from "react-native";
 
-import { Colors } from "@themes";
+import { color } from "@themes";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from "react";
@@ -58,7 +58,7 @@ export const Screen: React.FC<ScreenProps & ViewProps> = ({
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: Colors.white,
+    backgroundColor: color.white,
   },
   container: {
     flex: 1,

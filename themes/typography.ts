@@ -1,7 +1,7 @@
 import { fp } from "@utils";
 import { TextStyle as RNTextStyle } from "react-native";
 
-import { Colors } from "./colors";
+import { color } from "./colors";
 
 const typography = {
   primary: "Poppins-Regular",
@@ -30,7 +30,7 @@ const fontSize = {
 
 const BASE: RNTextStyle = {
   fontFamily: typography.primary,
-  color: Colors.black,
+  color: color.black,
   fontSize: fontSize.medium,
 };
 
@@ -80,7 +80,7 @@ const textStyle = {
   fieldLabel: {
     ...BOLD,
     fontSize: fontSize.tiny,
-    color: Colors.lightGrey,
+    color: color.lightGrey,
   } as RNTextStyle,
 
   /**
@@ -89,12 +89,12 @@ const textStyle = {
   secondary: {
     ...BASE,
     fontSize: fontSize.small,
-    color: Colors.lightGrey,
+    color: color.lightGrey,
   } as RNTextStyle,
   secondaryBold: {
     ...BOLD,
     fontSize: fontSize.small,
-    color: Colors.lightGrey,
+    color: color.lightGrey,
   } as RNTextStyle,
 };
 

@@ -4,11 +4,11 @@ import { store } from "@stores";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet } from "react-native";
 import { Provider } from "react-redux";
-import { RootStackParamList } from "types";
+import { NavigatorParamList } from "types";
 
 declare global {
   namespace ReactNavigation {
-    interface RootParamList extends RootStackParamList {}
+    interface RootParamList extends NavigatorParamList {}
   }
 }
 
