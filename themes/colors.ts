@@ -13,6 +13,7 @@ export const color = {
   snowWhite: "#F4F4FF",
   peacock: "#39415C",
   frenchViolet: "#AE94FF",
+  darkFrenchViolet: "#8C6EFF",
   transparent: "#ffffff00",
   smallGray: "#636363",
   cottonWhite: "#FCFCFC",
