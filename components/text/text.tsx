@@ -3,13 +3,7 @@ import { Text as ReactNativeText } from "react-native";
 import { presets } from "./text.presets";
 import { TextProps } from "./text.props";
 
-/**
- * For your text displaying needs.
- *
- * This component is a HOC over the built-in React Native one.
- */
-export function Text(props: TextProps) {
-  // grab the props
+export const Text = (props: TextProps) => {
   const {
     preset = "default",
     text,
@@ -29,4 +23,4 @@ export function Text(props: TextProps) {
       {content}
     </ReactNativeText>
   );
-}
+};
