@@ -6,11 +6,11 @@ import {
   ViewStyle,
 } from "react-native";
 import { Text } from "../text/text";
-import { presets } from "./button.presets";
+import { TButtonPresets, presets } from "./button.presets";
 import styles from "./button.styles";
 
 type ButtonProps = {
-  preset?: "default" | "inverted";
+  preset?: TButtonPresets;
   text?: string;
   style?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;

@@ -1,4 +1,4 @@
-import { fontSize, spacing, textStyle } from "@themes";
+import { color, fontSize, spacing, textStyle } from "@themes";
 import { hp, wp } from "@utils";
 import { StyleSheet } from "react-native";
 
@@ -14,5 +14,26 @@ export default StyleSheet.create({
     ...textStyle.bold,
     fontSize: fontSize.medium,
     textAlign: "center",
+  },
+  baseContainer: {
+    backgroundColor: color.frenchViolet,
+  },
+  baseText: {
+    color: color.white,
+  },
+  basePressed: {
+    backgroundColor: color.darkFrenchViolet,
+  },
+  invertedContainer: {
+    backgroundColor: color.white,
+    borderColor: color.frenchViolet,
+    borderWidth: 2,
+  },
+  invertedText: {
+    color: color.fontDarkBlue,
+  },
+  invertedPressed: {
+    opacity: 0.5,
+    borderColor: color.darkFrenchViolet,
   },
 });

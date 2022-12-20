@@ -1,5 +1,5 @@
-import { color } from "@themes";
 import { TextStyle, ViewStyle } from "react-native";
+import styles from "./button.styles";
 
 type ButtonPreset = {
   container: ViewStyle;
@@ -7,43 +7,16 @@ type ButtonPreset = {
   text: TextStyle;
 };
 
-const BASE_CONTAINER: ViewStyle = {
-  backgroundColor: color.frenchViolet,
-};
-
-const BASE_TEXT: TextStyle = {
-  color: color.white,
-};
-
-const BASE_PRESSED: ViewStyle = {
-  backgroundColor: color.darkFrenchViolet,
-};
-
-const INVERTED_CONTAINER: ViewStyle = {
-  backgroundColor: color.white,
-  borderColor: color.frenchViolet,
-  borderWidth: 2,
-};
-
-const INVERTED_TEXT: TextStyle = {
-  color: color.fontDarkBlue,
-};
-
-const INVERTED_PRESSED: ViewStyle = {
-  opacity: 0.5,
-  borderColor: color.darkFrenchViolet,
-};
-
 const BASE: ButtonPreset = {
-  container: BASE_CONTAINER,
-  pressed: BASE_PRESSED,
-  text: BASE_TEXT,
+  container: styles.baseContainer,
+  pressed: styles.basePressed,
+  text: styles.baseText,
 };
 
 const INVERTED: ButtonPreset = {
-  container: INVERTED_CONTAINER,
-  pressed: INVERTED_PRESSED,
-  text: INVERTED_TEXT,
+  container: styles.invertedContainer,
+  pressed: styles.invertedPressed,
+  text: styles.invertedText,
 };
 
 export const presets = {
@@ -51,7 +24,4 @@ export const presets = {
   inverted: INVERTED,
 };
 
-/**
- * A list of preset names.
- */
 export type TButtonPresets = keyof typeof presets;
