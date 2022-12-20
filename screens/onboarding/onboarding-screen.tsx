@@ -8,7 +8,7 @@ import {
 import { IOnboardingSlideData } from "@types";
 import { useRef, useState } from "react";
 import { Dimensions, FlatList, StyleSheet } from "react-native";
-import { OnboardingScreenProps } from "./types";
+import { OnboardingScreenProps } from "./onboarding-screen.types";
 
 const onboardingData: ReadonlyArray<IOnboardingSlideData> = [
   {
@@ -33,7 +33,7 @@ const onboardingData: ReadonlyArray<IOnboardingSlideData> = [
   },
   {
     title: "Helping you out is my goal",
-    subtitle: "Bubbl 🥰 privacy - all of your data stays with you. ",
+    subtitle: "Bubbl 🥰 privacy - all of your data is end to end encrypted 🔒 ",
     Icon: NormalMascot,
   },
 ];
