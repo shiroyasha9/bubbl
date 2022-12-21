@@ -4,6 +4,8 @@ import { store } from "@stores";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet } from "react-native";
 import { Provider } from "react-redux";
+import { persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
 import { NavigatorParamList } from "types";
 
 declare global {
@@ -12,13 +14,17 @@ declare global {
   }
 }
 
+let persistor = persistStore(store);
+
 export default function App() {
   return (
     <Provider store={store}>
-      <StatusBar style="auto" />
-      <NavigationContainer>
-        <StackNavigator />
-      </NavigationContainer>
+      <PersistGate loading={null} persistor={persistor}>
+        <StatusBar style="auto" />
+        <NavigationContainer>
+          <StackNavigator />
+        </NavigationContainer>
+      </PersistGate>
     </Provider>
   );
 }

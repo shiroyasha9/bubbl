@@ -1,12 +1,24 @@
-import { configureStore } from "@reduxjs/toolkit";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { persistReducer } from "redux-persist";
 import authReducer from "./slices/authSlice";
 import counterReducer from "./slices/counterSlice";
 
+const persistConfig = {
+  key: "root",
+  version: 1,
+  storage: AsyncStorage,
+};
+
+const rootReducer = combineReducers({
+  auth: authReducer,
+  counter: counterReducer,
+});
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
 export const store = configureStore({
-  reducer: {
-    counter: counterReducer,
-    auth: authReducer,
-  },
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,

@@ -1,5 +1,5 @@
 import { GOOGLE_REFRESH_TOKEN_URL } from "@constants";
-import { useAppDispatch } from "@hooks";
+import { useAppDispatch, useAppSelector } from "@hooks";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Home, Onboarding } from "@screens";
@@ -14,6 +14,7 @@ const Stack = createNativeStackNavigator<NavigatorParamList>();
 
 const StackNavigator = () => {
   const dispatch = useAppDispatch();
+  const { auth } = useAppSelector((state) => state.auth);
 
   const refreshToken = async (refreshToken: string) => {
     const clientId = getClientId();
@@ -55,6 +56,7 @@ const StackNavigator = () => {
         headerShown: false,
         animation: "slide_from_right",
       }}
+      initialRouteName={auth ? "Home" : "Onboarding"}
     >
       <Stack.Screen name="Onboarding" component={Onboarding} />
       <Stack.Screen name="Home" component={Home} />
