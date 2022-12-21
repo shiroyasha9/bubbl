@@ -6,18 +6,19 @@ import {
   IS_EXPO_GO,
 } from "@constants";
 import { ANDROID_OAUTH_ID, EXPO_OAUTH_ID, IOS_OAUTH_ID } from "@env";
+import { useAppDispatch, useAppSelector } from "@hooks";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { TFetchUserDataResponse } from "@types";
+import { resetAuthInfo, saveAuthInfo } from "@stores";
+import { TOAuthUserData } from "@types";
 import { TokenResponse, refreshAsync, revokeAsync } from "expo-auth-session";
 
 import * as Google from "expo-auth-session/providers/google";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Image, Platform, StyleSheet, Text } from "react-native";
 
 export const Home = () => {
-  const [userInfo, setUserInfo] = useState<TFetchUserDataResponse | null>(null);
-  const [auth, setAuth] = useState<TokenResponse | null>(null);
-  const [requireRefresh, setRequireRefresh] = useState(false);
+  const { auth, userInfo } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
 
   const [_, response, promptAsync] = Google.useAuthRequest({
     androidClientId: ANDROID_OAUTH_ID,
@@ -25,14 +26,32 @@ export const Home = () => {
     expoClientId: EXPO_OAUTH_ID,
   });
 
+  const fetchGoogleUserData = async (accessToken: string) => {
+    let data = await fetch(GOOGLE_FETCH_USER_DATA_URL, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return (await data.json()) as TOAuthUserData;
+  };
+
   useEffect(() => {
     if (response?.type === "success") {
-      setAuth(response.authentication);
-
       const persistAuth = async () => {
         await AsyncStorage.setItem(
           "auth",
           JSON.stringify(response.authentication),
+        );
+
+        const userData = await fetchGoogleUserData(
+          response.authentication?.accessToken!,
+        );
+
+        dispatch(
+          saveAuthInfo({
+            userInfo: userData,
+            auth: response.authentication!,
+          }),
         );
       };
       persistAuth();
@@ -44,21 +63,33 @@ export const Home = () => {
       const auth = await AsyncStorage.getItem("auth");
       if (auth !== null) {
         const authObj = JSON.parse(auth) as TokenResponse;
-        setAuth(authObj);
 
-        setRequireRefresh(!TokenResponse.isTokenFresh(authObj));
+        if (!TokenResponse.isTokenFresh(authObj)) {
+          refreshToken(authObj.refreshToken!);
+        } else {
+          const userData = await fetchGoogleUserData(authObj.accessToken);
+
+          dispatch(saveAuthInfo({ userInfo: userData, auth: authObj }));
+        }
       }
     };
     getPersistedAuth();
   }, []);
 
-  const getUserData = async () => {
-    let data = await fetch(GOOGLE_FETCH_USER_DATA_URL, {
-      headers: {
-        Authorization: `Bearer ${auth?.accessToken}`,
+  const refreshToken = async (refreshToken: string) => {
+    const clientId = getClientId();
+    const tokenResult = await refreshAsync(
+      {
+        clientId,
+        refreshToken,
       },
-    });
-    setUserInfo((await data.json()) as TFetchUserDataResponse);
+      { tokenEndpoint: GOOGLE_REFRESH_TOKEN_URL },
+    );
+    const userData = await fetchGoogleUserData(tokenResult.accessToken);
+
+    dispatch(saveAuthInfo({ userInfo: userData, auth: tokenResult }));
+
+    await AsyncStorage.setItem("auth", JSON.stringify(tokenResult));
   };
 
   const getClientId = () => {
@@ -71,22 +102,6 @@ export const Home = () => {
     return ANDROID_OAUTH_ID;
   };
 
-  const refreshToken = async () => {
-    const clientId = getClientId();
-    const refreshToken = auth?.refreshToken;
-    const tokenResult = await refreshAsync(
-      {
-        clientId,
-        refreshToken,
-      },
-      { tokenEndpoint: GOOGLE_REFRESH_TOKEN_URL },
-    );
-
-    setAuth(tokenResult);
-    await AsyncStorage.setItem("auth", JSON.stringify(tokenResult));
-    setRequireRefresh(false);
-  };
-
   const logoutHandler = async () => {
     await revokeAsync(
       {
@@ -96,23 +111,12 @@ export const Home = () => {
         revocationEndpoint: GOOGLE_REVOKE_TOKEN_URL,
       },
     );
-    setAuth(null);
-    setUserInfo(null);
+    dispatch(resetAuthInfo());
     await AsyncStorage.removeItem("auth");
   };
 
-  if (requireRefresh) {
-    return (
-      <Screen style={styles.root}>
-        <Text>Needs Refresh</Text>
-        <Button text="Refresh token" onPress={refreshToken} />
-      </Screen>
-    );
-  }
-
   return (
     <Screen style={styles.root}>
-      <Text>Home</Text>
       {userInfo && (
         <>
           <Image source={{ uri: userInfo.picture }} style={styles.image} />
@@ -121,17 +125,16 @@ export const Home = () => {
           </Text>
         </>
       )}
-      <Button
-        text={auth ? "Get User Data" : "Sign In"}
-        style={styles.button}
-        onPress={
-          auth
-            ? getUserData
-            : () => promptAsync({ useProxy: IS_EXPO_GO, showInRecents: true })
-        }
-      />
-      {auth && (
+      {auth ? (
         <Button text="Sign Out" onPress={logoutHandler} style={styles.button} />
+      ) : (
+        <Button
+          text="Sign In"
+          style={styles.button}
+          onPress={() =>
+            promptAsync({ useProxy: IS_EXPO_GO, showInRecents: true })
+          }
+        />
       )}
     </Screen>
   );
