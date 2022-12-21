@@ -36,4 +36,9 @@ export default StyleSheet.create({
     opacity: 0.5,
     borderColor: color.darkFrenchViolet,
   },
+  buttonInsideContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });

@@ -1,3 +1,4 @@
+import { GoogleLogo } from "@themes";
 import { View } from "react-native";
 import { Button } from "../button/button";
 import styles from "./onboarding-footer.styles";
@@ -10,7 +11,7 @@ export interface OnboardingFooterProps {
 }
 
 export const OnboardingFooter: React.FC<OnboardingFooterProps> = (props) => {
-  const { activeSlideIndex, numberOfSlides, onGoToSlide, onStart } = props;
+  const { activeSlideIndex, numberOfSlides } = props;
 
   return (
     <View>
@@ -27,27 +28,49 @@ export const OnboardingFooter: React.FC<OnboardingFooterProps> = (props) => {
           ))}
         </View>
       </View>
-      {activeSlideIndex !== numberOfSlides - 1 ? (
-        <View style={styles.footerButtonContainer}>
-          <Button
-            text="Skip"
-            style={styles.skipButton}
-            preset="inverted"
-            onPress={() => {
-              onGoToSlide(numberOfSlides - 1);
-            }}
-          />
-          <Button
-            text="Next"
-            style={styles.footerButton}
-            onPress={() => onGoToSlide()}
-          />
-        </View>
-      ) : (
-        <View style={styles.startButtonContainer}>
-          <Button onPress={onStart} text="Start Your Journey" />
-        </View>
-      )}
+      <OnboardingFooterButtons {...props} />
+    </View>
+  );
+};
+
+const OnboardingFooterButtons: React.FC<OnboardingFooterProps> = (props) => {
+  const { activeSlideIndex, numberOfSlides, onGoToSlide, onStart } = props;
+
+  if (activeSlideIndex < numberOfSlides - 2) {
+    return (
+      <View style={styles.footerButtonContainer}>
+        <Button
+          text="Skip"
+          style={styles.skipButton}
+          preset="inverted"
+          onPress={() => {
+            onGoToSlide(numberOfSlides - 1);
+          }}
+        />
+        <Button
+          text="Next"
+          style={styles.footerButton}
+          onPress={() => onGoToSlide()}
+        />
+      </View>
+    );
+  }
+
+  if (activeSlideIndex === numberOfSlides - 2) {
+    return (
+      <View style={styles.startButtonContainer}>
+        <Button onPress={() => onGoToSlide()} text="Start Your Journey" />
+      </View>
+    );
+  }
+
+  return (
+    <View style={styles.startButtonContainer}>
+      <Button
+        onPress={onStart}
+        text="Sign in with"
+        rightIcon={<GoogleLogo style={{ marginLeft: 10 }} />}
+      />
     </View>
   );
 };

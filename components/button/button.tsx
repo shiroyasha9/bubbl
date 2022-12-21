@@ -3,6 +3,7 @@ import {
   PressableProps,
   StyleProp,
   TextStyle,
+  View,
   ViewStyle,
 } from "react-native";
 import { Text } from "../text/text";
@@ -15,6 +16,8 @@ type ButtonProps = {
   style?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
   children?: React.ReactNode;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
 };
 
 export const Button = (props: PressableProps & ButtonProps) => {
@@ -42,7 +45,13 @@ export const Button = (props: PressableProps & ButtonProps) => {
       {...rest}
     >
       {text ? (
-        <Text style={[styles.text, presetStyles.text, textStyle]}>{text}</Text>
+        <View style={styles.buttonInsideContainer}>
+          {props.leftIcon && props.leftIcon}
+          <Text style={[styles.text, presetStyles.text, textStyle]}>
+            {text}
+          </Text>
+          {props.rightIcon && props.rightIcon}
+        </View>
       ) : (
         children
       )}
