@@ -54,7 +54,7 @@ export const Onboarding: React.FC<OnboardingScreenProps> = ({ navigation }) => {
   };
 
   const startButtonHandler = () => {
-    navigation.navigate("Intro");
+    navigation.navigate("Home");
   };
   return (
     <Screen style={{ justifyContent: "center" }}>

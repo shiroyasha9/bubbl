@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "test",
-    "slug": "test",
+    "name": "bubbl",
+    "slug": "bubbl",
+    "scheme": "com.shiroyasha9.bubbl",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/app-icon.png",
@@ -16,9 +17,11 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.shiroyasha9.bubbl"
     },
     "android": {
+      "package": "com.shiroyasha9.bubbl",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/app-icon.png",
         "backgroundColor": "#FFFFFF"
@@ -26,6 +29,11 @@
     },
     "web": {
       "favicon": "./assets/images/app-icon-web-favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a84e02ca-76df-46a1-813a-87310e43be04"
+      }
     }
   }
 }

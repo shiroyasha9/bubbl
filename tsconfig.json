@@ -6,7 +6,7 @@
     "paths": {
       "@assets/*": ["assets/*"],
       "@components": ["components/index.ts"],
-      "@constants/*": ["constants/*"],
+      "@constants": ["constants/index.ts"],
       "@hooks": ["hooks/index.ts"],
       "@navigation/*": ["navigation/*"],
       "@screens": ["screens/index.ts"],
@@ -14,6 +14,7 @@
       "@themes": ["themes/index.ts"],
       "@types": ["types/index.tsx"],
       "@stores": ["stores/index.ts"]
-    }
+    },
+    "typeRoots": ["./types"]
   }
 }
