@@ -3,6 +3,7 @@ import { IS_EXPO_GO } from "@constants";
 import { ANDROID_OAUTH_ID, EXPO_OAUTH_ID, IOS_OAUTH_ID } from "@env";
 import { useAppDispatch } from "@hooks";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useFocusEffect } from "@react-navigation/native";
 import { saveAuthInfo } from "@stores";
 import {
   MoodMascot,
@@ -13,7 +14,7 @@ import {
 import { IOnboardingSlideData } from "@types";
 import { fetchGoogleUserData } from "@utils";
 import * as Google from "expo-auth-session/providers/google";
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { Alert, Dimensions, FlatList } from "react-native";
 import { OnboardingScreenProps } from "./onboarding-screen.types";
 
@@ -66,33 +67,14 @@ export const Onboarding: React.FC<OnboardingScreenProps> = ({ navigation }) => {
     iosClientId: IOS_OAUTH_ID,
     expoClientId: EXPO_OAUTH_ID,
   });
-  //   useCallback(() => {
-  //     if (response?.type === "success") {
-  //       const persistAuth = async () => {
-  //         await AsyncStorage.setItem(
-  //           "auth",
-  //           JSON.stringify(response.authentication),
-  //         );
-
-  //         const userData = await fetchGoogleUserData(
-  //           response.authentication?.accessToken!,
-  //         );
-
-  //         dispatch(
-  //           saveAuthInfo({
-  //             userInfo: userData,
-  //             auth: response.authentication!,
-  //           }),
-  //         );
-  //       };
-  //       persistAuth();
-  //     }
-  //   }, [response]),
-  // );
 
   const startButtonHandler = () => {
-    promptAsync({ useProxy: IS_EXPO_GO, showInRecents: true })
-      .then(async () => {
+    promptAsync({ useProxy: IS_EXPO_GO, showInRecents: true });
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      const persistAuth = async () => {
         if (response && response.type === "success") {
           await AsyncStorage.setItem(
             "auth",
@@ -110,13 +92,13 @@ export const Onboarding: React.FC<OnboardingScreenProps> = ({ navigation }) => {
             }),
           );
           navigation.navigate("Home");
+        } else {
+          Alert.alert("Error", "Something went wrong. Please try again later.");
         }
-      })
-      .catch((err) => {
-        console.log(err);
-        Alert.alert("Error", "Something went wrong. Please try again later.");
-      });
-  };
+      };
+      persistAuth();
+    }, [response]),
+  );
 
   return (
     <Screen style={{ justifyContent: "center" }}>
