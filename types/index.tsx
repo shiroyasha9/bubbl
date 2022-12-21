@@ -33,7 +33,7 @@ export interface Snippet {
 
 export type TYoutubeVideoDuration = "H" | "M" | "S";
 
-export type TAuthResponse = {
+export type TFetchUserDataResponse = {
   email: string;
   family_name: string;
   given_name: string;
