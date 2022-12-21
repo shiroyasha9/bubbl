@@ -75,7 +75,10 @@ export const Onboarding: React.FC<OnboardingScreenProps> = ({ navigation }) => {
   useFocusEffect(
     useCallback(() => {
       const persistAuth = async () => {
-        if (response && response.type === "success") {
+        if (!response) {
+          return;
+        }
+        if (response.type === "success") {
           await AsyncStorage.setItem(
             "auth",
             JSON.stringify(response.authentication),
@@ -93,7 +96,7 @@ export const Onboarding: React.FC<OnboardingScreenProps> = ({ navigation }) => {
           );
           navigation.navigate("Home");
         } else {
-          Alert.alert("Error", "Something went wrong. Please try again later.");
+          Alert.alert("Error", "Google sign in failed! Please try again.");
         }
       };
       persistAuth();
