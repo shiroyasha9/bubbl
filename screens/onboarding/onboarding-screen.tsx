@@ -1,4 +1,9 @@
 import { OnboardingFlatlist, OnboardingFooter, Screen } from "@components";
+import { IS_EXPO_GO } from "@constants";
+import { ANDROID_OAUTH_ID, EXPO_OAUTH_ID, IOS_OAUTH_ID } from "@env";
+import { useAppDispatch } from "@hooks";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { saveAuthInfo } from "@stores";
 import {
   MoodMascot,
   MusicMascot,
@@ -6,8 +11,10 @@ import {
   RemindersMascot,
 } from "@themes";
 import { IOnboardingSlideData } from "@types";
+import { fetchGoogleUserData } from "@utils";
+import * as Google from "expo-auth-session/providers/google";
 import { useRef, useState } from "react";
-import { Dimensions, FlatList, StyleSheet } from "react-native";
+import { Alert, Dimensions, FlatList } from "react-native";
 import { OnboardingScreenProps } from "./onboarding-screen.types";
 
 const onboardingData: ReadonlyArray<IOnboardingSlideData> = [
@@ -43,6 +50,7 @@ export const Onboarding: React.FC<OnboardingScreenProps> = ({ navigation }) => {
     useRef(null);
   const width = Dimensions.get("window").width;
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+  const dispatch = useAppDispatch();
 
   const goToSlideHandler = (newSlideNumber = activeSlideIndex + 1) => {
     if (newSlideNumber < onboardingData.length) {
@@ -53,9 +61,63 @@ export const Onboarding: React.FC<OnboardingScreenProps> = ({ navigation }) => {
     }
   };
 
+  const [_, response, promptAsync] = Google.useAuthRequest({
+    androidClientId: ANDROID_OAUTH_ID,
+    iosClientId: IOS_OAUTH_ID,
+    expoClientId: EXPO_OAUTH_ID,
+  });
+  //   useCallback(() => {
+  //     if (response?.type === "success") {
+  //       const persistAuth = async () => {
+  //         await AsyncStorage.setItem(
+  //           "auth",
+  //           JSON.stringify(response.authentication),
+  //         );
+
+  //         const userData = await fetchGoogleUserData(
+  //           response.authentication?.accessToken!,
+  //         );
+
+  //         dispatch(
+  //           saveAuthInfo({
+  //             userInfo: userData,
+  //             auth: response.authentication!,
+  //           }),
+  //         );
+  //       };
+  //       persistAuth();
+  //     }
+  //   }, [response]),
+  // );
+
   const startButtonHandler = () => {
-    navigation.navigate("Home");
+    promptAsync({ useProxy: IS_EXPO_GO, showInRecents: true })
+      .then(async () => {
+        if (response && response.type === "success") {
+          await AsyncStorage.setItem(
+            "auth",
+            JSON.stringify(response.authentication),
+          );
+
+          const userData = await fetchGoogleUserData(
+            response.authentication?.accessToken!,
+          );
+
+          dispatch(
+            saveAuthInfo({
+              userInfo: userData,
+              auth: response.authentication!,
+            }),
+          );
+          navigation.navigate("Home");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        Alert.alert("Error", "Something went wrong. Please try again later.");
+      });
   };
+
   return (
     <Screen style={{ justifyContent: "center" }}>
       <OnboardingFlatlist
@@ -73,10 +135,3 @@ export const Onboarding: React.FC<OnboardingScreenProps> = ({ navigation }) => {
     </Screen>
   );
 };
-
-const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    justifyContent: "center",
-  },
-});
