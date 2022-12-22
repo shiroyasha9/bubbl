@@ -45,7 +45,9 @@ export const Home: React.FC<HomeProps> = ({ navigation }) => {
           <Text>You ain't logged in bud</Text>
           <Button
             text="Back to Onboarding"
-            onPress={() => navigation.navigate("Onboarding")}
+            onPress={() =>
+              navigation.reset({ index: 0, routes: [{ name: "Onboarding" }] })
+            }
             style={styles.button}
           />
         </>

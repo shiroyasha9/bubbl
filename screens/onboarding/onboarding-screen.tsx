@@ -94,7 +94,10 @@ export const Onboarding: React.FC<OnboardingScreenProps> = ({ navigation }) => {
               auth: response.authentication!,
             }),
           );
-          navigation.navigate("Home");
+          navigation.reset({
+            index: 0,
+            routes: [{ name: "Home" }],
+          });
         } else {
           Alert.alert("Error", "Google sign in failed! Please try again.");
         }
