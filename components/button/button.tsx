@@ -1,41 +1,52 @@
-import {
-  Pressable,
-  PressableProps,
-  StyleProp,
-  TextStyle,
-  View,
-  ViewStyle,
-} from "react-native";
+import { Pressable, PressableProps, View } from "react-native";
+import { PopAnimation } from "../animations/pop-animation";
+import { SpringAnimation } from "../animations/spring-animation";
 import { Text } from "../text/text";
-import { TButtonPresets, presets } from "./button.presets";
+import { presets } from "./button.presets";
 import styles from "./button.styles";
-
-type ButtonProps = {
-  preset?: TButtonPresets;
-  text?: string;
-  style?: StyleProp<ViewStyle>;
-  textStyle?: StyleProp<TextStyle>;
-  children?: React.ReactNode;
-  leftIcon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
-};
+import { ButtonProps } from "./button.types";
 
 export const Button = (props: PressableProps & ButtonProps) => {
   const {
     preset = "default",
     style,
     textStyle,
-    text,
+    title,
     children,
     onPress,
+    animation,
+    initialOffset,
+    finalOffset,
+    animationOffset,
+    animationConfig,
+    axis,
     ...rest
   } = props;
 
   const presetStyles = presets[preset];
 
-  return (
+  const commonAnimationProps = {
+    initialOffset,
+    finalOffset,
+    animationOffset,
+  };
+
+  const springAnimationProps = {
+    ...commonAnimationProps,
+    axis,
+  };
+
+  const popAnimationProps = {
+    ...commonAnimationProps,
+    animationConfig,
+  };
+
+  let content = (animationOnPress?: () => void) => (
     <Pressable
-      onPress={onPress}
+      onPress={(e) => {
+        animationOnPress && animationOnPress();
+        onPress && onPress(e);
+      }}
       style={({ pressed }) => [
         styles.container,
         presetStyles.container,
@@ -44,11 +55,11 @@ export const Button = (props: PressableProps & ButtonProps) => {
       ]}
       {...rest}
     >
-      {text ? (
+      {title ? (
         <View style={styles.buttonInsideContainer}>
           {props.leftIcon && props.leftIcon}
           <Text style={[styles.text, presetStyles.text, textStyle]}>
-            {text}
+            {title}
           </Text>
           {props.rightIcon && props.rightIcon}
         </View>
@@ -57,4 +68,16 @@ export const Button = (props: PressableProps & ButtonProps) => {
       )}
     </Pressable>
   );
+
+  if (animation === "pop") {
+    return <PopAnimation {...popAnimationProps}>{content}</PopAnimation>;
+  }
+
+  if (animation === "spring") {
+    return (
+      <SpringAnimation {...springAnimationProps}>{content()}</SpringAnimation>
+    );
+  }
+
+  return content();
 };

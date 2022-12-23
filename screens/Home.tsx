@@ -39,12 +39,16 @@ export const Home: React.FC<HomeProps> = ({ navigation }) => {
         </>
       )}
       {auth ? (
-        <Button text="Sign Out" onPress={logoutHandler} style={styles.button} />
+        <Button
+          title="Sign Out"
+          onPress={logoutHandler}
+          style={styles.button}
+        />
       ) : (
         <>
           <Text>You ain't logged in bud</Text>
           <Button
-            text="Back to Onboarding"
+            title="Back to Onboarding"
             onPress={() =>
               navigation.reset({ index: 0, routes: [{ name: "Onboarding" }] })
             }

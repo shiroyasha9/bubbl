@@ -40,7 +40,7 @@ const OnboardingFooterButtons: React.FC<OnboardingFooterProps> = (props) => {
     return (
       <View style={styles.footerButtonContainer}>
         <Button
-          text="Skip"
+          title="Skip"
           style={styles.skipButton}
           preset="inverted"
           onPress={() => {
@@ -48,9 +48,10 @@ const OnboardingFooterButtons: React.FC<OnboardingFooterProps> = (props) => {
           }}
         />
         <Button
-          text="Next"
+          title="Next"
           style={styles.footerButton}
           onPress={() => onGoToSlide()}
+          animation="pop"
         />
       </View>
     );
@@ -59,7 +60,7 @@ const OnboardingFooterButtons: React.FC<OnboardingFooterProps> = (props) => {
   if (activeSlideIndex === numberOfSlides - 2) {
     return (
       <View style={styles.startButtonContainer}>
-        <Button onPress={() => onGoToSlide()} text="Start Your Journey" />
+        <Button onPress={() => onGoToSlide()} title="Start Your Journey" />
       </View>
     );
   }
@@ -68,8 +69,9 @@ const OnboardingFooterButtons: React.FC<OnboardingFooterProps> = (props) => {
     <View style={styles.startButtonContainer}>
       <Button
         onPress={onStart}
-        text="Sign in with"
+        title="Sign in with"
         rightIcon={<GoogleLogo style={{ marginLeft: 10 }} />}
+        animation="spring"
       />
     </View>
   );
