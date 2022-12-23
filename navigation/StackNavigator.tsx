@@ -1,4 +1,4 @@
-import { GOOGLE_REFRESH_TOKEN_URL } from "@constants";
+import { GOOGLE_REFRESH_TOKEN_URL, IS_EXPO_GO } from "@constants";
 import { useAppDispatch, useAppSelector } from "@hooks";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Home, Onboarding } from "@screens";
@@ -32,7 +32,7 @@ const StackNavigator = () => {
   useEffect(() => {
     const getPersistedAuth = async () => {
       if (auth !== null) {
-        if (!TokenResponse.isTokenFresh(auth)) {
+        if (!IS_EXPO_GO && !TokenResponse.isTokenFresh(auth)) {
           refreshToken(auth.refreshToken!);
         } else {
           const userData = await fetchGoogleUserData(auth.accessToken);
