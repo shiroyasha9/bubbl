@@ -1,7 +1,6 @@
 import { Button, Screen } from "@components";
 import { GOOGLE_REVOKE_TOKEN_URL } from "@constants";
 import { useAppDispatch, useAppSelector } from "@hooks";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { resetAuthInfo } from "@stores";
 import { NavigatorParamList } from "@types";
@@ -25,7 +24,6 @@ export const Home: React.FC<HomeProps> = ({ navigation }) => {
       },
     );
     dispatch(resetAuthInfo());
-    await AsyncStorage.removeItem("auth");
   };
 
   return (

@@ -2,7 +2,6 @@ import { OnboardingFlatlist, OnboardingFooter, Screen } from "@components";
 import { IS_EXPO_GO } from "@constants";
 import { ANDROID_OAUTH_ID, EXPO_OAUTH_ID, IOS_OAUTH_ID } from "@env";
 import { useAppDispatch } from "@hooks";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "@react-navigation/native";
 import { saveAuthInfo } from "@stores";
 import {
@@ -79,11 +78,6 @@ export const Onboarding: React.FC<OnboardingScreenProps> = ({ navigation }) => {
           return;
         }
         if (response.type === "success") {
-          await AsyncStorage.setItem(
-            "auth",
-            JSON.stringify(response.authentication),
-          );
-
           const userData = await fetchGoogleUserData(
             response.authentication?.accessToken!,
           );

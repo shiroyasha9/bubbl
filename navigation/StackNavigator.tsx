@@ -1,6 +1,5 @@
 import { GOOGLE_REFRESH_TOKEN_URL } from "@constants";
 import { useAppDispatch, useAppSelector } from "@hooks";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Home, Onboarding } from "@screens";
 import { saveAuthInfo } from "@stores";
@@ -28,22 +27,17 @@ const StackNavigator = () => {
     const userData = await fetchGoogleUserData(tokenResult.accessToken);
 
     dispatch(saveAuthInfo({ userInfo: userData, auth: tokenResult }));
-
-    await AsyncStorage.setItem("auth", JSON.stringify(tokenResult));
   };
 
   useEffect(() => {
     const getPersistedAuth = async () => {
-      const auth = await AsyncStorage.getItem("auth");
       if (auth !== null) {
-        const authObj = JSON.parse(auth) as TokenResponse;
-
-        if (!TokenResponse.isTokenFresh(authObj)) {
-          refreshToken(authObj.refreshToken!);
+        if (!TokenResponse.isTokenFresh(auth)) {
+          refreshToken(auth.refreshToken!);
         } else {
-          const userData = await fetchGoogleUserData(authObj.accessToken);
+          const userData = await fetchGoogleUserData(auth.accessToken);
 
-          dispatch(saveAuthInfo({ userInfo: userData, auth: authObj }));
+          dispatch(saveAuthInfo({ userInfo: userData, auth: auth }));
         }
       }
     };
