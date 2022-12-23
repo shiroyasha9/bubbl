@@ -1,9 +1,15 @@
-import {
+import type {
   PopAnimationProps,
   SpringAnimationProps,
 } from "components/animations/animations.types";
-import { StyleProp, TextStyle, ViewStyle } from "react-native";
-import { TButtonPresets } from "./button.presets";
+import type { StyleProp, TextStyle, ViewStyle } from "react-native";
+import type { TButtonPresets } from "./button.presets";
+
+export type ButtonPreset = {
+  container: ViewStyle;
+  pressed: ViewStyle;
+  text: TextStyle;
+};
 
 type ButtonCommonProps = {
   preset?: TButtonPresets;

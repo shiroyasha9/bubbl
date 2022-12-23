@@ -1,11 +1,5 @@
-import { TextStyle, ViewStyle } from "react-native";
 import styles from "./button.styles";
-
-type ButtonPreset = {
-  container: ViewStyle;
-  pressed: ViewStyle;
-  text: TextStyle;
-};
+import { ButtonPreset } from "./button.types";
 
 const BASE: ButtonPreset = {
   container: styles.baseContainer,
